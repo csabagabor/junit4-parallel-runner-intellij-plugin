@@ -1,0 +1,34 @@
+<idea-plugin>
+    <id>com.your.company.unique.plugin.id</id>
+    <name>name</name>
+    <version>1.0</version>
+    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+
+    <description><![CDATA[
+      Enter short description for your plugin here.<br>
+      <em>most HTML tags may be used</em>
+    ]]></description>
+
+    <change-notes><![CDATA[
+      Add change notes here.<br>
+      <em>most HTML tags may be used</em>
+    ]]>
+    </change-notes>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="173.0"/>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+
+    <depends >JUnit</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <executor implementation="gabor.paralleltester.executor.RunVisualVMExecutor"/>
+        <programRunner implementation="gabor.paralleltester.runner.RunVisualVMRunner" order="first"/>
+        <executor implementation="gabor.paralleltester.executor.DebugVisualVMExecutor"/>
+        <programRunner implementation="gabor.paralleltester.runner.DebugVisualVMRunner" order="last"/>
+    </extensions>
+
+
+</idea-plugin>
