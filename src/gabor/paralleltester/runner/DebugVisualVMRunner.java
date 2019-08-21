@@ -34,7 +34,7 @@ public class DebugVisualVMRunner extends GenericDebuggerRunner {
 
     @Override
     public boolean canRun(@NotNull String executorId, @NotNull RunProfile profile) {
-        if (profile.toString().contains("Application")) {
+        if (!profile.toString().contains("JUnit")) {
             return false;
         }
 
