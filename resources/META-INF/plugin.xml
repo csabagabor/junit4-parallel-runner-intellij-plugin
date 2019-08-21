@@ -21,13 +21,14 @@
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
 
-    <depends >JUnit</depends>
+    <depends>JUnit</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <executor implementation="gabor.paralleltester.executor.RunVisualVMExecutor"/>
         <programRunner implementation="gabor.paralleltester.runner.RunVisualVMRunner" order="first"/>
         <executor implementation="gabor.paralleltester.executor.DebugVisualVMExecutor"/>
         <programRunner implementation="gabor.paralleltester.runner.DebugVisualVMRunner" order="last"/>
+        <junitPatcher implementation="gabor.paralleltester.patcher.ParallelJunitPatcher" />
     </extensions>
 
 
