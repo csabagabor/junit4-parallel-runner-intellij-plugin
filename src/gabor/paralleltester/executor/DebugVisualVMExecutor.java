@@ -6,7 +6,11 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
-
+import com.intellij.junit4.JUnit4IdeaTestRunner;
+import com.intellij.ExtensionPoints;
+import com.intellij.execution.JUnitPatcher;
+import org.jetbrains.idea.devkit.run.JUnitDevKitPatcher;
+import org.jetbrains.idea.maven.*;
 public class DebugVisualVMExecutor extends DefaultDebugExecutor {
 	@NonNls
 	public static final String EXECUTOR_ID = "Debug with VisualVM";
