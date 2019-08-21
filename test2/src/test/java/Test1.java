@@ -2,7 +2,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import com.intellij.debugger.impl.GenericDebuggerRunner;
 public class Test1 {
     @Test
     public void a() throws InterruptedException {
