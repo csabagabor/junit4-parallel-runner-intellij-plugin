@@ -36,19 +36,16 @@ public class DebugVisualVMRunner extends GenericDebuggerRunner {
 //            ((JUnitPatcher)patcher).patchJavaParameters(null, null);
 //        }
 //
-//        super.execute(environment);
+      super.execute(environment);
 
-        try {
-            new ParallelSuite(this.getClass(), new AllDefaultPossibilitiesBuilder(true));
-        } catch (InitializationError initializationError) {
-            initializationError.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+
     }
 
     @Override
     protected RunContentDescriptor doExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws ExecutionException {
+
+
+        //return null;
 
          return super.doExecute(state, env);
     }
