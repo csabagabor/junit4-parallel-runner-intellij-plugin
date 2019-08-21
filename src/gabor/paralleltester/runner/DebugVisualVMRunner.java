@@ -15,6 +15,7 @@ import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.extensions.Extensions;
 import gabor.paralleltester.executor.DebugVisualVMExecutor;
 import org.jetbrains.annotations.NotNull;
+import org.junit.internal.builders.AllDefaultPossibilitiesBuilder;
 import org.junit.runners.model.InitializationError;
 
 public class DebugVisualVMRunner extends GenericDebuggerRunner {
@@ -38,7 +39,7 @@ public class DebugVisualVMRunner extends GenericDebuggerRunner {
 //        super.execute(environment);
 
         try {
-            new ParallelSuite(null, null);
+            new ParallelSuite(this.getClass(), new AllDefaultPossibilitiesBuilder(true));
         } catch (InitializationError initializationError) {
             initializationError.printStackTrace();
         } catch (ClassNotFoundException e) {
