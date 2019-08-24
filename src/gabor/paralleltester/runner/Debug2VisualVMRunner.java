@@ -1,10 +1,7 @@
 package gabor.paralleltester.runner;
 
-import com.googlecode.junittoolbox.ParallelSuite;
-import com.intellij.ExtensionPoints;
 import com.intellij.debugger.impl.GenericDebuggerRunner;
 import com.intellij.execution.ExecutionException;
-import com.intellij.execution.JUnitPatcher;
 import com.intellij.execution.configurations.ModuleRunProfile;
 import com.intellij.execution.configurations.RunConfigurationWithSuppressedDefaultDebugAction;
 import com.intellij.execution.configurations.RunProfile;
@@ -14,13 +11,11 @@ import com.intellij.execution.junit.TestsPattern;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.ui.RunContentDescriptor;
 import com.intellij.openapi.diagnostic.Logger;
-import com.intellij.openapi.extensions.Extensions;
 import gabor.paralleltester.executor.DebugVisualVMExecutor;
 import org.jetbrains.annotations.NotNull;
-import org.junit.internal.builders.AllDefaultPossibilitiesBuilder;
-import org.junit.runners.model.InitializationError;
-public class DebugVisualVMRunner extends GenericDebuggerRunner {
-    private static final Logger log = Logger.getInstance(DebugVisualVMRunner.class.getName());
+
+public class Debug2VisualVMRunner extends GenericDebuggerRunner {
+    private static final Logger log = Logger.getInstance(Debug2VisualVMRunner.class.getName());
 
     @NotNull
     public String getRunnerId() {

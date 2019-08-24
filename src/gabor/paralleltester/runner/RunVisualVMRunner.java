@@ -68,6 +68,7 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner {
                     new AllDefaultPossibilitiesBuilder(true);
             System.out.println("entered2");
             ParallelSuite parallelSuite = new ParallelSuite(aClass, allDefaultPossibilitiesBuilder);
+            System.out.println(parallelSuite);
                     
         } catch (InitializationError initializationError) {
             initializationError.printStackTrace();
