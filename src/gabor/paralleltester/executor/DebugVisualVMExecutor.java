@@ -6,7 +6,6 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
-import com.intellij.execution.testframework.sm.runner.ui.TestProxyTreeSelectionListener;
 
 public class DebugVisualVMExecutor extends DefaultDebugExecutor {
 	@NonNls

@@ -31,7 +31,6 @@
 
 package gabor.paralleltester.runner;
 
-import com.googlecode.junittoolbox.ParallelSuite;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.configurations.ModuleRunProfile;
 import com.intellij.execution.configurations.RunProfile;
@@ -42,8 +41,6 @@ import com.intellij.openapi.diagnostic.Logger;
 import gabor.paralleltester.executor.RunVisualVMExecutor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.junit.internal.builders.AllDefaultPossibilitiesBuilder;
-import org.junit.runners.model.InitializationError;
 
 
 public class RunVisualVMRunner extends DefaultJavaProgramRunner {
@@ -59,24 +56,6 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner {
 
             throws ExecutionException {
         log.info("execute");
-
-
-        try {
-            System.out.println("entered");
-            Class<? extends RunVisualVMRunner> aClass = this.getClass();
-            AllDefaultPossibilitiesBuilder allDefaultPossibilitiesBuilder =
-                    new AllDefaultPossibilitiesBuilder(true);
-            System.out.println("entered2");
-            ParallelSuite parallelSuite = new ParallelSuite(aClass, allDefaultPossibilitiesBuilder);
-            System.out.println(parallelSuite);
-                    
-        } catch (InitializationError initializationError) {
-            initializationError.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-
         super.execute(env, callback);
     }
 
