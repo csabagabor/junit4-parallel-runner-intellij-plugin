@@ -13,11 +13,10 @@ import com.intellij.execution.junit.TestsPattern;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.ui.RunContentDescriptor;
 import com.intellij.openapi.diagnostic.Logger;
-import com.intellij.psi.PsiDirectory;
 import gabor.paralleltester.executor.DebugVisualVMExecutor;
 import org.jetbrains.annotations.NotNull;
 
-import java.lang.reflect.InvocationTargetException;
+import java.io.IOException;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -33,7 +32,17 @@ public class DebugVisualVMRunner extends GenericDebuggerRunner {
     public void execute(@NotNull final ExecutionEnvironment environment)
             throws ExecutionException {
 
-        super.execute(environment);
+        try {
+            MyStarter.main(new String[]{"-ideVersion5", "-myRunner", "Test2"});
+            //MyStarter.main(new String[]{"-ideVersion5", "-junit4", "Test2"});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        MyRunner myRunner = new MyRunner();
+//        myRunner.createListeners(new ArrayList(), 1);
+//        myRunner.startRunnerWithArgs(new String[]{"Test2"}, null, 1, true);
+//        System.out.println("a");
+        //super.execute(environment);
     }
 
     @Override
@@ -64,7 +73,7 @@ public class DebugVisualVMRunner extends GenericDebuggerRunner {
                         getConfiguration().getPersistentData()
                         .MAIN_CLASS_NAME = "com.googlecode.junittoolbox.C";
 
-                       // setMainClass("gabor.paralleltester.runner.A");
+                // setMainClass("gabor.paralleltester.runner.A");
             }
 
 
@@ -73,6 +82,7 @@ public class DebugVisualVMRunner extends GenericDebuggerRunner {
         }
 
 
+        //return null;
         return super.doExecute(state, env);
     }
 
