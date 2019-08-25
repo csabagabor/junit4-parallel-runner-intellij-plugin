@@ -1,5 +1,13 @@
 import com.intellij.analysis.AnalysisScope;
 import com.intellij.byteCodeViewer.ByteCodeViewerManager;
+import com.intellij.execution.Executor;
+import com.intellij.execution.ProgramRunnerUtil;
+import com.intellij.execution.RunManager;
+import com.intellij.execution.RunnerAndConfigurationSettings;
+import com.intellij.execution.executors.DefaultRunExecutor;
+import com.intellij.execution.junit.JUnitConfiguration;
+import com.intellij.execution.junit.JUnitConfigurationType;
+import com.intellij.execution.testframework.TestSearchScope;
 import com.intellij.ide.BrowserUtil;
 import com.intellij.lang.Language;
 import com.intellij.openapi.actionSystem.AnAction;
@@ -18,7 +26,9 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.JavaPsiFacade;
+import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiFile;
+import com.intellij.psi.PsiFileFactory;
 import com.intellij.psi.PsiJavaFile;
 import com.intellij.psi.PsiPackage;
 import com.intellij.psi.PsiRecursiveElementVisitor;
@@ -72,33 +82,70 @@ public class SearchAction extends AnAction {
                 .findFileByPath("C:\\Users\\admin\\Documents\\GitHub\\plugin\\test2\\src\\main\\java\\A.java");
 
 
-        CompilerManager.getInstance(project).compile(new VirtualFile[]{instance}, new CompileStatusNotification() {
-            @Override
-            public void finished(boolean b, int i, int i1, CompileContext compileContext) {
-                System.out.println("ready");
-            }
-        });
+//        CompilerManager.getInstance(project).compile(new VirtualFile[]{instance}, new CompileStatusNotification() {
+//            @Override
+//            public void finished(boolean b, int i, int i1, CompileContext compileContext) {
+//                System.out.println("ready");
+//            }
+//        });
+//
+//
+//        String allPackageNames = "";
+//        for (String packageName : packageNameSet) {
+//            allPackageNames = allPackageNames + packageName + "\n";
+//        }
+//        //
+//
+//
+//        String languageTag = "";
+//        PsiFile file = e.getData(CommonDataKeys.PSI_FILE);
+//        if (file != null) {
+//            Language lang = e.getData(CommonDataKeys.PSI_FILE).getLanguage();
+//            languageTag = "+[" + lang.getDisplayName().toLowerCase() + "]";
+//        }
 
 
-        String allPackageNames = "";
-        for (String packageName : packageNameSet) {
-            allPackageNames = allPackageNames + packageName + "\n";
+
+        PsiFile testFile = e.getData(LangDataKeys.PSI_FILE);
+        PsiClass testClass = null;
+
+        if(testFile instanceof PsiJavaFile) {
+            PsiJavaFile javaFile = (PsiJavaFile) testFile;
+            testClass = javaFile.getClasses()[0];
         }
-        //
+
+        RunManager runManager = RunManager.getInstance(project);
+
+        RunnerAndConfigurationSettings runnerAndConfigurationSettings = runManager.createRunConfiguration(
+                "sampleConfig", JUnitConfigurationType.getInstance().getConfigurationFactories()[0]);
 
 
-        String languageTag = "";
-        PsiFile file = e.getData(CommonDataKeys.PSI_FILE);
-        if (file != null) {
-            Language lang = e.getData(CommonDataKeys.PSI_FILE).getLanguage();
-            languageTag = "+[" + lang.getDisplayName().toLowerCase() + "]";
-        }
+        JUnitConfiguration tdaConfiguration = (JUnitConfiguration) runnerAndConfigurationSettings.getConfiguration();
+
+        tdaConfiguration.getPersistentData().TEST_OBJECT = JUnitConfiguration.TEST_CLASS;
+        tdaConfiguration.getPersistentData().setMainClass(testClass);
+        tdaConfiguration.getPersistentData().setScope(TestSearchScope.WHOLE_PROJECT);
+        tdaConfiguration.beClassConfiguration(testClass);
+
+        tdaConfiguration.setModule(module);
+
+        tdaConfiguration.setVMParameters("-ea");
+        //tdaConfiguration.setWorkingDirectory("X:\\");
+
+        Executor executor = DefaultRunExecutor.getRunExecutorInstance();
+        ProgramRunnerUtil.executeConfiguration(project, runnerAndConfigurationSettings, executor);
+
+
+
 
         // The update method below is only called periodically so need
         //  to be careful to check for selected text
-        PsiFile data = e.getData(LangDataKeys.PSI_FILE);
-        String byteCode = ByteCodeViewerManager.getByteCode(data);
-        System.out.println();
+//        PsiFile data = e.getData(LangDataKeys.PSI_FILE);
+//        final PsiFileFactory factory = PsiFileFactory.getInstance(project);
+//        Language java = Language.findLanguageByID("JAVA");
+//        final PsiFile file = factory.createFileFromText(java, "public static");
+//        String byteCode = ByteCodeViewerManager.getByteCode(file);
+//        System.out.println();
     }
 
     /**

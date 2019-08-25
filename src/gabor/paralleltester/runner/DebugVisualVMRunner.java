@@ -16,7 +16,12 @@ import com.intellij.openapi.diagnostic.Logger;
 import gabor.paralleltester.executor.DebugVisualVMExecutor;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
+import java.io.File;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -32,17 +37,17 @@ public class DebugVisualVMRunner extends GenericDebuggerRunner {
     public void execute(@NotNull final ExecutionEnvironment environment)
             throws ExecutionException {
 
-        try {
-            MyStarter.main(new String[]{"-ideVersion5", "-myRunner", "Test2"});
-            //MyStarter.main(new String[]{"-ideVersion5", "-junit4", "Test2"});
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            MyStarter.main(new String[]{"-ideVersion5", "-myRunner", "Test2"});
+//            //MyStarter.main(new String[]{"-ideVersion5", "-junit4", "Test2"});
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 //        MyRunner myRunner = new MyRunner();
 //        myRunner.createListeners(new ArrayList(), 1);
 //        myRunner.startRunnerWithArgs(new String[]{"Test2"}, null, 1, true);
 //        System.out.println("a");
-        //super.execute(environment);
+        super.execute(environment);
     }
 
     @Override
@@ -53,7 +58,6 @@ public class DebugVisualVMRunner extends GenericDebuggerRunner {
 
     @Override
     protected RunContentDescriptor doExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws ExecutionException {
-
 
         Class<?> testClass = null;
         try {
@@ -81,6 +85,39 @@ public class DebugVisualVMRunner extends GenericDebuggerRunner {
             e.printStackTrace();
         }
 
+
+        URL buildRoot =
+
+                null;
+        try {
+            buildRoot = new File(
+                    "C:\\Users\\admin\\Documents\\GitHub\\plugin\\test2 - Copy\\target\\classes"
+            ).toURI().toURL();
+        } catch (MalformedURLException ex) {
+            ex.printStackTrace();
+        }
+
+
+        URLClassLoader cl = new URLClassLoader(new URL[]{buildRoot}, null);
+
+        try {
+            Class<?> ab = cl.loadClass("com.googlecode.junittoolbox.AB");
+            System.out.println();
+
+            Field field = ab.getDeclaredField("name");
+            field.setAccessible(true);
+            field.set(null, "new");
+
+        } catch (ClassNotFoundException ex) {
+            System.out.println("a");
+
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }catch (Exception e){
+            System.out.println();
+        }
 
         //return null;
         return super.doExecute(state, env);
