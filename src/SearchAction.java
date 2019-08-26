@@ -1,5 +1,4 @@
 import com.intellij.analysis.AnalysisScope;
-import com.intellij.byteCodeViewer.ByteCodeViewerManager;
 import com.intellij.execution.Executor;
 import com.intellij.execution.ProgramRunnerUtil;
 import com.intellij.execution.RunManager;
