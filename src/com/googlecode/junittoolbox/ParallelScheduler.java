@@ -12,7 +12,7 @@ import java.util.concurrent.ForkJoinWorkerThread;
 import static java.util.concurrent.ForkJoinTask.inForkJoinPool;
 
 
-class ParallelScheduler implements RunnerScheduler {
+public class ParallelScheduler implements RunnerScheduler {
 
     static ForkJoinPool forkJoinPool = setUpForkJoinPool();
 
@@ -64,7 +64,11 @@ class ParallelScheduler implements RunnerScheduler {
         if (_lastScheduledChild != null) {
             if (inForkJoinPool()) {
                 // Execute the last scheduled child in the current thread ...
-                try { _lastScheduledChild.run(); } catch (Throwable t) { me.add(t); }
+                try {
+                    _lastScheduledChild.run();
+                } catch (Throwable t) {
+                    me.add(t);
+                }
             } else {
                 // Submit the last scheduled child to the ForkJoinPool too,
                 // because all tests should run in the worker threads ...
@@ -76,7 +80,11 @@ class ParallelScheduler implements RunnerScheduler {
                 // task.join() is able to steal tasks from other worker threads,
                 // if there are tasks, which have not been started yet ...
                 // from other worker threads ...
-                try { task.join(); } catch (Throwable t) { me.add(t); }
+                try {
+                    task.join();
+                } catch (Throwable t) {
+                    me.add(t);
+                }
             }
             me.throwIfNotEmpty();
         }

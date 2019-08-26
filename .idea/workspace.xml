@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="intellij-parallel-test-plugin:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="b0b8ac32-4fbd-442d-a506-2409eba5a5fc" name="Default Changelist" comment="" />
-    <ignored path="$PROJECT_DIR$/out/" />
+    <list default="true" id="b0b8ac32-4fbd-442d-a506-2409eba5a5fc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/intellij_parallel_test_plugin_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/intellij-parallel-test-plugin.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/intellij-parallel-test-plugin/com/googlecode/junittoolbox/ParallelScheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/intellij-parallel-test-plugin/com/googlecode/junittoolbox/ParallelScheduler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/googlecode/junittoolbox/ParallelScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/googlecode/junittoolbox/ParallelScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gabor/paralleltester/runner/MyRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gabor/paralleltester/runner/MyRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gabor/paralleltester/runner/MyStarter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gabor/paralleltester/runner/MyStarter.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,102 +31,6 @@
   <component name="FavoritesManager">
     <favorites_list name="ParallelJunitTester-intellij-plugin" />
   </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gabor/paralleltester/runner/DebugVisualVMRunner.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="66" column="16" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gabor/paralleltester/runner/RunVisualVMRunner.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="49" column="7" selection-start-line="49" selection-start-column="7" selection-end-line="49" selection-end-column="7" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gabor/paralleltester/executor/RunVisualVMExecutor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-33">
-              <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AskQuestionAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="9" column="47" selection-start-line="9" selection-end-line="9" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/SearchAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="512">
-              <caret line="128" selection-start-line="128" selection-end-line="128" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/plugins/junit/lib/idea-junit.jar!/com/intellij/execution/junit/JUnitConfiguration.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="76" column="31" selection-start-line="76" selection-start-column="13" selection-end-line="76" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/platform-api.jar!/com/intellij/execution/RunnerAndConfigurationSettings.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/platform-api.jar!/com/intellij/execution/configurations/RunConfiguration.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="21" column="47" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/platform-api.jar!/com/intellij/execution/configurations/RunProfile.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -121,59 +38,8 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>getToolWindowIcon</find>
-      <find>startRunner</find>
-      <find>writeClassesPerModule</find>
-      <find>JUnitStarter</find>
-      <find>patch</find>
-      <find>execute</find>
-      <find>myData</find>
-      <find>getPatter</find>
-      <find>getMainClass</find>
-      <find>MAIN</find>
-      <find>Class</find>
-      <find>Test2</find>
-      <find>forName</find>
-      <find>Class.forName</find>
-      <find>ourRegisteredIDs</find>
-      <find>JUNIT_START_CLASS</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/a.java" />
-        <option value="$PROJECT_DIR$/src/b.java" />
-        <option value="$PROJECT_DIR$/src/AskQuestionAction.java" />
-        <option value="$PROJECT_DIR$/src/runner/VisualVMGenericDebuggerRunnerSettings.java" />
-        <option value="$PROJECT_DIR$/src/runner/VisualVMGenericRunnerSettings.java" />
-        <option value="$PROJECT_DIR$/src/Resources.java" />
-        <option value="$PROJECT_DIR$/src/runner/DebugVisualVMRunner.java" />
-        <option value="$PROJECT_DIR$/src/krasa/visualvm/LogHelper.java" />
-        <option value="$PROJECT_DIR$/src/krasa/visualvm/runner/RunVisualVMRunner.kt" />
-        <option value="$PROJECT_DIR$/src/krasa/visualvm/Resources.java" />
-        <option value="$PROJECT_DIR$/src/krasa/visualvm/executor/RunVisualVMExecutor.java" />
-        <option value="$PROJECT_DIR$/src/krasa/visualvm/runner/RunVisualVMRunner.java" />
-        <option value="$PROJECT_DIR$/src/krasa/visualvm/executor/DebugVisualVMExecutor.java" />
-        <option value="$PROJECT_DIR$/src/krasa/visualvm/runner/DebugVisualVMRunner.java" />
-        <option value="$PROJECT_DIR$/src/gabor/paralleltester/runner/A.java" />
-        <option value="$PROJECT_DIR$/src/gabor/paralleltester/patcher/ParallelJunitPatcher.java" />
-        <option value="$PROJECT_DIR$/resources/META-INF/plugin.xml" />
-        <option value="$PROJECT_DIR$/src/MyRunner.java" />
-        <option value="$PROJECT_DIR$/src/MyUtil.java" />
-        <option value="$PROJECT_DIR$/src/gabor/paralleltester/runner/MyRunner.java" />
-        <option value="$PROJECT_DIR$/src/com/intellij/junit4/MyUtil.java" />
-        <option value="$PROJECT_DIR$/src/MyStarter.java" />
-        <option value="$PROJECT_DIR$/src/gabor/paralleltester/runner/MyStarter.java" />
-        <option value="$PROJECT_DIR$/src/gabor/paralleltester/runner/DebugVisualVMRunner.java" />
-        <option value="$PROJECT_DIR$/src/SearchAction.java" />
-      </list>
-    </option>
   </component>
   <component name="JRebelWorkspace">
     <option name="jrebelEnabledAutocompile" value="true" />
@@ -185,197 +51,29 @@
     <option name="FILTER_DEBUG" value="false" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="MavenProjectNavigator">
-    <treeState>
-      <expand />
-      <select />
-    </treeState>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-14" />
-    <option name="y" value="80" />
-    <option name="width" value="1936" />
-    <option name="height" value="1176" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Course" />
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="ParallelJunitTester-intellij-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ParallelJunitTester-intellij-plugin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ParallelJunitTester-intellij-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ParallelJunitTester-intellij-plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ParallelJunitTester-intellij-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ParallelJunitTester-intellij-plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ParallelJunitTester-intellij-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ParallelJunitTester-intellij-plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-              <item name="intellij-parallel-test-plugin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ParallelJunitTester-intellij-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ParallelJunitTester-intellij-plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ParallelJunitTester-intellij-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ParallelJunitTester-intellij-plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ParallelJunitTester-intellij-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ParallelJunitTester-intellij-plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ParallelJunitTester-intellij-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ParallelJunitTester-intellij-plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ParallelJunitTester-intellij-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ParallelJunitTester-intellij-plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="junit4" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ParallelJunitTester-intellij-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ParallelJunitTester-intellij-plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="paralleltester" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ParallelJunitTester-intellij-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ParallelJunitTester-intellij-plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="paralleltester" type="462c0819:PsiDirectoryNode" />
-              <item name="executor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ParallelJunitTester-intellij-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ParallelJunitTester-intellij-plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="paralleltester" type="462c0819:PsiDirectoryNode" />
-              <item name="patcher" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ParallelJunitTester-intellij-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ParallelJunitTester-intellij-plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="paralleltester" type="462c0819:PsiDirectoryNode" />
-              <item name="runner" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ParallelJunitTester-intellij-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="ParallelJunitTester-intellij-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; IntelliJ IDEA Community Edition IC-182.5262.2 &gt;" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="ParallelJunitTester-intellij-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; IntelliJ IDEA Community Edition IC-182.5262.2 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="idea.jar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ParallelJunitTester-intellij-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; IntelliJ IDEA Community Edition IC-182.5262.2 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="idea.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="intellij" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ParallelJunitTester-intellij-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; IntelliJ IDEA Community Edition IC-182.5262.2 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="idea.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="intellij" type="462c0819:PsiDirectoryNode" />
-              <item name="execution" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ParallelJunitTester-intellij-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; IntelliJ IDEA Community Edition IC-182.5262.2 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="idea.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="intellij" type="462c0819:PsiDirectoryNode" />
-              <item name="execution" type="462c0819:PsiDirectoryNode" />
-              <item name="runners" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ParallelJunitTester-intellij-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; IntelliJ IDEA Community Edition IC-182.5262.2 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="platform-api.jar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ParallelJunitTester-intellij-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; IntelliJ IDEA Community Edition IC-182.5262.2 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="platform-api.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="intellij" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ParallelJunitTester-intellij-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; IntelliJ IDEA Community Edition IC-182.5262.2 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="platform-api.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="intellij" type="462c0819:PsiDirectoryNode" />
-              <item name="execution" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ParallelJunitTester-intellij-plugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; IntelliJ IDEA Community Edition IC-182.5262.2 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="platform-api.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="intellij" type="462c0819:PsiDirectoryNode" />
-              <item name="execution" type="462c0819:PsiDirectoryNode" />
-              <item name="runners" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-    </panes>
-  </component>
+  <component name="ProjectId" id="1Pxf1071Qt3dAanVxA51hex9QFa" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1566069652691" />
-    <property name="last_opened_file_path" value="C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/plugins/ByteCodeViewer/lib/byteCodeViewer.jar!/" />
+    <property name="last_opened_file_path" value="C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2019.2/plugins/ByteCodeViewer/lib/resources_en.jar!/" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="project.propCompiler" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="gabor.paralleltester.runner" />
       <recent name="" />
       <recent name="krasa.visualvm.runner" />
       <recent name="krasa.visualvm.executor" />
@@ -476,11 +174,9 @@
       <workItem from="1566630252500" duration="145000" />
       <workItem from="1566630461782" duration="16519000" />
       <workItem from="1566711570593" duration="21592000" />
+      <workItem from="1566820450773" duration="6305000" />
     </task>
     <servers />
-  </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72561000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -491,98 +187,19 @@
       <is-autoscroll-to-source value="true" />
     </todo-panel>
   </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49621212" visible="true" weight="0.19172932" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="JRebel" order="2" sideWeight="0.504931" side_tool="true" weight="0.16472115" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="Capture Tool" order="4" />
-      <window_info id="UI Designer" order="5" />
-      <window_info id="Favorites" order="6" sideWeight="0.5037879" side_tool="true" weight="0.19172932" />
-      <window_info id="Designer" order="7" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32938856" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3382643" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.89366275" visible="true" weight="0.12721893" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32960895" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32938856" />
-      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.54043394" />
-      <window_info anchor="bottom" id="Database Changes" order="11" />
-      <window_info anchor="bottom" id="Version Control" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="JRebel Executor" order="13" />
-      <window_info anchor="bottom" id="JRebel Console" order="14" sideWeight="0.10633727" side_tool="true" weight="0.6384236" />
-      <window_info anchor="bottom" id="Educational.CheckDetails" order="15" />
-      <window_info anchor="bottom" id="Run with VisualVM" order="16" />
-      <window_info anchor="bottom" id="JProfiler" order="17" />
-      <window_info anchor="bottom" id="Debug with VisualVM" order="18" weight="0.2781065" />
-      <window_info anchor="bottom" id="Tail" order="19" />
-      <window_info anchor="bottom" id="Problems" order="20" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.32760474" />
-      <window_info anchor="right" id="Maven" order="3" weight="0.32975295" />
-      <window_info anchor="right" id="Palette" order="4" />
-      <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="right" id="Database" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Theme Preview" order="8" />
-      <window_info anchor="right" id="Plugins" order="9" />
-      <window_info anchor="right" id="Maven Projects" order="10" />
-      <window_info anchor="right" id="JRebel Setup Guide" order="11" weight="0.32921588" />
-    </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49506903" visible="true" weight="0.19172932" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="JRebel" order="2" sideWeight="0.504931" side_tool="true" weight="0.16472115" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="Capture Tool" order="4" />
-      <window_info id="UI Designer" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info id="Designer" order="7" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32938856" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3382643" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.89366275" visible="true" weight="0.21893491" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32960895" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32938856" />
-      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.54043394" />
-      <window_info anchor="bottom" id="Database Changes" order="11" />
-      <window_info anchor="bottom" id="Version Control" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="JRebel Executor" order="13" />
-      <window_info anchor="bottom" id="JRebel Console" order="14" sideWeight="0.10633727" side_tool="true" weight="0.6384236" />
-      <window_info anchor="bottom" id="Educational.CheckDetails" order="15" />
-      <window_info anchor="bottom" id="Run with VisualVM" order="16" />
-      <window_info anchor="bottom" id="JProfiler" order="17" />
-      <window_info anchor="bottom" id="Debug with VisualVM" order="18" weight="0.2781065" />
-      <window_info anchor="bottom" id="Tail" order="19" />
-      <window_info anchor="bottom" id="Problems" order="20" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.32760474" />
-      <window_info anchor="right" id="Maven" order="3" weight="0.32975295" />
-      <window_info anchor="right" id="Palette" order="4" />
-      <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="right" id="Database" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Theme Preview" order="8" />
-      <window_info anchor="right" id="Plugins" order="9" />
-      <window_info anchor="right" id="Maven Projects" order="10" />
-      <window_info anchor="right" id="JRebel Setup Guide" order="11" weight="0.32921588" />
-    </layout-to-restore>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -602,20 +219,27 @@
         <line-breakpoint enabled="true" type="java-line">
           <url>jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/idea.jar!/com/intellij/debugger/impl/GenericDebuggerRunner.class</url>
           <line>193</line>
-          <properties />
           <option name="timeStamp" value="79" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/platform-impl.jar!/com/intellij/execution/ProgramRunnerUtil.class</url>
           <line>114</line>
-          <properties />
           <option name="timeStamp" value="244" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/platform-api.jar!/com/intellij/execution/RunProfileStarter.class</url>
           <line>26</line>
-          <properties />
           <option name="timeStamp" value="251" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/gabor/paralleltester/runner/MyStarter.java</url>
+          <line>244</line>
+          <option name="timeStamp" value="274" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2019.2/plugins/java/lib/java-impl.jar!/com/intellij/execution/impl/DefaultJavaProgramRunner.class</url>
+          <line>118</line>
+          <option name="timeStamp" value="276" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -624,587 +248,5 @@
         <watch expression="env.myRunProfile" language="JAVA" />
       </configuration>
     </watches-manager>
-  </component>
-  <component name="debuggerHistoryManager">
-    <expressions id="evaluateCodeFragment">
-      <expression>
-        <expression-string>ByteCodeViewerManager.getByteCode(file)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>file.getTextLength()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>Language.findLanguageByID(&quot;JAVA&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>Language.getRegisteredLanguages()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>Language.findLanguageByID(&quot;JavaScript&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>Language.findLanguageByID(&quot;java&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>ByteCodeViewerManager.getByteCode(data)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>JUnitConfiguration.JUNIT_START_CLASS</expression-string>
-        <language-id>JAVA</language-id>
-        <custom-info>com.intellij.execution.junit.JUnitConfiguration</custom-info>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>JUnitConfiguration.JUNIT_START_CLASS</expression-string>
-        <language-id>JAVA</language-id>
-        <custom-info>com.intellij.execution.junit.JUnitConfiguration,java.lang.reflect.Modifier</custom-info>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-    </expressions>
-    <expressions id="breakpointCondition">
-      <expression>
-        <expression-string>executorId.equals()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
-    <expressions id="watch">
-      <expression>
-        <expression-string>env.myRunProfile</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
-    <expressions id="evaluateExpression">
-      <expression>
-        <expression-string>FileSystemTreeImpl.createNewFile()</expression-string>
-        <language-id>JAVA</language-id>
-        <custom-info>com.intellij.openapi.fileChooser.actions.NewFileAction,com.intellij.openapi.fileChooser.ex.FileSystemTreeImpl</custom-info>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>JavaDirectoryService.getInstance().createClass()</expression-string>
-        <language-id>JAVA</language-id>
-        <custom-info>com.intellij.psi.JavaDirectoryService</custom-info>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>JavaDirectoryService.getInstance()</expression-string>
-        <language-id>JAVA</language-id>
-        <custom-info>com.intellij.psi.JavaDirectoryService</custom-info>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>javaParameters.setMainClass(&quot;&quot;);</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>PluginManager.getPlugins()</expression-string>
-        <language-id>JAVA</language-id>
-        <custom-info>com.intellij.ide.plugins.PluginManager,com.intellij.openapi.extensions.PluginId</custom-info>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>PluginManager.getPlugin(PluginId.getId(&quot;Lua&quot;)).getPluginClassLoader();</expression-string>
-        <language-id>JAVA</language-id>
-        <custom-info>com.intellij.ide.plugins.PluginManager,com.intellij.openapi.extensions.PluginId</custom-info>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>ClassLoader.getClassLoader(com.intellij.execution.junit.TestClass.class)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>ClassLoader.getClassLoader(gabor.paralleltester.runner.A.class)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>ClassLoader.getClassLoader(com)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>ClassLoader.getSystemClassLoader()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/out/production/intellij-parallel-test-plugin/gabor/paralleltester/runner/MyRunner.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="34" column="20" selection-start-line="34" selection-start-column="20" selection-end-line="34" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#9696#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/out/production/intellij-parallel-test-plugin/MyRunner.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="32" column="23" selection-start-line="32" selection-start-column="23" selection-end-line="32" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#9658#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gabor/paralleltester/runner/A.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/platform-api.jar!/com/intellij/openapi/vfs/VirtualFileSystem.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="22" column="31" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/A.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/openapi.jar!/com/intellij/openapi/compiler/CompilerManager.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="72" column="30" selection-start-line="72" selection-start-column="30" selection-end-line="72" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/idea.jar!/com/intellij/compiler/impl/OneProjectItemCompileScope.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="30" column="71" selection-start-line="30" selection-start-column="67" selection-end-line="30" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/idea.jar!/com/intellij/compiler/CompilerManagerImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="368" column="48" selection-start-line="368" selection-start-column="48" selection-end-line="368" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/idea.jar!/com/intellij/compiler/progress/CompilerTask.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="535">
-          <caret line="236" selection-start-line="236" selection-end-line="236" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/platform-impl.jar!/com/intellij/openapi/progress/impl/ProgressManagerImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="99" selection-start-line="99" selection-end-line="99" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/platform-impl.jar!/com/intellij/openapi/progress/impl/CoreProgressManager.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="401" selection-start-line="401" selection-end-line="401" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/platform-impl.jar!/com/intellij/openapi/application/impl/ApplicationImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1831">
-          <caret line="375" selection-start-line="375" selection-end-line="375" />
-          <folding>
-            <element signature="e#13765#13766#0" expanded="true" />
-            <element signature="e#13805#13806#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/idea.jar!/com/intellij/compiler/impl/CompileContextImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-92">
-          <caret line="48" column="129" selection-start-line="48" selection-start-column="117" selection-end-line="48" selection-end-column="129" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/platform-api.jar!/com/intellij/openapi/actionSystem/AnActionEvent.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="234" column="15" selection-start-line="234" selection-start-column="15" selection-end-line="234" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/platform-api.jar!/com/intellij/openapi/actionSystem/CommonDataKeys.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="26" column="39" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/idea.jar!/com/intellij/compiler/impl/CompileDriver.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="451" column="20" selection-start-line="451" selection-start-column="20" selection-end-line="451" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/plugins/junit/lib/junit-rt.jar!/com/intellij/junit4/JUnit4TestRunnerUtil.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1809">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MyRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="41" selection-start-line="41" selection-end-line="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AA.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="15" selection-start-column="15" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/junit-4.12.jar!/org/junit/runner/Request.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="59" column="27" selection-start-line="59" selection-start-column="27" selection-end-line="59" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/plugins/junit/lib/junit-rt.jar!/com/intellij/junit4/JUnit4IdeaTestRunner.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="41" column="63" selection-start-line="41" selection-start-column="51" selection-end-line="41" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/intellij/junit4/MyUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="318" column="49" selection-start-line="302" selection-start-column="12" selection-end-line="318" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5866#5867#0" expanded="true" />
-            <element signature="e#5944#5945#0" expanded="true" />
-            <element signature="e#7749#7750#0" expanded="true" />
-            <element signature="e#7859#7860#0" expanded="true" />
-            <element signature="e#9600#9601#0" expanded="true" />
-            <element signature="e#9686#9687#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gabor/paralleltester/runner/MyStarter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="70" column="20" selection-start-line="70" selection-start-column="20" selection-end-line="70" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gabor/paralleltester/runner/MyRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="41" column="40" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/idea.jar!/com/intellij/debugger/impl/GenericDebuggerRunner.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="147" column="25" lean-forward="true" selection-start-line="147" selection-start-column="25" selection-end-line="147" selection-end-column="25" />
-          <folding>
-            <element signature="e#6615#7604#0" expanded="true" />
-            <element signature="e#7603#7604#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/lang/reflect/Modifier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6507">
-          <caret line="290" column="28" selection-start-line="290" selection-start-column="28" selection-end-line="290" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/platform-impl.jar!/com/intellij/openapi/wm/impl/FocusManagerImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="353" selection-start-line="353" selection-end-line="353" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/platform-impl.jar!/com/intellij/openapi/application/TransactionGuardImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="85" selection-start-line="85" selection-end-line="85" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/platform-impl.jar!/com/intellij/ide/IdeEventQueue.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="993" selection-start-line="993" selection-end-line="993" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/plugins/ByteCodeViewer/lib/byteCodeViewer.jar!/com/intellij/byteCodeViewer/ByteCodeViewerManager.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="33">
-          <caret line="204" column="27" selection-start-line="204" selection-start-column="27" selection-end-line="204" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/platform-api.jar!/com/intellij/lang/Language.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-494">
-          <caret line="85" column="20" selection-start-line="85" selection-start-column="20" selection-end-line="85" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/idea.jar!/com/intellij/testFramework/PlatformTestCase.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="97" column="58" selection-start-line="97" selection-start-column="58" selection-end-line="97" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/platform-api.jar!/com/intellij/execution/runners/ProgramRunner.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="42" column="9" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/platform-api.jar!/com/intellij/execution/runners/ExecutionEnvironment.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="171" selection-start-line="171" selection-end-line="171" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/platform-impl.jar!/com/intellij/execution/ProgramRunnerUtil.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="117" column="27" lean-forward="true" selection-start-line="117" selection-start-column="27" selection-end-line="117" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/platform-api.jar!/com/intellij/execution/runners/BaseProgramRunner.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="688">
-          <caret line="86" selection-start-line="86" selection-end-line="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/platform-api.jar!/com/intellij/execution/RunProfileStarter.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/platform-api.jar!/com/intellij/execution/runners/GenericProgramRunnerKt.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="3" column="33" lean-forward="true" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/platform-api.jar!/com/intellij/execution/runners/GenericProgramRunner.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/idea.jar!/com/intellij/execution/JavaTestConfigurationBase.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gabor/paralleltester/executor/DebugVisualVMExecutor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gabor/paralleltester/executor/RunVisualVMExecutor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-33">
-          <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AskQuestionAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="9" column="47" selection-start-line="9" selection-end-line="9" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/platform-api.jar!/com/intellij/execution/RunnerAndConfigurationSettings.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/platform-api.jar!/com/intellij/execution/configurations/RunProfile.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/lib/platform-api.jar!/com/intellij/execution/configurations/RunConfiguration.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="21" column="47" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gabor/paralleltester/runner/RunVisualVMRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="49" column="7" selection-start-line="49" selection-start-column="7" selection-end-line="49" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gabor/paralleltester/runner/DebugVisualVMRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="66" column="16" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.2.8/plugins/junit/lib/idea-junit.jar!/com/intellij/execution/junit/JUnitConfiguration.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="76" column="31" selection-start-line="76" selection-start-column="13" selection-end-line="76" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SearchAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="128" selection-start-line="128" selection-end-line="128" />
-        </state>
-      </provider>
-    </entry>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>Invalid</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>IntelliJ IDEA Community Edition IC-182.5262.2</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>intellij-parallel-test-plugin</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>

@@ -4,6 +4,7 @@ package gabor.paralleltester.runner;//
 //
 
 
+import com.googlecode.junittoolbox.ParallelScheduler;
 import com.intellij.junit4.JUnit4ReflectionUtil;
 import com.intellij.junit4.JUnit4TestListener;
 import com.intellij.junit4.JUnit4TestRunnerUtil;
@@ -22,6 +23,7 @@ import org.junit.runner.Runner;
 import org.junit.runner.manipulation.Filter;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunListener;
+import org.junit.runners.ParentRunner;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -39,13 +41,17 @@ public class MyRunner implements IdeaTestRunner {
 
     public int startRunnerWithArgs(String[] args, String name, int count, boolean sendTree) {
         try {
-            final Request request = MyUtil.buildRequest(args, name, sendTree);
+            final Request request = JUnit4TestRunnerUtil.buildRequest(args, name, sendTree);
             if (request == null) return -2;
 
             final Runner testRunner = request.getRunner();
             Description description = getDescription(request, testRunner);
             if (description == null) {
                 return -2;
+            }
+            if (testRunner instanceof ParentRunner) {
+                ParentRunner parentRunner = (ParentRunner) testRunner;
+                parentRunner.setScheduler(new ParallelScheduler());
             }
 
             if (sendTree) {

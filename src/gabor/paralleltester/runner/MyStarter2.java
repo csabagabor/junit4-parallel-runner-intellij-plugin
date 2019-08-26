@@ -1,15 +1,18 @@
-package gabor.paralleltester.runner;//
+//
 // Source code recreated from a .class file by IntelliJ IDEA
 // (powered by Fernflower decompiler)
 //
 
+package gabor.paralleltester.runner;
 
+import com.intellij.openapi.actionSystem.DataKeys;
+import com.intellij.openapi.ui.MessageType;
+import com.intellij.openapi.ui.popup.Balloon;
+import com.intellij.openapi.ui.popup.JBPopupFactory;
+import com.intellij.openapi.wm.StatusBar;
+import com.intellij.openapi.wm.WindowManager;
 import com.intellij.rt.execution.junit.IdeaTestRunner;
 import com.intellij.rt.execution.junit.IdeaTestRunner.Repeater;
-import com.intellij.rt.execution.junit.JUnitForkedSplitter;
-import com.intellij.rt.execution.junit.RepeatCount;
-import junit.textui.ResultPrinter;
-import junit.textui.TestRunner;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -26,7 +29,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-public class MyStarter {
+import com.intellij.rt.execution.junit.JUnitForkedSplitter;
+import com.intellij.rt.execution.junit.JUnitStarter;
+import com.intellij.rt.execution.junit.RepeatCount;
+import com.intellij.ui.awt.RelativePoint;
+import junit.textui.ResultPrinter;
+import junit.textui.TestRunner;
+
+public class MyStarter2 extends JUnitStarter {
     public static final int VERSION = 5;
     public static final String IDE_VERSION = "-ideVersion";
     public static final String JUNIT3_PARAMETER = "-junit3";
@@ -37,13 +47,15 @@ public class MyStarter {
     public static final String JUNIT3_RUNNER_NAME = "com.intellij.junit3.JUnit3IdeaTestRunner";
     public static final String JUNIT4_RUNNER_NAME = "com.intellij.junit4.JUnit4IdeaTestRunner";
     public static final String JUNIT5_RUNNER_NAME = "com.intellij.junit5.JUnit5IdeaTestRunner";
+    
+
     private static String ourForkMode;
     private static String ourCommandFileName;
     private static String ourWorkingDirs;
     protected static int ourCount = 1;
     public static String ourRepeatCount = null;
 
-    public MyStarter() {
+    public MyStarter2() {
     }
 
     public static void main(String[] args) throws IOException {
@@ -56,7 +68,10 @@ public class MyStarter {
 
         ArrayList listeners = new ArrayList();
         String[] name = new String[1];
-        String agentName = "gabor.paralleltester.runner.MyRunner";
+        String agentName = processParameters(argList, listeners, name);
+        if (!"com.intellij.junit5.JUnit5IdeaTestRunner".equals(agentName) && !canWorkWithJUnitVersion(System.err, agentName)) {
+            System.exit(-3);
+        }
 
         if (!checkVersion(args, System.err)) {
             System.exit(-3);
@@ -65,7 +80,7 @@ public class MyStarter {
         String[] array = new String[argList.size()];
         argList.copyInto(array);
         int exitCode = prepareStreamsAndStart(array, agentName, listeners, name[0]);
-        //System.exit(exitCode);
+        System.exit(exitCode);
     }
 
     private static String processParameters(Vector args, List listeners, String[] params) {
@@ -77,14 +92,11 @@ public class MyStarter {
         for (i = 0; i < args.size(); ++i) {
             arg = (String) args.get(i);
             if (!arg.startsWith("-ideVersion")) {
-                if (arg.equals("-junit3")) {
-                    agentName = "com.intellij.junit3.JUnit3IdeaTestRunner";
+                if (arg.equals("-junit3") || arg.equals("-junit5")) {
+                    System.exit(-1);
                 } else if (arg.equals("-junit4")) {
-                    agentName = "com.intellij.junit4.JUnit4IdeaTestRunner";
-                } else if (arg.equals("-myRunner")) {
+                    shutDownPlugin();
                     agentName = "gabor.paralleltester.runner.MyRunner";
-                } else if (arg.equals("-junit5")) {
-                    agentName = "com.intellij.junit5.JUnit5IdeaTestRunner";
                 } else if (arg.startsWith("@name")) {
                     params[0] = arg.substring("@name".length());
                 } else if (arg.startsWith("@w@")) {
@@ -166,10 +178,21 @@ public class MyStarter {
                 return "com.intellij.junit3.JUnit3IdeaTestRunner";
             }
         } catch (SecurityException var17) {
-            ;
         }
 
         return agentName;
+    }
+
+    private static void shutDownPlugin() {
+        StatusBar statusBar = WindowManager.getInstance()
+                .getStatusBar(DataKeys.PROJECT.getData(actionEvent.getDataContext()));
+
+        JBPopupFactory.getInstance()
+                .createHtmlTextBalloonBuilder("blabla", MessageType.ERROR, null)
+                .setFadeoutTime(7500)
+                .createBalloon()
+                .show(RelativePoint.getCenterOf(statusBar.getComponent()),
+                        Balloon.Position.atRight);
     }
 
     public static boolean isJUnit5Preferred() {
