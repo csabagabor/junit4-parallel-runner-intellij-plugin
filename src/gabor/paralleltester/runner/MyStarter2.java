@@ -52,6 +52,8 @@ public class MyStarter2 extends JUnitStarter {
     }
 
     public static void main(String[] args) throws IOException {
+        System.exit(-3);
+
         Vector argList = new Vector();
 
         for (int i = 0; i < args.length; ++i) {
@@ -102,6 +104,9 @@ public class MyStarter2 extends JUnitStarter {
             String[] array = new String[argList.size()];
             argList.copyInto(array);
             int exitCode = prepareStreamsAndStart(array, agentName, listeners, name[0]);
+
+            System.out.println("exitCode:" + exitCode);
+
             System.exit(exitCode);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
