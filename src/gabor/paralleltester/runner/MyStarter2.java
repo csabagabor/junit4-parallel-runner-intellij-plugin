@@ -23,6 +23,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -37,17 +39,8 @@ import junit.textui.ResultPrinter;
 import junit.textui.TestRunner;
 
 public class MyStarter2 extends JUnitStarter {
-    public static final int VERSION = 5;
-    public static final String IDE_VERSION = "-ideVersion";
-    public static final String JUNIT3_PARAMETER = "-junit3";
-    public static final String JUNIT4_PARAMETER = "-junit4";
-    public static final String JUNIT5_PARAMETER = "-junit5";
-    public static final String JUNIT5_KEY = "idea.is.junit5";
-    private static final String SOCKET = "-socket";
-    public static final String JUNIT3_RUNNER_NAME = "com.intellij.junit3.JUnit3IdeaTestRunner";
-    public static final String JUNIT4_RUNNER_NAME = "com.intellij.junit4.JUnit4IdeaTestRunner";
-    public static final String JUNIT5_RUNNER_NAME = "com.intellij.junit5.JUnit5IdeaTestRunner";
-    
+    public static final String JUNIT_PARALLEL_RUNNER_NAME = "com.intellij.junit5.JUnit5IdeaTestRunner";
+
 
     private static String ourForkMode;
     private static String ourCommandFileName;
@@ -68,159 +61,65 @@ public class MyStarter2 extends JUnitStarter {
 
         ArrayList listeners = new ArrayList();
         String[] name = new String[1];
-        String agentName = processParameters(argList, listeners, name);
-        if (!"com.intellij.junit5.JUnit5IdeaTestRunner".equals(agentName) && !canWorkWithJUnitVersion(System.err, agentName)) {
-            System.exit(-3);
-        }
-
-        if (!checkVersion(args, System.err)) {
-            System.exit(-3);
-        }
-
-        String[] array = new String[argList.size()];
-        argList.copyInto(array);
-        int exitCode = prepareStreamsAndStart(array, agentName, listeners, name[0]);
-        System.exit(exitCode);
-    }
-
-    private static String processParameters(Vector args, List listeners, String[] params) {
-        String agentName = isJUnit5Preferred() ? "com.intellij.junit5.JUnit5IdeaTestRunner" : "com.intellij.junit4.JUnit4IdeaTestRunner";
-        Vector result = new Vector(args.size());
-
-        int i;
-        String arg;
-        for (i = 0; i < args.size(); ++i) {
-            arg = (String) args.get(i);
-            if (!arg.startsWith("-ideVersion")) {
-                if (arg.equals("-junit3") || arg.equals("-junit5")) {
-                    System.exit(-1);
-                } else if (arg.equals("-junit4")) {
-                    shutDownPlugin();
-                    agentName = "gabor.paralleltester.runner.MyRunner";
-                } else if (arg.startsWith("@name")) {
-                    params[0] = arg.substring("@name".length());
-                } else if (arg.startsWith("@w@")) {
-                    ourWorkingDirs = arg.substring(3);
-                } else {
-                    int port;
-                    if (arg.startsWith("@@@")) {
-                        port = arg.indexOf(44);
-                        ourForkMode = arg.substring(3, port);
-                        ourCommandFileName = arg.substring(port + 1);
-                    } else if (arg.startsWith("@@")) {
-                        if ((new File(arg.substring(2))).exists()) {
-                            try {
-                                BufferedReader reader = new BufferedReader(new FileReader(arg.substring(2)));
-
-                                String line;
-                                while ((line = reader.readLine()) != null) {
-                                    listeners.add(line);
-                                }
-                            } catch (Exception var22) {
-                                var22.printStackTrace();
-                            }
-                        }
-                    } else if (arg.startsWith("-socket")) {
-                        port = Integer.parseInt(arg.substring("-socket".length()));
-
-                        try {
-                            Socket socket = new Socket(InetAddress.getByName("127.0.0.1"), port);
-                            DataInputStream os = new DataInputStream(socket.getInputStream());
-
-                            try {
-                                os.readBoolean();
-                            } finally {
-                                os.close();
-                            }
-                        } catch (IOException var21) {
-                            var21.printStackTrace();
-                        }
-                    } else {
-                        port = RepeatCount.getCount(arg);
-                        if (port != 0) {
-                            ourRepeatCount = arg;
-                            ourCount = port;
-                        } else {
-                            result.addElement(arg);
-                        }
-                    }
-                }
-            }
-        }
-
-        args.removeAllElements();
-
-        for (i = 0; i < result.size(); ++i) {
-            arg = (String) result.get(i);
-            args.addElement(arg);
-        }
-
-        if ("com.intellij.junit3.JUnit3IdeaTestRunner".equals(agentName)) {
-            try {
-                Class.forName("org.junit.runner.Computer");
-                agentName = "com.intellij.junit4.JUnit4IdeaTestRunner";
-            } catch (ClassNotFoundException var19) {
-                return "com.intellij.junit3.JUnit3IdeaTestRunner";
-            }
-        }
-
-        if ("com.intellij.junit4.JUnit4IdeaTestRunner".equals(agentName)) {
-            try {
-                Class.forName("org.junit.Test");
-            } catch (ClassNotFoundException var18) {
-                return "com.intellij.junit3.JUnit3IdeaTestRunner";
-            }
-        }
 
         try {
-            String forceJUnit3 = System.getProperty("idea.force.junit3");
-            if (forceJUnit3 != null && Boolean.valueOf(forceJUnit3)) {
-                return "com.intellij.junit3.JUnit3IdeaTestRunner";
+            for (Method declaredMethod : JUnitStarter.class.getDeclaredMethods()) {
+                System.out.println(declaredMethod);
             }
-        } catch (SecurityException var17) {
-        }
+            System.out.println();
 
-        return agentName;
+            Class[] paramStringArray = new Class[3];
+            paramStringArray[0] = Vector.class;
+            paramStringArray[1] = List.class;
+            paramStringArray[2] = String[].class;
+
+
+            Method processParameters = JUnitStarter.class.getDeclaredMethod(
+                    "processParameters", paramStringArray);
+            processParameters.setAccessible(true);
+            System.out.println("entered");
+
+            String agentName = (String) processParameters.invoke(null, argList, listeners, name);
+
+            if (!agentName.equals(JUnitStarter.JUNIT4_RUNNER_NAME)) {
+                shutDownPlugin();
+            }
+
+            System.out.println(agentName);
+
+            try {
+                getAgentClass(JUNIT_PARALLEL_RUNNER_NAME);
+                agentName = JUNIT_PARALLEL_RUNNER_NAME;
+            } catch (ClassNotFoundException e) {
+                //if class is not accessible, then revert back to JUnit4 runner
+
+            }
+
+            if (!checkVersion(args, System.err)) {
+                System.exit(-3);
+            }
+
+            String[] array = new String[argList.size()];
+            argList.copyInto(array);
+            int exitCode = prepareStreamsAndStart(array, agentName, listeners, name[0]);
+            System.exit(exitCode);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            System.exit(-3);
+        }
     }
 
     private static void shutDownPlugin() {
-        StatusBar statusBar = WindowManager.getInstance()
-                .getStatusBar(DataKeys.PROJECT.getData(actionEvent.getDataContext()));
-
-        JBPopupFactory.getInstance()
-                .createHtmlTextBalloonBuilder("blabla", MessageType.ERROR, null)
-                .setFadeoutTime(7500)
-                .createBalloon()
-                .show(RelativePoint.getCenterOf(statusBar.getComponent()),
-                        Balloon.Position.atRight);
-    }
-
-    public static boolean isJUnit5Preferred() {
-        String useJUnit5 = System.getProperty("idea.is.junit5");
-        if (useJUnit5 == null) {
-            return false;
-        } else {
-            Boolean boolValue = Boolean.valueOf(useJUnit5);
-            return boolValue != null && boolValue;
-        }
-    }
-
-    public static boolean checkVersion(String[] args, PrintStream printStream) {
-        for (int i = 0; i < args.length; ++i) {
-            String arg = args[i];
-            if (arg.startsWith("-ideVersion")) {
-                int ideVersion = Integer.parseInt(arg.substring("-ideVersion".length()));
-                if (ideVersion != 5) {
-                    printStream.println("Wrong agent version: 5. IDE expects version: " + ideVersion);
-                    printStream.flush();
-                    return false;
-                }
-
-                return true;
-            }
-        }
-
-        return false;
+//        StatusBar statusBar = WindowManager.getInstance()
+//                .getStatusBar(DataKeys.PROJECT.getData(actionEvent.getDataContext()));
+//
+//        JBPopupFactory.getInstance()
+//                .createHtmlTextBalloonBuilder("blabla", MessageType.ERROR, null)
+//                .setFadeoutTime(7500)
+//                .createBalloon()
+//                .show(RelativePoint.getCenterOf(statusBar.getComponent()),
+//                        Balloon.Position.atRight);
     }
 
     private static boolean canWorkWithJUnitVersion(PrintStream printStream, String agentName) {
@@ -266,22 +165,5 @@ public class MyStarter2 extends JUnitStarter {
 
     static Class getAgentClass(String agentName) throws ClassNotFoundException {
         return Class.forName(agentName);
-    }
-
-    public static void printClassesList(List classNames, String packageName, String category, String filters, File tempFile) throws IOException {
-        PrintWriter writer = new PrintWriter(new OutputStreamWriter(new FileOutputStream(tempFile), "UTF-8"));
-
-        try {
-            writer.println(packageName);
-            writer.println(category);
-            writer.println(filters);
-
-            for (int i = 0; i < classNames.size(); ++i) {
-                writer.println(classNames.get(i));
-            }
-        } finally {
-            writer.close();
-        }
-
     }
 }

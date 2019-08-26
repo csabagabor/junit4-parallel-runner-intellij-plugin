@@ -7,14 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b0b8ac32-4fbd-442d-a506-2409eba5a5fc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/intellij_parallel_test_plugin_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/intellij-parallel-test-plugin.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/intellij-parallel-test-plugin/com/googlecode/junittoolbox/ParallelScheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/intellij-parallel-test-plugin/com/googlecode/junittoolbox/ParallelScheduler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/googlecode/junittoolbox/ParallelScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/googlecode/junittoolbox/ParallelScheduler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gabor/paralleltester/runner/MyRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gabor/paralleltester/runner/MyRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gabor/paralleltester/runner/MyStarter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gabor/paralleltester/runner/MyStarter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gabor/paralleltester/runner/MyStarter2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gabor/paralleltester/runner/MyStarter2.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -174,7 +168,7 @@
       <workItem from="1566630252500" duration="145000" />
       <workItem from="1566630461782" duration="16519000" />
       <workItem from="1566711570593" duration="21592000" />
-      <workItem from="1566820450773" duration="6305000" />
+      <workItem from="1566820450773" duration="9037000" />
     </task>
     <servers />
   </component>
