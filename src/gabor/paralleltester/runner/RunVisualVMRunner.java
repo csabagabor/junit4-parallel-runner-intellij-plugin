@@ -31,13 +31,14 @@
 
 package gabor.paralleltester.runner;
 
-import com.googlecode.junittoolbox.C;
 import com.googlecode.junittoolbox.ParallelScheduler;
-import com.googlecode.junittoolbox.ParallelSuite;
-import com.googlecode.junittoolbox.util.MultiException;
-import com.googlecode.junittoolbox.util.TigerThrower;
 import com.intellij.execution.ExecutionException;
-import com.intellij.execution.configurations.*;
+import com.intellij.execution.configurations.JavaParameters;
+import com.intellij.execution.configurations.ModuleRunProfile;
+import com.intellij.execution.configurations.ParametersList;
+import com.intellij.execution.configurations.RunProfile;
+import com.intellij.execution.configurations.RunProfileState;
+import com.intellij.execution.configurations.RunnerSettings;
 import com.intellij.execution.impl.DefaultJavaProgramRunner;
 import com.intellij.execution.junit.TestObject;
 import com.intellij.execution.junit.TestsPattern;
@@ -56,9 +57,10 @@ import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -84,30 +86,30 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner {
     @Override
     protected RunContentDescriptor doExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws ExecutionException {
         Class<?> testClass = null;
-        try {
-            testClass = Class.forName("com.intellij.execution.junit.TestClass");
-
-            if (state instanceof TestsPattern) {
-                Set<String> patterns = ((TestsPattern) state).getConfiguration().getPersistentData().getPatterns();
-
-                patterns.clear();
-                patterns.add("gabor.paralleltester.runner.A");
-                ((TestsPattern) state).getConfiguration().getPersistentData().setPatterns((LinkedHashSet<String>)
-                        patterns);
-
-            } else if (testClass.isInstance(state)) {
-                Object obj = testClass.cast(state);
-                String mainClassName = ((TestObject) (testClass.cast(state))).
-                        getConfiguration().getPersistentData()
-                        .MAIN_CLASS_NAME = "com.googlecode.junittoolbox.C";
-
-                // setMainClass("gabor.paralleltester.runner.A");
-            }
-
-
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            testClass = Class.forName("com.intellij.execution.junit.TestClass");
+//
+//            if (state instanceof TestsPattern) {
+//                Set<String> patterns = ((TestsPattern) state).getConfiguration().getPersistentData().getPatterns();
+//
+//                patterns.clear();
+//                patterns.add("gabor.paralleltester.runner.A");
+//                ((TestsPattern) state).getConfiguration().getPersistentData().setPatterns((LinkedHashSet<String>)
+//                        patterns);
+//
+//            } else if (testClass.isInstance(state)) {
+//                Object obj = testClass.cast(state);
+//                String mainClassName = ((TestObject) (testClass.cast(state))).
+//                        getConfiguration().getPersistentData()
+//                        .MAIN_CLASS_NAME = "com.googlecode.junittoolbox.C";
+//
+//                // setMainClass("gabor.paralleltester.runner.A");
+//            }
+//
+//
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
 
 
         //copy files
@@ -167,16 +169,21 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner {
 
     @Override
     public void patch(JavaParameters javaParameters, RunnerSettings settings, RunProfile runProfile, boolean beforeExecution) throws ExecutionException {
-        String user = "csaba.gabor";
+//        String user = "csaba.gabor";
+        String user = "admin";
         ParametersList programParametersList = javaParameters.getProgramParametersList();
 
         List<String> list = new ArrayList<>(javaParameters.getProgramParametersList().getList());
 
         programParametersList.clearAll();
 
+        boolean classAdded = false;
         for (String s : list) {
             if (!s.contains("@")) {
                 programParametersList.add(s);
+            } else if (!classAdded) {
+                classAdded = true;
+                programParametersList.add("com.googlecode.junittoolbox.C");
             }
         }
 //        String user = "admin";
