@@ -35,7 +35,9 @@ public class MyStarter2 extends JUnitStarter {
     }
 
     public static void main(String[] args) throws IOException {
-        System.exit(-3);
+        //
+
+        //System.exit(-3);
         System.out.println("ha");
         Vector argList = new Vector();
 
