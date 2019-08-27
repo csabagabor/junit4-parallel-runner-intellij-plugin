@@ -39,6 +39,8 @@ import com.googlecode.junittoolbox.util.TigerThrower;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.configurations.*;
 import com.intellij.execution.impl.DefaultJavaProgramRunner;
+import com.intellij.execution.junit.TestObject;
+import com.intellij.execution.junit.TestsPattern;
 import com.intellij.execution.process.ProcessAdapter;
 import com.intellij.execution.process.ProcessEvent;
 import com.intellij.execution.process.ProcessHandler;
@@ -50,12 +52,15 @@ import com.intellij.openapi.compiler.ex.CompilerPathsEx;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.module.ModuleManager;
 import gabor.paralleltester.executor.RunVisualVMExecutor;
+import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 
 public class RunVisualVMRunner extends DefaultJavaProgramRunner {
@@ -76,9 +81,41 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner {
 
     @Override
     protected RunContentDescriptor doExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws ExecutionException {
+        Class<?> testClass = null;
+        try {
+            testClass = Class.forName("com.intellij.execution.junit.TestClass");
+
+            if (state instanceof TestsPattern) {
+                Set<String> patterns = ((TestsPattern) state).getConfiguration().getPersistentData().getPatterns();
+
+                patterns.clear();
+                patterns.add("gabor.paralleltester.runner.A");
+                ((TestsPattern) state).getConfiguration().getPersistentData().setPatterns((LinkedHashSet<String>)
+                        patterns);
+
+            } else if (testClass.isInstance(state)) {
+                Object obj = testClass.cast(state);
+                String mainClassName = ((TestObject) (testClass.cast(state))).
+                        getConfiguration().getPersistentData()
+                        .MAIN_CLASS_NAME = "com.googlecode.junittoolbox.C";
+
+                // setMainClass("gabor.paralleltester.runner.A");
+            }
+
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+
         //copy files
 
-        String jarPathForClass = PathManager.getJarPathForClass(ParallelScheduler.class) + "/com/googlecode/junittoolbox/ParallelScheduler.class";
+        //String jarPathForClass = PathManager.getJarPathForClass(ParallelScheduler.class) + "/com/googlecode/junittoolbox/ParallelScheduler.class";
+        String jarPathForClass = PathManager.getJarPathForClass(ParallelScheduler.class);
         //String jarPathForClass2 = PathManager.getJarPathForClass(ParallelSuite.class) + "/com/googlecode/junittoolbox/ParallelSuite.class";
         //String jarPathForClass3 = PathManager.getJarPathForClass(MultiException.class) + "/com/googlecode/junittoolbox/util/MultiException.class";
         //String jarPathForClass4 = PathManager.getJarPathForClass(TigerThrower.class) + "/com/googlecode/junittoolbox/util/TigerThrower.class";
@@ -88,24 +125,11 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner {
         String[] outputPaths = CompilerPathsEx.getOutputPaths(ModuleManager.getInstance(env.getProject()).getModules());
 
         try {
-            File file = new File(jarPathForClass);
+            File file = new File(jarPathForClass + "/com");
             //File file1 = new File(outputPaths[0] + "/com/googlecode/junittoolbox/ParallelScheduler.class");
-            File file1 = new File("C:\\Users\\csaba.gabor\\Documents\\GitHub\\ParallelJUnitTester-intellij-plugin\\out\\artifacts\\intellij_parallel_test_plugin_jar\\t2.txt");
-
-            InputStream is = null;
-            OutputStream os = null;
-            try {
-                is = new FileInputStream(file);
-                os = new FileOutputStream(file1);
-                byte[] buffer = new byte[1024];
-                int length;
-                while ((length = is.read(buffer)) > 0) {
-                    os.write(buffer, 0, length);
-                }
-            } finally {
-                is.close();
-                os.close();
-            }
+            File file1 = new File(outputPaths[0] + "/com");
+            //File file1 = new File("C:\\Users\\csaba.gabor\\Documents\\GitHub\\ParallelJUnitTester-intellij-plugin\\out\\artifacts\\intellij_parallel_test_plugin_jar\\t2.txt");
+            FileUtils.copyDirectory(file, file1);
 
             // Files.copy(file.toPath(), file1.toPath());
             //Files.copy(new File(jarPathForClass2).toPath(), new File(outputPaths[0] + "/com/googlecode/junittoolbox/ParallelSuite.class").toPath());
@@ -150,11 +174,10 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner {
 
         //javaParameters.getClassPath().addFirst("C:\\Users\\admin\\Documents\\GitHub\\ParallelJunitTester-intellij-plugin\\out\\artifacts\\intellij_parallel_test_plugin_jar\\intellij-parallel-test-plugin.jar");
         //javaParameters.getClassPath().addFirst("C:\\Users\\" + user + "\\Documents\\GitHub\\ParallelJUnitTester-intellij-plugin\\out\\artifacts\\intellij_parallel_test_plugin_jar\\intellij-parallel-test-plugin.jar");
-        javaParameters.getClassPath().addFirst(PathManager.getPluginsPath());
-        javaParameters.getClassPath().addFirst(PathManager.getJarPathForClass(A.class));
 
-
-        javaParameters.setMainClass("gabor.paralleltester.runner.MyStarter2");
+//        javaParameters.getClassPath().addFirst(PathManager.getPluginsPath());
+//        javaParameters.getClassPath().addFirst(PathManager.getJarPathForClass(A.class));
+//        javaParameters.setMainClass("gabor.paralleltester.runner.MyStarter2");
 
 
         FileWriter fileWriter = null;

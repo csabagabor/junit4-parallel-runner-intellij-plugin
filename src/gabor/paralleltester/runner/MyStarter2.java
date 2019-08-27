@@ -79,6 +79,7 @@ public class MyStarter2 extends JUnitStarter {
                 agentName = JUNIT_PARALLEL_RUNNER_NAME;
             } catch (ClassNotFoundException e) {
                 //if class is not accessible, then revert back to JUnit4 runner
+                System.out.println("my runner not accessible");
             }
 
             System.out.println("agent loaded");
