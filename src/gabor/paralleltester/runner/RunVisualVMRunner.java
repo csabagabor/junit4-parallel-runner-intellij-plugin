@@ -59,7 +59,9 @@ import org.jetbrains.annotations.Nullable;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -106,10 +108,6 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
-
-
-
 
 
         //copy files
@@ -170,6 +168,17 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner {
     @Override
     public void patch(JavaParameters javaParameters, RunnerSettings settings, RunProfile runProfile, boolean beforeExecution) throws ExecutionException {
         String user = "csaba.gabor";
+        ParametersList programParametersList = javaParameters.getProgramParametersList();
+
+        List<String> list = new ArrayList<>(javaParameters.getProgramParametersList().getList());
+
+        programParametersList.clearAll();
+
+        for (String s : list) {
+            if (!s.contains("@")) {
+                programParametersList.add(s);
+            }
+        }
 //        String user = "admin";
 
         //javaParameters.getClassPath().addFirst("C:\\Users\\admin\\Documents\\GitHub\\ParallelJunitTester-intellij-plugin\\out\\artifacts\\intellij_parallel_test_plugin_jar\\intellij-parallel-test-plugin.jar");
