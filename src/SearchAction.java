@@ -1,33 +1,30 @@
 import com.intellij.analysis.AnalysisScope;
-import com.intellij.execution.Executor;
-import com.intellij.execution.ProgramRunnerUtil;
 import com.intellij.execution.RunManager;
 import com.intellij.execution.RunnerAndConfigurationSettings;
-import com.intellij.execution.executors.DefaultRunExecutor;
-import com.intellij.execution.junit.JUnitConfiguration;
 import com.intellij.execution.junit.JUnitConfigurationType;
-import com.intellij.execution.testframework.TestSearchScope;
-import com.intellij.ide.BrowserUtil;
-import com.intellij.lang.Language;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.actionSystem.DataKeys;
 import com.intellij.openapi.actionSystem.LangDataKeys;
-import com.intellij.openapi.compiler.CompileContext;
-import com.intellij.openapi.compiler.CompileStatusNotification;
-import com.intellij.openapi.compiler.CompilerManager;
+import com.intellij.openapi.application.ApplicationManager;
+import com.intellij.openapi.application.PathManager;
 import com.intellij.openapi.editor.CaretModel;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.roots.ModifiableRootModel;
+import com.intellij.openapi.roots.ModuleRootManager;
+import com.intellij.openapi.roots.OrderRootType;
+import com.intellij.openapi.roots.libraries.Library;
+import com.intellij.openapi.roots.libraries.LibraryTable;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.openapi.vfs.VirtualFileManager;
 import com.intellij.psi.JavaPsiFacade;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiFileFactory;
 import com.intellij.psi.PsiJavaFile;
 import com.intellij.psi.PsiPackage;
 import com.intellij.psi.PsiRecursiveElementVisitor;
@@ -81,6 +78,42 @@ public class SearchAction extends AnAction {
                 .findFileByPath("C:\\Users\\admin\\Documents\\GitHub\\plugin\\test2\\src\\main\\java\\A.java");
 
 
+        ApplicationManager.getApplication().runWriteAction(new Runnable() {
+            @Override
+            public void run() {
+                ModifiableRootModel rootModel = ModuleRootManager.getInstance(module).getModifiableModel();
+
+                LibraryTable.ModifiableModel modifiableModel = rootModel.getModuleLibraryTable().getModifiableModel();
+
+                String libraryPath = VirtualFileManager.constructUrl(LocalFileSystem.PROTOCOL, PathManager.getPluginsPath());
+                System.out.println("libraryPath:" + libraryPath);
+//                String libraryPath = VirtualFileManager.constructUrl(LocalFileSystem.PROTOCOL,
+//                        "C:\\Users\\admin\\Documents\\GitHub\\ParallelJunitTester-intellij-plugin\\out\\artifacts\\intellij_parallel_test_plugin_jar\\intellij-parallel-test-plugin.jar");
+                VirtualFile url = VirtualFileManager.getInstance().findFileByUrl(libraryPath);
+
+                if (url != null) {
+
+                    Library iceLibrary = modifiableModel.createLibrary("NME");
+
+                    Library.ModifiableModel libModel = iceLibrary.getModifiableModel();
+
+                    libModel.addRoot(libraryPath, OrderRootType.CLASSES);
+                    libModel.addRoot(libraryPath, OrderRootType.SOURCES);
+                    libModel.addJarDirectory(libraryPath, true);
+
+                    libModel.commit();
+
+                    modifiableModel.commit();
+
+///* 115 */    rootModel.addLibraryEntry(iceLibrary);
+
+                    rootModel.commit();
+
+                }
+            }
+        });
+
+
 //        CompilerManager.getInstance(project).compile(new VirtualFile[]{instance}, new CompileStatusNotification() {
 //            @Override
 //            public void finished(boolean b, int i, int i1, CompileContext compileContext) {
@@ -104,11 +137,10 @@ public class SearchAction extends AnAction {
 //        }
 
 
-
         PsiFile testFile = e.getData(LangDataKeys.PSI_FILE);
         PsiClass testClass = null;
 
-        if(testFile instanceof PsiJavaFile) {
+        if (testFile instanceof PsiJavaFile) {
             PsiJavaFile javaFile = (PsiJavaFile) testFile;
             testClass = javaFile.getClasses()[0];
         }
@@ -119,22 +151,20 @@ public class SearchAction extends AnAction {
                 "sampleConfig", JUnitConfigurationType.getInstance().getConfigurationFactories()[0]);
 
 
-        JUnitConfiguration tdaConfiguration = (JUnitConfiguration) runnerAndConfigurationSettings.getConfiguration();
-
-        tdaConfiguration.getPersistentData().TEST_OBJECT = JUnitConfiguration.TEST_CLASS;
-        tdaConfiguration.getPersistentData().setMainClass(testClass);
-        tdaConfiguration.getPersistentData().setScope(TestSearchScope.WHOLE_PROJECT);
-        tdaConfiguration.beClassConfiguration(testClass);
-
-        tdaConfiguration.setModule(module);
-
-        tdaConfiguration.setVMParameters("-ea");
+//        JUnitConfiguration tdaConfiguration = (JUnitConfiguration) runnerAndConfigurationSettings.getConfiguration();
+//
+//        tdaConfiguration.getPersistentData().TEST_OBJECT = JUnitConfiguration.TEST_CLASS;
+//        tdaConfiguration.getPersistentData().setMainClass(testClass);
+//        tdaConfiguration.getPersistentData().setScope(TestSearchScope.WHOLE_PROJECT);
+//        tdaConfiguration.beClassConfiguration(testClass);
+//
+//        tdaConfiguration.setModule(module);
+//
+//        tdaConfiguration.setVMParameters("-ea");
         //tdaConfiguration.setWorkingDirectory("X:\\");
 
-        Executor executor = DefaultRunExecutor.getRunExecutorInstance();
-        ProgramRunnerUtil.executeConfiguration(project, runnerAndConfigurationSettings, executor);
-
-
+//        Executor executor = DefaultRunExecutor.getRunExecutorInstance();
+//        ProgramRunnerUtil.executeConfiguration(project, runnerAndConfigurationSettings, executor);
 
 
         // The update method below is only called periodically so need
