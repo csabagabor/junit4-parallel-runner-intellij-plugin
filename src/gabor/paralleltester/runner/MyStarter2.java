@@ -5,41 +5,24 @@
 
 package gabor.paralleltester.runner;
 
-import com.intellij.openapi.actionSystem.DataKeys;
-import com.intellij.openapi.ui.MessageType;
-import com.intellij.openapi.ui.popup.Balloon;
-import com.intellij.openapi.ui.popup.JBPopupFactory;
-import com.intellij.openapi.wm.StatusBar;
-import com.intellij.openapi.wm.WindowManager;
 import com.intellij.rt.execution.junit.IdeaTestRunner;
 import com.intellij.rt.execution.junit.IdeaTestRunner.Repeater;
+import com.intellij.rt.execution.junit.JUnitForkedSplitter;
+import com.intellij.rt.execution.junit.JUnitStarter;
+import junit.textui.ResultPrinter;
+import junit.textui.TestRunner;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.InetAddress;
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-import com.intellij.rt.execution.junit.JUnitForkedSplitter;
-import com.intellij.rt.execution.junit.JUnitStarter;
-import com.intellij.rt.execution.junit.RepeatCount;
-import com.intellij.ui.awt.RelativePoint;
-import junit.textui.ResultPrinter;
-import junit.textui.TestRunner;
-
 public class MyStarter2 extends JUnitStarter {
-    public static final String JUNIT_PARALLEL_RUNNER_NAME = "com.intellij.junit5.JUnit5IdeaTestRunner";
+    public static final String JUNIT_PARALLEL_RUNNER_NAME = "gabor.paralleltester.runner.MyRunner";
 
 
     private static String ourForkMode;
@@ -53,7 +36,7 @@ public class MyStarter2 extends JUnitStarter {
 
     public static void main(String[] args) throws IOException {
         System.exit(-3);
-
+        System.out.println("ha");
         Vector argList = new Vector();
 
         for (int i = 0; i < args.length; ++i) {
@@ -79,7 +62,7 @@ public class MyStarter2 extends JUnitStarter {
             Method processParameters = JUnitStarter.class.getDeclaredMethod(
                     "processParameters", paramStringArray);
             processParameters.setAccessible(true);
-            System.out.println("entered");
+            System.out.println("entered2");
 
             String agentName = (String) processParameters.invoke(null, argList, listeners, name);
 
@@ -94,8 +77,9 @@ public class MyStarter2 extends JUnitStarter {
                 agentName = JUNIT_PARALLEL_RUNNER_NAME;
             } catch (ClassNotFoundException e) {
                 //if class is not accessible, then revert back to JUnit4 runner
-
             }
+
+            System.out.println("agent loaded");
 
             if (!checkVersion(args, System.err)) {
                 System.exit(-3);
@@ -116,6 +100,7 @@ public class MyStarter2 extends JUnitStarter {
     }
 
     private static void shutDownPlugin() {
+        System.exit(-3);
 //        StatusBar statusBar = WindowManager.getInstance()
 //                .getStatusBar(DataKeys.PROJECT.getData(actionEvent.getDataContext()));
 //

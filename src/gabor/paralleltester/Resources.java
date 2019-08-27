@@ -1,8 +1,10 @@
 package gabor.paralleltester;
 
 import com.intellij.openapi.util.IconLoader;
+import com.intellij.rt.ant.execution.SegmentedOutputStream;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class Resources {
 

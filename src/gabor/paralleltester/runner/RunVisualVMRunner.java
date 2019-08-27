@@ -32,8 +32,10 @@
 package gabor.paralleltester.runner;
 
 import com.intellij.execution.ExecutionException;
+import com.intellij.execution.configurations.JavaParameters;
 import com.intellij.execution.configurations.ModuleRunProfile;
 import com.intellij.execution.configurations.RunProfile;
+import com.intellij.execution.configurations.RunnerSettings;
 import com.intellij.execution.impl.DefaultJavaProgramRunner;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.runners.RunConfigurationWithSuppressedDefaultRunAction;
@@ -41,6 +43,10 @@ import com.intellij.openapi.diagnostic.Logger;
 import gabor.paralleltester.executor.RunVisualVMExecutor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 
 public class RunVisualVMRunner extends DefaultJavaProgramRunner {
@@ -64,5 +70,29 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner {
         return executorId.equals(RunVisualVMExecutor.RUN_WITH_VISUAL_VM) &&
                 profile instanceof ModuleRunProfile &&
                 !(profile instanceof RunConfigurationWithSuppressedDefaultRunAction);
+    }
+
+    @Override
+    public void patch(JavaParameters javaParameters, RunnerSettings settings, RunProfile runProfile, boolean beforeExecution) throws ExecutionException {
+        javaParameters.getClassPath().addFirst("C:\\Users\\admin\\Documents\\GitHub\\ParallelJunitTester-intellij-plugin\\out\\artifacts\\intellij_parallel_test_plugin_jar\\intellij-parallel-test-plugin.jar");
+        javaParameters.setMainClass("gabor.paralleltester.runner.MyStarter2");
+
+
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter("C:\\Users\\admin\\Documents\\GitHub\\ParallelJunitTester-intellij-plugin\\out\\artifacts\\intellij_parallel_test_plugin_jar\\t.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+
+        printWriter.println("patch");
+
+        for (String s : javaParameters.getClassPath().getPathList()) {
+            printWriter.println("path:" + s);
+        }
+        printWriter.close();
+
+        super.patch(javaParameters, settings, runProfile, beforeExecution);
     }
 }

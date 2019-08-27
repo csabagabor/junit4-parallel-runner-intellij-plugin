@@ -8,7 +8,6 @@ import com.googlecode.junittoolbox.ParallelScheduler;
 import com.intellij.junit4.JUnit4ReflectionUtil;
 import com.intellij.junit4.JUnit4TestListener;
 import com.intellij.junit4.JUnit4TestRunnerUtil;
-import com.intellij.junit4.MyUtil;
 import com.intellij.rt.execution.junit.ComparisonFailureData;
 import com.intellij.rt.execution.junit.IDEAJUnitListener;
 import com.intellij.rt.execution.junit.IDEAJUnitListenerEx;
