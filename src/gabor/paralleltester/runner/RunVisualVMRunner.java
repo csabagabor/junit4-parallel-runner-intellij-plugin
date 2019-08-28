@@ -32,6 +32,7 @@
 package gabor.paralleltester.runner;
 
 import com.googlecode.junittoolbox.ParallelScheduler;
+import com.googlecode.junittoolbox.ParallelSuite;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.configurations.JavaParameters;
 import com.intellij.execution.configurations.ModuleRunProfile;
@@ -52,6 +53,7 @@ import com.intellij.openapi.application.PathManager;
 import com.intellij.openapi.compiler.ex.CompilerPathsEx;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.module.ModuleManager;
+import gabor.paralleltester.Resources;
 import gabor.paralleltester.executor.RunVisualVMExecutor;
 import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
@@ -85,33 +87,6 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner {
 
     @Override
     protected RunContentDescriptor doExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws ExecutionException {
-        Class<?> testClass = null;
-//        try {
-//            testClass = Class.forName("com.intellij.execution.junit.TestClass");
-//
-//            if (state instanceof TestsPattern) {
-//                Set<String> patterns = ((TestsPattern) state).getConfiguration().getPersistentData().getPatterns();
-//
-//                patterns.clear();
-//                patterns.add("gabor.paralleltester.runner.A");
-//                ((TestsPattern) state).getConfiguration().getPersistentData().setPatterns((LinkedHashSet<String>)
-//                        patterns);
-//
-//            } else if (testClass.isInstance(state)) {
-//                Object obj = testClass.cast(state);
-//                String mainClassName = ((TestObject) (testClass.cast(state))).
-//                        getConfiguration().getPersistentData()
-//                        .MAIN_CLASS_NAME = "com.googlecode.junittoolbox.C";
-//
-//                // setMainClass("gabor.paralleltester.runner.A");
-//            }
-//
-//
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-
-
         RunContentDescriptor runContentDescriptor = super.doExecute(state, env);
 
         final ProcessHandler processHandler = runContentDescriptor.getProcessHandler();
@@ -124,7 +99,7 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner {
                         return;
                     }
 
-                    System.out.println("Exit code" + event.getExitCode());
+                    showErrorMessage(event.getExitCode());
                 }
             });
         }
@@ -153,14 +128,17 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner {
                 programParametersList.add(s);
             } else if (!classAdded) {
                 classAdded = true;
-                programParametersList.add("com.googlecode.junittoolbox.C");
+                programParametersList.add(Resources.RUNNABLE_CLASS);
             }
         }
 
         javaParameters.getClassPath().addFirst(PathManager.getPluginsPath());
-        javaParameters.getClassPath().addFirst(PathManager.getJarPathForClass(ParallelStarter.class));
-        javaParameters.setMainClass("gabor.paralleltester.runner.ParallelStarter");
+        javaParameters.getClassPath().addFirst(PathManager.getJarPathForClass(ParallelSuite.class));
 
         super.patch(javaParameters, settings, runProfile, beforeExecution);
+    }
+
+    private void showErrorMessage(int exitCode) {
+
     }
 }

@@ -9,7 +9,7 @@ public class ParallelSuite extends Suite {
 
     public ParallelSuite(Class<?> klass, RunnerBuilder builder) throws InitializationError
             , ClassNotFoundException {
-        super(builder, klass, new Class<?>[]{Class.forName("TestTest")});
+        super(builder, klass, new Class<?>[]{Class.forName("TestTest"), Class.forName("TestTest2")});
         setScheduler(new ParallelScheduler());
     }
 }
