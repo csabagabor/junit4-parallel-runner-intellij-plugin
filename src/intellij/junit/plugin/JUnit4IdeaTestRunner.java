@@ -1,7 +1,5 @@
+package intellij.junit.plugin;
 
-package gabor.paralleltester.runner;
-
-import com.googlecode.junittoolbox.ParallelScheduler;
 import com.intellij.junit4.JUnit4ReflectionUtil;
 import com.intellij.junit4.JUnit4TestListener;
 import com.intellij.junit4.JUnit4TestRunnerUtil;
@@ -11,24 +9,19 @@ import com.intellij.rt.execution.junit.IDEAJUnitListenerEx;
 import com.intellij.rt.execution.junit.IdeaTestRunner;
 import org.junit.internal.requests.ClassRequest;
 import org.junit.internal.requests.FilterRequest;
-import org.junit.runner.Description;
-import org.junit.runner.JUnitCore;
-import org.junit.runner.Request;
-import org.junit.runner.Result;
-import org.junit.runner.Runner;
+import org.junit.runner.*;
 import org.junit.runner.manipulation.Filter;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunListener;
-import org.junit.runners.ParentRunner;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class MyRunner implements IdeaTestRunner {
-    private JUnit4TestListener myTestsListener;
-    private ArrayList myListeners;
+public class JUnit4IdeaTestRunner implements IdeaTestRunner {
+    protected JUnit4TestListener myTestsListener;
+    protected ArrayList myListeners;
 
     public void createListeners(ArrayList listeners, int count) {
         myListeners = listeners;
@@ -44,10 +37,6 @@ public class MyRunner implements IdeaTestRunner {
             Description description = getDescription(request, testRunner);
             if (description == null) {
                 return -2;
-            }
-            if (testRunner instanceof ParentRunner) {
-                ParentRunner parentRunner = (ParentRunner) testRunner;
-                parentRunner.setScheduler(new ParallelScheduler());
             }
 
             if (sendTree) {
@@ -71,7 +60,7 @@ public class MyRunner implements IdeaTestRunner {
         }
     }
 
-    private static Description getDescription(Request request, Runner testRunner) throws NoSuchFieldException, IllegalAccessException {
+    protected static Description getDescription(Request request, Runner testRunner) throws NoSuchFieldException, IllegalAccessException {
         Description description = testRunner.getDescription();
         if (description == null) {
             System.err.println("Nothing found to run. Runner " + testRunner.getClass().getName() + " provides no description.");
@@ -167,12 +156,12 @@ public class MyRunner implements IdeaTestRunner {
         return methodName != null ? description.getClassName() + "," + methodName : description.getClassName();
     }
 
-    private static class MyCustomRunListenerWrapper extends RunListener {
+    protected static class MyCustomRunListenerWrapper extends RunListener {
         private final IDEAJUnitListener myJunitListener;
         private final String myDisplayName;
         private boolean mySuccess;
 
-        MyCustomRunListenerWrapper(IDEAJUnitListener junitListener, String displayName) {
+        public MyCustomRunListenerWrapper(IDEAJUnitListener junitListener, String displayName) {
             myJunitListener = junitListener;
             myDisplayName = displayName;
         }

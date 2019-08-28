@@ -169,8 +169,8 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner {
 
     @Override
     public void patch(JavaParameters javaParameters, RunnerSettings settings, RunProfile runProfile, boolean beforeExecution) throws ExecutionException {
-//        String user = "csaba.gabor";
-        String user = "admin";
+       // String user = "csaba.gabor";
+       // String user = "admin";
         ParametersList programParametersList = javaParameters.getProgramParametersList();
 
         List<String> list = new ArrayList<>(javaParameters.getProgramParametersList().getList());
@@ -196,20 +196,20 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner {
 //        javaParameters.setMainClass("gabor.paralleltester.runner.MyStarter2");
 
 
-        FileWriter fileWriter = null;
-        try {
-            fileWriter = new FileWriter("C:\\Users\\" + user + "\\Documents\\GitHub\\ParallelJunitTester-intellij-plugin\\out\\artifacts\\intellij_parallel_test_plugin_jar\\t.txt");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        PrintWriter printWriter = new PrintWriter(fileWriter);
+//        FileWriter fileWriter = null;
+//        try {
+//            fileWriter = new FileWriter("C:\\Users\\" + user + "\\Documents\\GitHub\\ParallelJunitTester-intellij-plugin\\out\\artifacts\\intellij_parallel_test_plugin_jar\\t.txt");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        PrintWriter printWriter = new PrintWriter(fileWriter);
 
-        printWriter.println("patch");
-
-        for (String s : javaParameters.getClassPath().getPathList()) {
-            printWriter.println("path:" + s);
-        }
-        printWriter.close();
+//        printWriter.println("patch");
+//
+//        for (String s : javaParameters.getClassPath().getPathList()) {
+//            printWriter.println("path:" + s);
+//        }
+//        printWriter.close();
 
         super.patch(javaParameters, settings, runProfile, beforeExecution);
     }

@@ -11,15 +11,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
 
-public class MyStarter2 extends JUnitStarter {
+public class ParallelStarter extends JUnitStarter {
     public static final String JUNIT_PARALLEL_RUNNER_NAME = "gabor.paralleltester.runner.MyRunner";
 
-    public MyStarter2() {
+    public ParallelStarter() {
     }
 
     public static void main(String[] args) throws IOException {
-        //
-
+        
         System.exit(-3);
         System.out.println("ha");
         Vector argList = new Vector();
