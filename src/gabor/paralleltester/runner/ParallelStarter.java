@@ -5,7 +5,6 @@
 
 package gabor.paralleltester.runner;
 
-import gabor.paralleltester.Resources;
 import intellij.junit.plugin.JUnitStarter;
 
 import java.io.IOException;
@@ -13,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 public class ParallelStarter extends JUnitStarter {
+    public static final String JUNIT_PARALLEL_RUNNER_NAME = "gabor.paralleltester.runner.ParallelRunner";
+
     public ParallelStarter() {
     }
 
@@ -39,8 +40,8 @@ public class ParallelStarter extends JUnitStarter {
         System.out.println(agentName);
 
         try {
-            getAgentClass(Resources.PARALLEL_RUNNER);
-            agentName = Resources.PARALLEL_RUNNER;
+            getAgentClass(JUNIT_PARALLEL_RUNNER_NAME);
+            agentName = JUNIT_PARALLEL_RUNNER_NAME;
         } catch (ClassNotFoundException e) {
             //if class is not accessible, then revert back to JUnit4 runner
             System.out.println("my runner not accessible");
