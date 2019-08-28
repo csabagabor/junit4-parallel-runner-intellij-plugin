@@ -13,19 +13,15 @@ import static java.util.concurrent.ForkJoinTask.inForkJoinPool;
 
 
 public class ParallelScheduler implements RunnerScheduler {
+    static ForkJoinPool.ForkJoinWorkerThreadFactory threadFactory;
+    static ForkJoinPool forkJoinPool;
 
-    static ForkJoinPool forkJoinPool = setUpForkJoinPool();
+    public ParallelScheduler(int numThreads) {
+        forkJoinPool = new ForkJoinPool(numThreads, threadFactory, null, false);
+    }
 
-    static ForkJoinPool setUpForkJoinPool() {
-        int numThreads;
-        try {
-            String configuredNumThreads = System.getProperty("maxParallelTestThreads");
-            numThreads = Math.max(2, Integer.parseInt(configuredNumThreads));
-        } catch (Exception ignored) {
-            Runtime runtime = Runtime.getRuntime();
-            numThreads = Math.max(2, runtime.availableProcessors());
-        }
-        ForkJoinPool.ForkJoinWorkerThreadFactory threadFactory = pool -> {
+    static void setUpForkJoinPool() {
+        threadFactory = pool -> {
             if (pool.getPoolSize() >= pool.getParallelism()) {
                 return null;
             } else {
@@ -34,7 +30,6 @@ public class ParallelScheduler implements RunnerScheduler {
                 return thread;
             }
         };
-        return new ForkJoinPool(numThreads, threadFactory, null, false);
     }
 
     private final Deque<ForkJoinTask<?>> _asyncTasks = new LinkedList<>();

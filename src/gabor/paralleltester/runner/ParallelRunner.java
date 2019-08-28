@@ -11,6 +11,7 @@ import org.junit.runners.ParentRunner;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class ParallelRunner extends JUnit4IdeaTestRunner {
 
@@ -27,7 +28,24 @@ public class ParallelRunner extends JUnit4IdeaTestRunner {
 
             //changed code
             if (testRunner instanceof ParentRunner) {
+                List<String> classes = new ArrayList<>();
+
+                for (Description child : testRunner.getDescription().getChildren()) {
+                    classes.add(child.getClassName());
+                }
+
+                int numThreads;
+                try {
+                    String configuredNumThreads = System.getProperty("maxParallelTestThreads");
+                    numThreads = Math.max(2, Integer.parseInt(configuredNumThreads));
+                } catch (Exception ignored) {
+                    Runtime runtime = Runtime.getRuntime();
+                    numThreads = Math.max(2, runtime.availableProcessors());
+                }
+
                 ParentRunner parentRunner = (ParentRunner) testRunner;
+
+
                 parentRunner.setScheduler(new ParallelScheduler());
             }
 

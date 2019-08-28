@@ -52,6 +52,7 @@ import com.intellij.openapi.application.PathManager;
 import com.intellij.openapi.compiler.ex.CompilerPathsEx;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.module.ModuleManager;
+import gabor.paralleltester.Resources;
 import gabor.paralleltester.executor.RunVisualVMExecutor;
 import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
@@ -153,13 +154,13 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner {
                 programParametersList.add(s);
             } else if (!classAdded) {
                 classAdded = true;
-                programParametersList.add("com.googlecode.junittoolbox.C");
+                programParametersList.add(Resources.RUNNABLE_CLASS);
             }
         }
 
         javaParameters.getClassPath().addFirst(PathManager.getPluginsPath());
         javaParameters.getClassPath().addFirst(PathManager.getJarPathForClass(ParallelStarter.class));
-        javaParameters.setMainClass("gabor.paralleltester.runner.ParallelStarter");
+        javaParameters.setMainClass(Resources.PARALLEL_STARTER);
 
         super.patch(javaParameters, settings, runProfile, beforeExecution);
     }
