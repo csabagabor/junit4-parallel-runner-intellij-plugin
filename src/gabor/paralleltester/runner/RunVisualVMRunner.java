@@ -41,6 +41,7 @@ import com.intellij.execution.configurations.RunProfile;
 import com.intellij.execution.configurations.RunProfileState;
 import com.intellij.execution.configurations.RunnerSettings;
 import com.intellij.execution.impl.DefaultJavaProgramRunner;
+import com.intellij.execution.junit.JUnitConfiguration;
 import com.intellij.execution.junit.TestObject;
 import com.intellij.execution.junit.TestsPattern;
 import com.intellij.execution.process.ProcessAdapter;
@@ -55,6 +56,7 @@ import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.module.ModuleManager;
 import gabor.paralleltester.Resources;
 import gabor.paralleltester.executor.RunVisualVMExecutor;
+import gabor.paralleltester.patcher.ParallelJunitPatcher;
 import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -78,14 +80,6 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner {
     }
 
     @Override
-    public void execute(@NotNull final ExecutionEnvironment env, @Nullable final Callback callback)
-
-            throws ExecutionException {
-        log.info("execute");
-        super.execute(env, callback);
-    }
-
-    @Override
     protected RunContentDescriptor doExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws ExecutionException {
         RunContentDescriptor runContentDescriptor = super.doExecute(state, env);
 
@@ -98,7 +92,6 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner {
                     if (event == null) {
                         return;
                     }
-
                     showErrorMessage(event.getExitCode());
                 }
             });
@@ -110,31 +103,14 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner {
     @Override
     public boolean canRun(@NotNull String executorId, @NotNull RunProfile profile) {
         return executorId.equals(RunVisualVMExecutor.RUN_WITH_VISUAL_VM) &&
-                profile instanceof ModuleRunProfile &&
+                profile instanceof JUnitConfiguration &&
                 !(profile instanceof RunConfigurationWithSuppressedDefaultRunAction);
     }
 
     @Override
     public void patch(JavaParameters javaParameters, RunnerSettings settings, RunProfile runProfile, boolean beforeExecution) throws ExecutionException {
-        ParametersList programParametersList = javaParameters.getProgramParametersList();
 
-        List<String> list = new ArrayList<>(javaParameters.getProgramParametersList().getList());
-
-        programParametersList.clearAll();
-
-        boolean classAdded = false;
-        for (String s : list) {
-            if (!s.contains("@")) {
-                programParametersList.add(s);
-            } else if (!classAdded) {
-                classAdded = true;
-                programParametersList.add(Resources.RUNNABLE_CLASS);
-            }
-        }
-
-        javaParameters.getClassPath().addFirst(PathManager.getPluginsPath());
-        javaParameters.getClassPath().addFirst(PathManager.getJarPathForClass(ParallelSuite.class));
-
+        ParallelJunitPatcher.patchJavaParameters(javaParameters);
         super.patch(javaParameters, settings, runProfile, beforeExecution);
     }
 
