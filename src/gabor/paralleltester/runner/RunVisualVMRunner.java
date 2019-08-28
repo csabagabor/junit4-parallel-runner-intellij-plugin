@@ -112,34 +112,6 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner {
 //        }
 
 
-        //copy files
-
-        //String jarPathForClass = PathManager.getJarPathForClass(ParallelScheduler.class) + "/com/googlecode/junittoolbox/ParallelScheduler.class";
-        String jarPathForClass = PathManager.getJarPathForClass(ParallelScheduler.class);
-        //String jarPathForClass2 = PathManager.getJarPathForClass(ParallelSuite.class) + "/com/googlecode/junittoolbox/ParallelSuite.class";
-        //String jarPathForClass3 = PathManager.getJarPathForClass(MultiException.class) + "/com/googlecode/junittoolbox/util/MultiException.class";
-        //String jarPathForClass4 = PathManager.getJarPathForClass(TigerThrower.class) + "/com/googlecode/junittoolbox/util/TigerThrower.class";
-        //String jarPathForClass5 = PathManager.getJarPathForClass(C.class) + "/com/googlecode/junittoolbox/C.class";
-
-
-        String[] outputPaths = CompilerPathsEx.getOutputPaths(ModuleManager.getInstance(env.getProject()).getModules());
-
-        try {
-            File file = new File(jarPathForClass + "/com");
-            //File file1 = new File(outputPaths[0] + "/com/googlecode/junittoolbox/ParallelScheduler.class");
-            File file1 = new File(outputPaths[0] + "/com");
-            //File file1 = new File("C:\\Users\\csaba.gabor\\Documents\\GitHub\\ParallelJUnitTester-intellij-plugin\\out\\artifacts\\intellij_parallel_test_plugin_jar\\t2.txt");
-            FileUtils.copyDirectory(file, file1);
-
-            // Files.copy(file.toPath(), file1.toPath());
-            //Files.copy(new File(jarPathForClass2).toPath(), new File(outputPaths[0] + "/com/googlecode/junittoolbox/ParallelSuite.class").toPath());
-            //Files.copy(new File(jarPathForClass3).toPath(), new File(outputPaths[0] + "/com/googlecode/junittoolbox/util/MultiException.class").toPath());
-            // Files.copy(new File(jarPathForClass4).toPath(), new File(outputPaths[0] + "/com/googlecode/junittoolbox/util/TigerThrower.class").toPath());
-            //Files.copy(new File(jarPathForClass5).toPath(), new File(outputPaths[0] + "/com/googlecode/junittoolbox/C.class").toPath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         RunContentDescriptor runContentDescriptor = super.doExecute(state, env);
 
         final ProcessHandler processHandler = runContentDescriptor.getProcessHandler();
@@ -169,8 +141,6 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner {
 
     @Override
     public void patch(JavaParameters javaParameters, RunnerSettings settings, RunProfile runProfile, boolean beforeExecution) throws ExecutionException {
-       // String user = "csaba.gabor";
-       // String user = "admin";
         ParametersList programParametersList = javaParameters.getProgramParametersList();
 
         List<String> list = new ArrayList<>(javaParameters.getProgramParametersList().getList());
@@ -186,30 +156,10 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner {
                 programParametersList.add("com.googlecode.junittoolbox.C");
             }
         }
-//        String user = "admin";
 
-        //javaParameters.getClassPath().addFirst("C:\\Users\\admin\\Documents\\GitHub\\ParallelJunitTester-intellij-plugin\\out\\artifacts\\intellij_parallel_test_plugin_jar\\intellij-parallel-test-plugin.jar");
-        //javaParameters.getClassPath().addFirst("C:\\Users\\" + user + "\\Documents\\GitHub\\ParallelJUnitTester-intellij-plugin\\out\\artifacts\\intellij_parallel_test_plugin_jar\\intellij-parallel-test-plugin.jar");
-
-//        javaParameters.getClassPath().addFirst(PathManager.getPluginsPath());
-//        javaParameters.getClassPath().addFirst(PathManager.getJarPathForClass(A.class));
-//        javaParameters.setMainClass("gabor.paralleltester.runner.MyStarter2");
-
-
-//        FileWriter fileWriter = null;
-//        try {
-//            fileWriter = new FileWriter("C:\\Users\\" + user + "\\Documents\\GitHub\\ParallelJunitTester-intellij-plugin\\out\\artifacts\\intellij_parallel_test_plugin_jar\\t.txt");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        PrintWriter printWriter = new PrintWriter(fileWriter);
-
-//        printWriter.println("patch");
-//
-//        for (String s : javaParameters.getClassPath().getPathList()) {
-//            printWriter.println("path:" + s);
-//        }
-//        printWriter.close();
+        javaParameters.getClassPath().addFirst(PathManager.getPluginsPath());
+        javaParameters.getClassPath().addFirst(PathManager.getJarPathForClass(ParallelStarter.class));
+        javaParameters.setMainClass("gabor.paralleltester.runner.ParallelStarter");
 
         super.patch(javaParameters, settings, runProfile, beforeExecution);
     }
