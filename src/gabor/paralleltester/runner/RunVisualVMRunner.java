@@ -31,47 +31,20 @@
 
 package gabor.paralleltester.runner;
 
-import com.googlecode.junittoolbox.ParallelScheduler;
-import com.googlecode.junittoolbox.ParallelSuite;
 import com.intellij.execution.ExecutionException;
-import com.intellij.execution.configurations.JavaParameters;
-import com.intellij.execution.configurations.ModuleRunProfile;
-import com.intellij.execution.configurations.ParametersList;
 import com.intellij.execution.configurations.RunProfile;
 import com.intellij.execution.configurations.RunProfileState;
-import com.intellij.execution.configurations.RunnerSettings;
 import com.intellij.execution.impl.DefaultJavaProgramRunner;
 import com.intellij.execution.junit.JUnitConfiguration;
-import com.intellij.execution.junit.TestObject;
-import com.intellij.execution.junit.TestsPattern;
-import com.intellij.execution.process.ProcessAdapter;
-import com.intellij.execution.process.ProcessEvent;
-import com.intellij.execution.process.ProcessHandler;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.runners.RunConfigurationWithSuppressedDefaultRunAction;
 import com.intellij.execution.ui.RunContentDescriptor;
-import com.intellij.openapi.application.PathManager;
-import com.intellij.openapi.compiler.ex.CompilerPathsEx;
 import com.intellij.openapi.diagnostic.Logger;
-import com.intellij.openapi.module.ModuleManager;
-import gabor.paralleltester.Resources;
 import gabor.paralleltester.executor.RunVisualVMExecutor;
-import gabor.paralleltester.patcher.ParallelJunitPatcher;
-import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
 
 
-public class RunVisualVMRunner extends DefaultJavaProgramRunner {
+public class RunVisualVMRunner extends DefaultJavaProgramRunner implements GenericRunner {
     private static final Logger log = Logger.getInstance(RunVisualVMRunner.class.getName());
 
     @NotNull
@@ -81,21 +54,10 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner {
 
     @Override
     protected RunContentDescriptor doExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws ExecutionException {
+
+        doPreExecute(state, env);
         RunContentDescriptor runContentDescriptor = super.doExecute(state, env);
-
-        final ProcessHandler processHandler = runContentDescriptor.getProcessHandler();
-
-        if (processHandler != null) {
-
-            processHandler.addProcessListener(new ProcessAdapter() {
-                public void processTerminated(@NotNull ProcessEvent event) {
-                    if (event == null) {
-                        return;
-                    }
-                    showErrorMessage(event.getExitCode());
-                }
-            });
-        }
+        doPostExecute(state, env, runContentDescriptor);
 
         return runContentDescriptor;
     }
@@ -105,16 +67,5 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner {
         return executorId.equals(RunVisualVMExecutor.RUN_WITH_VISUAL_VM) &&
                 profile instanceof JUnitConfiguration &&
                 !(profile instanceof RunConfigurationWithSuppressedDefaultRunAction);
-    }
-
-    @Override
-    public void patch(JavaParameters javaParameters, RunnerSettings settings, RunProfile runProfile, boolean beforeExecution) throws ExecutionException {
-
-        ParallelJunitPatcher.patchJavaParameters(javaParameters);
-        super.patch(javaParameters, settings, runProfile, beforeExecution);
-    }
-
-    private void showErrorMessage(int exitCode) {
-
     }
 }
