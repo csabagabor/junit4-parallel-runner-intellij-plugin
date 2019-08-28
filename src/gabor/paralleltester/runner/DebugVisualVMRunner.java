@@ -2,16 +2,14 @@ package gabor.paralleltester.runner;
 
 import com.intellij.debugger.impl.GenericDebuggerRunner;
 import com.intellij.execution.ExecutionException;
-import com.intellij.execution.configurations.*;
+import com.intellij.execution.configurations.RunConfigurationWithSuppressedDefaultDebugAction;
+import com.intellij.execution.configurations.RunProfile;
+import com.intellij.execution.configurations.RunProfileState;
 import com.intellij.execution.junit.JUnitConfiguration;
-import com.intellij.execution.process.ProcessAdapter;
-import com.intellij.execution.process.ProcessEvent;
-import com.intellij.execution.process.ProcessHandler;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.ui.RunContentDescriptor;
 import com.intellij.openapi.diagnostic.Logger;
 import gabor.paralleltester.executor.DebugVisualVMExecutor;
-import gabor.paralleltester.helper.UIHelper;
 import org.jetbrains.annotations.NotNull;
 
 public class DebugVisualVMRunner extends GenericDebuggerRunner implements GenericRunner {
@@ -24,6 +22,7 @@ public class DebugVisualVMRunner extends GenericDebuggerRunner implements Generi
 
     @Override
     protected RunContentDescriptor doExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws ExecutionException {
+
         doPreExecute(state, env);
         RunContentDescriptor runContentDescriptor = super.doExecute(state, env);
         doPostExecute(state, env, runContentDescriptor);
@@ -33,10 +32,6 @@ public class DebugVisualVMRunner extends GenericDebuggerRunner implements Generi
 
     @Override
     public boolean canRun(@NotNull String executorId, @NotNull RunProfile profile) {
-        if (profile.toString().contains("Application")) {
-            return false;
-        }
-
         return executorId.equals(DebugVisualVMExecutor.EXECUTOR_ID) &&
                 profile instanceof JUnitConfiguration &&
                 !(profile instanceof RunConfigurationWithSuppressedDefaultDebugAction);

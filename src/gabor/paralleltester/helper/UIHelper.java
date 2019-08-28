@@ -17,7 +17,7 @@ public class UIHelper {
                 .createHtmlTextBalloonBuilder(msg, MessageType.ERROR, null)
                 .setFadeoutTime(7500)
                 .createBalloon()
-                .show(RelativePoint.getCenterOf(statusBar.getComponent()),
-                        Balloon.Position.atRight);
+                .show(RelativePoint.getNorthWestOf(statusBar.getComponent()),
+                        Balloon.Position.above);
     }
 }

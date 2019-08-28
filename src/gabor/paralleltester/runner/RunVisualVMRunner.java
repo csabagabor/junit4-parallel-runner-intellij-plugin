@@ -42,6 +42,7 @@ import com.intellij.execution.ui.RunContentDescriptor;
 import com.intellij.openapi.diagnostic.Logger;
 import gabor.paralleltester.executor.RunVisualVMExecutor;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 
 public class RunVisualVMRunner extends DefaultJavaProgramRunner implements GenericRunner {
