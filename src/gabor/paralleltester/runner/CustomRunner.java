@@ -40,17 +40,16 @@ import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.runners.RunConfigurationWithSuppressedDefaultRunAction;
 import com.intellij.execution.ui.RunContentDescriptor;
 import com.intellij.openapi.diagnostic.Logger;
-import gabor.paralleltester.executor.RunVisualVMExecutor;
+import gabor.paralleltester.executor.CustomRunnerExecutor;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 
-public class RunVisualVMRunner extends DefaultJavaProgramRunner implements GenericRunner {
-    private static final Logger log = Logger.getInstance(RunVisualVMRunner.class.getName());
+public class CustomRunner extends DefaultJavaProgramRunner implements GenericRunner {
+    private static final Logger log = Logger.getInstance(CustomRunner.class.getName());
 
     @NotNull
     public String getRunnerId() {
-        return RunVisualVMExecutor.RUN_WITH_VISUAL_VM;
+        return CustomRunnerExecutor.RUN_WITH_VISUAL_VM;
     }
 
     @Override
@@ -65,7 +64,7 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner implements Gener
 
     @Override
     public boolean canRun(@NotNull String executorId, @NotNull RunProfile profile) {
-        return executorId.equals(RunVisualVMExecutor.RUN_WITH_VISUAL_VM) &&
+        return executorId.equals(CustomRunnerExecutor.RUN_WITH_VISUAL_VM) &&
                 profile instanceof JUnitConfiguration &&
                 !(profile instanceof RunConfigurationWithSuppressedDefaultRunAction);
     }

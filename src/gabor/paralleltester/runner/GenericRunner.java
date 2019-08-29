@@ -35,9 +35,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 public interface GenericRunner {
 
@@ -67,14 +67,13 @@ public interface GenericRunner {
                     }
 
                     try {
-
                         if (("pattern".equals(testObject))) {
                             Set<String> patterns = persistentData.getPatterns();
                             classNames = new ArrayList<>(patterns);
                         } else if (("class".equals(testObject))) {
                             classNames = Arrays.asList(persistentData.MAIN_CLASS_NAME);
                         } else if (("package".equals(testObject))) {
-                            Set<Location> myClassNames = new HashSet<>();
+                            Set myClassNames = new TreeSet();
 
                             Module module = ((TestObject) state).getConfiguration().getConfigurationModule().getModule();
 
@@ -89,10 +88,18 @@ public interface GenericRunner {
                                     Module.class, com.intellij.execution.junit.TestClassFilter.class, Set.class);
                             method2.setAccessible(true);
                             method2.invoke(state, module, classFilter, myClassNames);
-                            for (Location myClassName : myClassNames) {
-                                PsiElement psiElement = myClassName.getPsiElement();
-                                if (psiElement instanceof PsiClass) {
-                                    classNames.add(((PsiClass) psiElement).getQualifiedName());
+                            if (myClassNames.size() > 0) {
+                                if (myClassNames.iterator().next() instanceof Location) {
+                                    for (Location myClassName : (Set<Location>) myClassNames) {
+                                        PsiElement psiElement = myClassName.getPsiElement();
+                                        if (psiElement instanceof PsiClass) {
+                                            classNames.add(((PsiClass) psiElement).getQualifiedName());
+                                        }
+                                    }
+                                } else {
+                                    for (String myClassName : (Set<String>) myClassNames) {
+                                        classNames.add(myClassName);
+                                    }
                                 }
                             }
                         }

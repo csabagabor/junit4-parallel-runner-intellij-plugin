@@ -9,15 +9,15 @@ import com.intellij.execution.junit.JUnitConfiguration;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.ui.RunContentDescriptor;
 import com.intellij.openapi.diagnostic.Logger;
-import gabor.paralleltester.executor.DebugVisualVMExecutor;
+import gabor.paralleltester.executor.CustomDebuggerExecutor;
 import org.jetbrains.annotations.NotNull;
 
-public class DebugVisualVMRunner extends GenericDebuggerRunner implements GenericRunner {
-    private static final Logger log = Logger.getInstance(DebugVisualVMRunner.class.getName());
+public class CustomDebuggerRunner extends GenericDebuggerRunner implements GenericRunner {
+    private static final Logger log = Logger.getInstance(CustomDebuggerRunner.class.getName());
 
     @NotNull
     public String getRunnerId() {
-        return DebugVisualVMExecutor.EXECUTOR_ID;
+        return CustomDebuggerExecutor.EXECUTOR_ID;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class DebugVisualVMRunner extends GenericDebuggerRunner implements Generi
 
     @Override
     public boolean canRun(@NotNull String executorId, @NotNull RunProfile profile) {
-        return executorId.equals(DebugVisualVMExecutor.EXECUTOR_ID) &&
+        return executorId.equals(CustomDebuggerExecutor.EXECUTOR_ID) &&
                 profile instanceof JUnitConfiguration &&
                 !(profile instanceof RunConfigurationWithSuppressedDefaultDebugAction);
     }

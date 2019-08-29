@@ -1,15 +1,14 @@
 
-package gabor.paralleltester.runner;
+package gabor.paralleltester.patches;
 
 import com.googlecode.junittoolbox.ParallelScheduler;
 import com.intellij.junit4.JUnit4TestListener;
 import com.intellij.junit4.JUnit4TestRunnerUtil;
 import com.intellij.rt.execution.junit.IDEAJUnitListener;
-import intellij.junit.plugin.JUnit4IdeaTestRunner;
+import gabor.paralleltester.patches.plugin.JUnit4IdeaTestRunner;
 import org.junit.runner.*;
 import org.junit.runners.ParentRunner;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ParallelRunner extends JUnit4IdeaTestRunner {

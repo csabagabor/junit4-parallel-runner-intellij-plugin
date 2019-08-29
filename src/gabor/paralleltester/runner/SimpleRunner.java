@@ -3,7 +3,6 @@ package gabor.paralleltester.runner;
 import com.googlecode.junittoolbox.ParallelSuite;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.Executor;
-import com.intellij.execution.ProgramRunnerUtil;
 import com.intellij.execution.configurations.JavaCommandLine;
 import com.intellij.execution.configurations.JavaParameters;
 import com.intellij.execution.configurations.RunProfile;
@@ -15,15 +14,17 @@ import com.intellij.execution.runners.RunConfigurationWithSuppressedDefaultRunAc
 import com.intellij.execution.ui.RunContentDescriptor;
 import com.intellij.openapi.application.PathManager;
 import com.intellij.openapi.diagnostic.Logger;
-import gabor.paralleltester.executor.RunVisualVMExecutor;
+import gabor.paralleltester.Resources;
+import gabor.paralleltester.executor.CustomRunnerExecutor;
+import gabor.paralleltester.executor.SimpleRunnerExecutor;
 import org.jetbrains.annotations.NotNull;
 
-public class SimpleParallelRunner extends DefaultJavaProgramRunner implements GenericSimpleRunner {
-    private static final Logger log = Logger.getInstance(RunVisualVMRunner.class.getName());
+public class SimpleRunner extends DefaultJavaProgramRunner implements GenericSimpleRunner {
+    private static final Logger log = Logger.getInstance(CustomRunner.class.getName());
 
     @NotNull
     public String getRunnerId() {
-        return RunVisualVMExecutor.RUN_WITH_VISUAL_VM;
+        return CustomRunnerExecutor.RUN_WITH_VISUAL_VM;
     }
 
     @Override
@@ -32,7 +33,7 @@ public class SimpleParallelRunner extends DefaultJavaProgramRunner implements Ge
 
         javaParameters.getClassPath().addFirst(PathManager.getPluginsPath());
         javaParameters.getClassPath().addFirst(PathManager.getJarPathForClass(ParallelSuite.class));
-        javaParameters.setMainClass("gabor.paralleltester.runner.EntryPointStarter");
+        javaParameters.setMainClass(Resources.PARALLEL_STARTER);
 
         RunContentDescriptor runContentDescriptor = super.doExecute(state, env);
         doPostExecute(state, env, runContentDescriptor);
@@ -42,13 +43,13 @@ public class SimpleParallelRunner extends DefaultJavaProgramRunner implements Ge
 
     @Override
     public boolean canRun(@NotNull String executorId, @NotNull RunProfile profile) {
-        return executorId.equals(RunVisualVMExecutor.RUN_WITH_VISUAL_VM) &&
+        return executorId.equals(SimpleRunnerExecutor.RUN_WITH_VISUAL_VM) &&
                 profile instanceof JUnitConfiguration &&
                 !(profile instanceof RunConfigurationWithSuppressedDefaultRunAction);
     }
 
     @Override
     public Executor revertBackExecutor() {
-        return new RunVisualVMExecutor();
+        return new CustomRunnerExecutor();
     }
 }

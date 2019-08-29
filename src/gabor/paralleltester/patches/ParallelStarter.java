@@ -3,16 +3,16 @@
 // (powered by Fernflower decompiler)
 //
 
-package gabor.paralleltester.runner;
+package gabor.paralleltester.patches;
 
-import intellij.junit.plugin.JUnitStarter;
+import gabor.paralleltester.patches.plugin.JUnitStarter;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
 
 public class ParallelStarter extends JUnitStarter {
-    public static final String JUNIT_PARALLEL_RUNNER_NAME = "gabor.paralleltester.runner.ParallelRunner";
+    public static final String JUNIT_PARALLEL_RUNNER_NAME = "gabor.paralleltester.patches.ParallelRunner";
 
     public ParallelStarter() {
     }

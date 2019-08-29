@@ -1,4 +1,4 @@
-package intellij.junit.plugin;
+package gabor.paralleltester.patches.plugin;
 
 import com.intellij.junit4.JUnit4ReflectionUtil;
 import com.intellij.junit4.JUnit4TestListener;

@@ -1,4 +1,4 @@
-package intellij.junit.plugin;
+package gabor.paralleltester.patches.plugin;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package gabor.paralleltester.runner;
+package gabor.paralleltester.patches;
 
 public class EntryPointStarter {
 
