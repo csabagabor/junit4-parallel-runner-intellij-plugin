@@ -13,18 +13,19 @@ import static java.util.concurrent.ForkJoinTask.inForkJoinPool;
 
 
 public class ParallelScheduler implements RunnerScheduler {
+    private int numThreads = 2;
+    private ForkJoinPool forkJoinPool;
 
-    static ForkJoinPool forkJoinPool = setUpForkJoinPool();
+    public ParallelScheduler() {
+    }
 
-    static ForkJoinPool setUpForkJoinPool() {
-        int numThreads;
-        try {
-            String configuredNumThreads = System.getProperty("maxParallelTestThreads");
-            numThreads = Math.max(2, Integer.parseInt(configuredNumThreads));
-        } catch (Exception ignored) {
-            Runtime runtime = Runtime.getRuntime();
-            numThreads = Math.max(2, runtime.availableProcessors());
-        }
+    public ParallelScheduler(int numThreads) {
+        this.numThreads = numThreads;
+        forkJoinPool = setUpForkJoinPool();
+    }
+
+    private ForkJoinPool setUpForkJoinPool() {
+
         ForkJoinPool.ForkJoinWorkerThreadFactory threadFactory = pool -> {
             if (pool.getPoolSize() >= pool.getParallelism()) {
                 return null;

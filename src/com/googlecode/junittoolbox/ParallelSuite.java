@@ -2,6 +2,8 @@ package com.googlecode.junittoolbox;
 
 import com.intellij.openapi.util.SystemInfoRt;
 import com.intellij.openapi.util.io.FileUtilRt;
+import org.junit.runner.Runner;
+import org.junit.runners.ParentRunner;
 import org.junit.runners.Suite;
 import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.RunnerBuilder;
@@ -13,12 +15,38 @@ import java.util.Locale;
 
 
 public class ParallelSuite extends Suite {
+    private Class<?>[] classes;
 
     public ParallelSuite(Class<?> klass, RunnerBuilder builder) throws InitializationError {
-        super(builder, klass, getClasses());
+        this(klass, builder, null);
+    }
 
-        if()
-        setScheduler(new ParallelScheduler());
+    private ParallelSuite(Class<?> klass, RunnerBuilder builder, Class<?>[] classes) throws InitializationError {
+        super(builder, klass, classes = getClasses());
+
+        int nrThread = getNumberThreads();
+
+        //3 classes, 12 logical processors
+        if (classes.length <= nrThread / 4) {
+            List<Runner> children = this.getChildren();
+            for (Runner child : children) {
+                ((ParentRunner) child).setScheduler(new ParallelScheduler(nrThread));
+            }
+        } else {
+            setScheduler(new ParallelScheduler(nrThread));
+        }
+    }
+
+    private int getNumberThreads() {
+        int numThreads;
+        try {
+            String configuredNumThreads = System.getProperty("maxParallelTestThreads");
+            numThreads = Math.max(2, Integer.parseInt(configuredNumThreads));
+        } catch (Exception ignored) {
+            Runtime runtime = Runtime.getRuntime();
+            numThreads = Math.max(2, runtime.availableProcessors());
+        }
+        return numThreads;
     }
 
     private static Class<?>[] getClasses() {
