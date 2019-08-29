@@ -32,6 +32,7 @@ public class SimpleParallelRunner extends DefaultJavaProgramRunner implements Ge
 
         javaParameters.getClassPath().addFirst(PathManager.getPluginsPath());
         javaParameters.getClassPath().addFirst(PathManager.getJarPathForClass(ParallelSuite.class));
+        javaParameters.setMainClass("gabor.paralleltester.runner.EntryPointStarter");
 
         RunContentDescriptor runContentDescriptor = super.doExecute(state, env);
         doPostExecute(state, env, runContentDescriptor);
