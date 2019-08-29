@@ -14,8 +14,7 @@ import java.util.Locale;
 
 public class ParallelSuite extends Suite {
 
-    public ParallelSuite(Class<?> klass, RunnerBuilder builder) throws InitializationError
-            , ClassNotFoundException {
+    public ParallelSuite(Class<?> klass, RunnerBuilder builder) throws InitializationError {
         super(builder, klass, getClasses());
         setScheduler(new ParallelScheduler());
     }

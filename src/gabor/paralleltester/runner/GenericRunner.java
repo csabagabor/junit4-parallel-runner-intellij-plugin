@@ -46,19 +46,11 @@ public interface GenericRunner {
             JavaParameters javaParameters = ((JavaCommandLine) state).getJavaParameters();
 
             ParametersList programParametersList = javaParameters.getProgramParametersList();
-
             List<String> list = new ArrayList<>(javaParameters.getProgramParametersList().getList());
-
-            //get list of test(s) or file where they are stored
-            //Data data = env.getConfiguration().getPersistentData();
-
 
             if (state instanceof TestObject) {
                 JUnitConfiguration.Data persistentData = ((TestObject) state).getConfiguration().getPersistentData();
                 String testObject = persistentData.TEST_OBJECT;
-
-//                JUnit4TestRunnerUtil.buildRequest(new String[]{processParameters(list)},
-//                        null, true);
 
                 if (!"method".equals(testObject)) {
                     File dir = new File(FileUtilRt.getTempDirectory());
@@ -69,9 +61,7 @@ public interface GenericRunner {
                     try {
                         writer = new PrintWriter(new OutputStreamWriter(new FileOutputStream(file),
                                 "UTF-8"));
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    } catch (FileNotFoundException e) {
+                    } catch (UnsupportedEncodingException | FileNotFoundException e) {
                         e.printStackTrace();
                     }
 
@@ -113,7 +103,9 @@ public interface GenericRunner {
                     } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
                         e.printStackTrace();
                     } finally {
-                        writer.close();
+                        if (writer != null) {
+                            writer.close();
+                        }
                     }
 
                     programParametersList.clearAll();
