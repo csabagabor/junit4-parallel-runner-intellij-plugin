@@ -80,6 +80,7 @@ public class CustomRunner extends DefaultJavaProgramRunner {
     private int runnerID = 1;
     private String originalMainClass;
     private List<String> originalList;
+    private static int nr = 0;
 
     @NotNull
     public String getRunnerId() {
@@ -88,7 +89,7 @@ public class CustomRunner extends DefaultJavaProgramRunner {
 
     @Override
     protected RunContentDescriptor doExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws ExecutionException {
-
+        nr++;
         JavaParameters javaParameters = ((JavaCommandLine) state).getJavaParameters();
 
         javaParameters.getClassPath().addFirst(PathManager.getPluginsPath());
