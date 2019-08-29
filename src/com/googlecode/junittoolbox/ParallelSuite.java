@@ -7,6 +7,7 @@ import org.junit.runners.ParentRunner;
 import org.junit.runners.Suite;
 import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.RunnerBuilder;
+import org.junit.runners.model.RunnerScheduler;
 
 import java.io.*;
 import java.util.ArrayList;
