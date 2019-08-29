@@ -77,6 +77,9 @@ import java.util.TreeSet;
 
 public class CustomRunner extends DefaultJavaProgramRunner {
     private static final Logger log = Logger.getInstance(CustomRunner.class.getName());
+    private int runnerID = 1;
+    private String originalMainClass;
+    private List<String> originalList;
 
     @NotNull
     public String getRunnerId() {
@@ -91,26 +94,13 @@ public class CustomRunner extends DefaultJavaProgramRunner {
         javaParameters.getClassPath().addFirst(PathManager.getPluginsPath());
         javaParameters.getClassPath().addFirst(PathManager.getJarPathForClass(ParallelSuite.class));
 
-        String originalMainClass = javaParameters.getMainClass();
-        List<String> originalList = new ArrayList<>(javaParameters.getProgramParametersList().getList());
+        originalMainClass = javaParameters.getMainClass();
+        originalList = new ArrayList<>(javaParameters.getProgramParametersList().getList());
 
         RunContentDescriptor runContentDescriptor = null;
 
-        try {
-            runContentDescriptor = doCustomExecute(state, env);
-        } catch (FailedToRunException e) {
-            try {
-                doPreExecute2(state, env);
-                runContentDescriptor = doCustomExecute(state, env);
-            } catch (FailedToRunException e2) {
-                try {
-                    revertParams(originalMainClass, originalList, javaParameters);
-                    runContentDescriptor = doCustomExecute(state, env);
-                } catch (FailedToRunException ignore) {
-
-                }
-            }
-        }
+        javaParameters.setMainClass(Resources.PARALLEL_STARTER);
+        runContentDescriptor = doCustomExecute(state, env);
 
         return runContentDescriptor;
     }
@@ -145,30 +135,44 @@ public class CustomRunner extends DefaultJavaProgramRunner {
         final ProcessHandler processHandler = runContentDescriptor.getProcessHandler();
 
         if (processHandler != null) {
-            Integer exitCode[] = new Integer[2];
-
             processHandler.addProcessListener(new ProcessAdapter() {
                 public void processTerminated(@NotNull ProcessEvent event) {
                     if (event == null) {
                         return;
                     }
 
-                    exitCode[0] = event.getExitCode();
+                    if (event.getExitCode() < 0) {
+                        try {
+                            runNextRunner(state, env);
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             });
-
-            processHandler.waitFor();
-            if (exitCode[0] < 0) {
-                throw new FailedToRunException();
-            }
         }
     }
 
-    private void doPreExecute2(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws ExecutionException {
+    private void runNextRunner(RunProfileState state, ExecutionEnvironment env) throws ExecutionException {
+        JavaParameters javaParameters = ((JavaCommandLine) state).getJavaParameters();
+
+        runnerID++;
+        if (runnerID == 2) {
+            revertParams(originalMainClass, originalList, javaParameters);
+            doPreExecute2(state, env);
+            doCustomExecute(state, env);
+        } else if (runnerID == 3) {
+            runnerID = 1;
+            revertParams(originalMainClass, originalList, javaParameters);
+            doCustomExecute(state, env);
+        }
+    }
+
+    private void doPreExecute2(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws
+            ExecutionException {
         if (state instanceof JavaCommandLine) {
             JavaParameters javaParameters = ((JavaCommandLine) state).getJavaParameters();
 
-            javaParameters.setMainClass(Resources.PARALLEL_STARTER);
             ParametersList programParametersList = javaParameters.getProgramParametersList();
             List<String> list = new ArrayList<>(javaParameters.getProgramParametersList().getList());
 

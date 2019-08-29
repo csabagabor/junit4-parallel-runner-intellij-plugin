@@ -6,6 +6,7 @@ import com.intellij.junit4.JUnit4TestRunnerUtil;
 import com.intellij.rt.execution.junit.ComparisonFailureData;
 import com.intellij.rt.execution.junit.IDEAJUnitListener;
 import com.intellij.rt.execution.junit.IDEAJUnitListenerEx;
+import com.intellij.rt.execution.junit.IdeaTestRunner;
 import org.junit.internal.requests.ClassRequest;
 import org.junit.internal.requests.FilterRequest;
 import org.junit.runner.*;
