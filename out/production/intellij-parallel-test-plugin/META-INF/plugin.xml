@@ -25,7 +25,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <executor implementation="gabor.paralleltester.executor.RunVisualVMExecutor"/>
-        <programRunner implementation="gabor.paralleltester.runner.RunVisualVMRunner" order="first"/>
+        <programRunner implementation="gabor.paralleltester.runner.SimpleParallelRunner" order="first"/>
         <executor implementation="gabor.paralleltester.executor.DebugVisualVMExecutor"/>
         <programRunner implementation="gabor.paralleltester.runner.DebugVisualVMRunner" order="last"/>
     </extensions>

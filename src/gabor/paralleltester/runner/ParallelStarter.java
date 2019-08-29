@@ -17,8 +17,8 @@ public class ParallelStarter extends JUnitStarter {
     public ParallelStarter() {
     }
 
-    public static void main(String[] args) throws IOException {
-
+    public static void start(String[] args) throws IOException {
+        System.exit(-3);
         Vector argList = new Vector();
 
         for (int i = 0; i < args.length; ++i) {

@@ -156,30 +156,4 @@ public interface GenericRunner {
             });
         }
     }
-
-    static String processParameters(List<String> args) {
-        String arg;
-        List<String> excludeArgList = Arrays.asList("-junit3", "-junit4", "-junit5");
-        List<String> excludeStartWithArgList = Arrays.asList("@name", "@w@", "@@@", "@@", "@", "-socket");
-
-        for (int i = 0; i < args.size(); ++i) {
-            arg = args.get(i);
-            if (!arg.startsWith("-ideVersion")) {
-
-                boolean startsWithExcluded = false;
-
-                for (String exclude : excludeStartWithArgList) {
-                    if (arg.startsWith(exclude)) {
-                        startsWithExcluded = true;
-                    }
-                }
-
-                if (!startsWithExcluded && !excludeArgList.contains(arg)) {
-                    return arg;
-                }
-            }
-        }
-
-        return null;
-    }
 }

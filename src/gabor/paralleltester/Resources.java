@@ -18,4 +18,6 @@ public class Resources {
     public static final Icon DEBUG = IconLoader.getIcon("debug13.png");
 
     public static final String RUNNABLE_CLASS = "com.googlecode.junittoolbox.ParallelSuiteClasses";
+
+    public static final String PARALLEL_STARTER = "gabor.paralleltester.runner.EntryPointStarter";
 }
