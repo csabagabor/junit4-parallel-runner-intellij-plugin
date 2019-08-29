@@ -2,6 +2,7 @@ package gabor.paralleltester.runner;
 
 import com.googlecode.junittoolbox.ParallelSuite;
 import com.intellij.execution.ExecutionException;
+import com.intellij.execution.Location;
 import com.intellij.execution.configurations.JavaCommandLine;
 import com.intellij.execution.configurations.JavaParameters;
 import com.intellij.execution.configurations.ParametersList;
@@ -18,6 +19,8 @@ import com.intellij.execution.ui.RunContentDescriptor;
 import com.intellij.openapi.application.PathManager;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.util.io.FileUtilRt;
+import com.intellij.psi.PsiClass;
+import com.intellij.psi.PsiElement;
 import gabor.paralleltester.Resources;
 import gabor.paralleltester.helper.UIHelper;
 import org.jetbrains.annotations.NotNull;
@@ -80,7 +83,7 @@ public interface GenericRunner {
                         } else if (("class".equals(testObject))) {
                             classNames = Arrays.asList(persistentData.MAIN_CLASS_NAME);
                         } else if (("package".equals(testObject))) {
-                            Set<String> myClassNames = new HashSet<>();
+                            Set<Location> myClassNames = new HashSet<>();
 
                             Module module = ((TestObject) state).getConfiguration().getConfigurationModule().getModule();
 
@@ -95,7 +98,12 @@ public interface GenericRunner {
                                     Module.class, com.intellij.execution.junit.TestClassFilter.class, Set.class);
                             method2.setAccessible(true);
                             method2.invoke(state, module, classFilter, myClassNames);
-                            classNames = new ArrayList<>(myClassNames);
+                            for (Location myClassName : myClassNames) {
+                                PsiElement psiElement = myClassName.getPsiElement();
+                                if (psiElement instanceof PsiClass) {
+                                    classNames.add(((PsiClass) psiElement).getQualifiedName());
+                                }
+                            }
                         }
 
                         for (int i = 0; i < classNames.size(); ++i) {

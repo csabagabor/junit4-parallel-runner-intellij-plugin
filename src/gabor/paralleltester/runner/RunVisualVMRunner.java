@@ -56,6 +56,8 @@ public class RunVisualVMRunner extends DefaultJavaProgramRunner implements Gener
     @Override
     protected RunContentDescriptor doExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws ExecutionException {
 
+        System.setProperty("blabla", "aa");
+
         doPreExecute(state, env);
         RunContentDescriptor runContentDescriptor = super.doExecute(state, env);
         doPostExecute(state, env, runContentDescriptor);
