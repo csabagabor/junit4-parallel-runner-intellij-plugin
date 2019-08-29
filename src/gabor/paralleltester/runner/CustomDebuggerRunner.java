@@ -12,7 +12,7 @@ import com.intellij.openapi.diagnostic.Logger;
 import gabor.paralleltester.executor.CustomDebuggerExecutor;
 import org.jetbrains.annotations.NotNull;
 
-public class CustomDebuggerRunner extends GenericDebuggerRunner implements GenericRunner {
+public class CustomDebuggerRunner extends GenericDebuggerRunner {
     private static final Logger log = Logger.getInstance(CustomDebuggerRunner.class.getName());
 
     @NotNull
@@ -23,9 +23,9 @@ public class CustomDebuggerRunner extends GenericDebuggerRunner implements Gener
     @Override
     protected RunContentDescriptor doExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws ExecutionException {
 
-        doPreExecute(state, env);
+        //doPreExecute(state, env);
         RunContentDescriptor runContentDescriptor = super.doExecute(state, env);
-        doPostExecute(state, env, runContentDescriptor);
+        //doPostExecute(state, env, runContentDescriptor);
 
         return runContentDescriptor;
     }

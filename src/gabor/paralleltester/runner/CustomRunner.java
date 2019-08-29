@@ -31,20 +31,51 @@
 
 package gabor.paralleltester.runner;
 
+import com.googlecode.junittoolbox.ParallelSuite;
 import com.intellij.execution.ExecutionException;
+import com.intellij.execution.Location;
+import com.intellij.execution.configurations.JavaCommandLine;
+import com.intellij.execution.configurations.JavaParameters;
+import com.intellij.execution.configurations.ParametersList;
 import com.intellij.execution.configurations.RunProfile;
 import com.intellij.execution.configurations.RunProfileState;
 import com.intellij.execution.impl.DefaultJavaProgramRunner;
 import com.intellij.execution.junit.JUnitConfiguration;
+import com.intellij.execution.junit.TestClassFilter;
+import com.intellij.execution.junit.TestObject;
+import com.intellij.execution.junit.TestPackage;
+import com.intellij.execution.process.ProcessAdapter;
+import com.intellij.execution.process.ProcessEvent;
+import com.intellij.execution.process.ProcessHandler;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.runners.RunConfigurationWithSuppressedDefaultRunAction;
 import com.intellij.execution.ui.RunContentDescriptor;
+import com.intellij.openapi.application.PathManager;
 import com.intellij.openapi.diagnostic.Logger;
+import com.intellij.openapi.module.Module;
+import com.intellij.openapi.util.io.FileUtilRt;
+import com.intellij.psi.PsiClass;
+import com.intellij.psi.PsiElement;
+import gabor.paralleltester.Resources;
 import gabor.paralleltester.executor.CustomRunnerExecutor;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
-public class CustomRunner extends DefaultJavaProgramRunner implements GenericRunner {
+
+public class CustomRunner extends DefaultJavaProgramRunner {
     private static final Logger log = Logger.getInstance(CustomRunner.class.getName());
 
     @NotNull
@@ -55,9 +86,31 @@ public class CustomRunner extends DefaultJavaProgramRunner implements GenericRun
     @Override
     protected RunContentDescriptor doExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws ExecutionException {
 
-        doPreExecute(state, env);
-        RunContentDescriptor runContentDescriptor = super.doExecute(state, env);
-        doPostExecute(state, env, runContentDescriptor);
+        JavaParameters javaParameters = ((JavaCommandLine) state).getJavaParameters();
+
+        javaParameters.getClassPath().addFirst(PathManager.getPluginsPath());
+        javaParameters.getClassPath().addFirst(PathManager.getJarPathForClass(ParallelSuite.class));
+
+        String originalMainClass = javaParameters.getMainClass();
+        List<String> originalList = new ArrayList<>(javaParameters.getProgramParametersList().getList());
+
+        RunContentDescriptor runContentDescriptor = null;
+
+        try {
+            runContentDescriptor = doCustomExecute(state, env);
+        } catch (FailedToRunException e) {
+            try {
+                doPreExecute2(state, env);
+                runContentDescriptor = doCustomExecute(state, env);
+            } catch (FailedToRunException e2) {
+                try {
+                    revertParams(originalMainClass, originalList, javaParameters);
+                    runContentDescriptor = doCustomExecute(state, env);
+                } catch (FailedToRunException ignore) {
+
+                }
+            }
+        }
 
         return runContentDescriptor;
     }
@@ -67,5 +120,147 @@ public class CustomRunner extends DefaultJavaProgramRunner implements GenericRun
         return executorId.equals(CustomRunnerExecutor.RUN_WITH_VISUAL_VM) &&
                 profile instanceof JUnitConfiguration &&
                 !(profile instanceof RunConfigurationWithSuppressedDefaultRunAction);
+    }
+
+    private void revertParams(String originalMainClass, List<String> originalList,
+                              JavaParameters javaParameters) {
+        javaParameters.setMainClass(originalMainClass);
+
+        javaParameters.getProgramParametersList().clearAll();
+
+        for (String param : originalList) {
+            javaParameters.getProgramParametersList().add(param);
+        }
+    }
+
+    private RunContentDescriptor doCustomExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws ExecutionException {
+        RunContentDescriptor runContentDescriptor = super.doExecute(state, env);
+        doPostExecute(state, env, runContentDescriptor);
+
+        return runContentDescriptor;
+    }
+
+    private void doPostExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env,
+                               RunContentDescriptor runContentDescriptor) throws ExecutionException {
+        final ProcessHandler processHandler = runContentDescriptor.getProcessHandler();
+
+        if (processHandler != null) {
+            Integer exitCode[] = new Integer[2];
+
+            processHandler.addProcessListener(new ProcessAdapter() {
+                public void processTerminated(@NotNull ProcessEvent event) {
+                    if (event == null) {
+                        return;
+                    }
+
+                    exitCode[0] = event.getExitCode();
+                }
+            });
+
+            processHandler.waitFor();
+            if (exitCode[0] < 0) {
+                throw new FailedToRunException();
+            }
+        }
+    }
+
+    private void doPreExecute2(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws ExecutionException {
+        if (state instanceof JavaCommandLine) {
+            JavaParameters javaParameters = ((JavaCommandLine) state).getJavaParameters();
+
+            javaParameters.setMainClass(Resources.PARALLEL_STARTER);
+            ParametersList programParametersList = javaParameters.getProgramParametersList();
+            List<String> list = new ArrayList<>(javaParameters.getProgramParametersList().getList());
+
+            if (state instanceof TestObject) {
+                JUnitConfiguration.Data persistentData = ((TestObject) state).getConfiguration().getPersistentData();
+                String testObject = persistentData.TEST_OBJECT;
+
+                if (!"method".equals(testObject)) {
+                    List<String> classNames = new ArrayList<>();
+
+                    File dir = new File(FileUtilRt.getTempDirectory());
+                    File file = new File(dir, "jun_par_tes.tmp");
+
+                    PrintWriter writer = null;
+                    try {
+                        writer = new PrintWriter(new OutputStreamWriter(new FileOutputStream(file),
+                                "UTF-8"));
+                    } catch (UnsupportedEncodingException | FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                    try {
+                        if (("pattern".equals(testObject))) {
+                            Set<String> patterns = persistentData.getPatterns();
+                            classNames = new ArrayList<>(patterns);
+                        } else if (("class".equals(testObject))) {
+                            classNames = Arrays.asList(persistentData.MAIN_CLASS_NAME);
+                        } else if (("package".equals(testObject))) {
+                            Set myClassNames = new TreeSet();
+
+                            Module module = ((TestObject) state).getConfiguration().getConfigurationModule().getModule();
+
+                            Method method = TestPackage.class.getDeclaredMethod("getClassFilter",
+                                    JUnitConfiguration.Data.class);
+                            method.setAccessible(true);
+                            com.intellij.execution.junit.TestClassFilter classFilter =
+                                    (TestClassFilter) method.invoke(state, persistentData);
+
+
+                            Method method2 = TestPackage.class.getDeclaredMethod("searchTests",
+                                    Module.class, com.intellij.execution.junit.TestClassFilter.class, Set.class);
+                            method2.setAccessible(true);
+                            method2.invoke(state, module, classFilter, myClassNames);
+                            if (myClassNames.size() > 0) {
+                                if (myClassNames.iterator().next() instanceof Location) {
+                                    for (Location myClassName : (Set<Location>) myClassNames) {
+                                        PsiElement psiElement = myClassName.getPsiElement();
+                                        if (psiElement instanceof PsiClass) {
+                                            classNames.add(((PsiClass) psiElement).getQualifiedName());
+                                        }
+                                    }
+                                } else {
+                                    for (String myClassName : (Set<String>) myClassNames) {
+                                        classNames.add(myClassName);
+                                    }
+                                }
+                            }
+                        }
+
+                        for (int i = 0; i < classNames.size(); ++i) {
+                            writer.println(classNames.get(i));
+                        }
+
+                    } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                        e.printStackTrace();
+                    } finally {
+                        if (writer != null) {
+                            writer.close();
+                        }
+                    }
+
+                    programParametersList.clearAll();
+
+                    List<String> finalParams = new ArrayList<>();
+
+                    for (String s : list) {
+                        if (!s.contains("@")) {
+                            finalParams.add(s);
+                        }
+                    }
+
+                    if (classNames.size() == 1) {
+                        finalParams.remove(classNames.get(0));
+                    }
+
+                    finalParams.add(Resources.RUNNABLE_CLASS);
+
+                    for (String finalParam : finalParams) {
+                        programParametersList.add(finalParam);
+                    }
+                }
+            }
+        }
     }
 }

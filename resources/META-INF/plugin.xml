@@ -24,8 +24,8 @@
     <depends>JUnit</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <executor implementation="gabor.paralleltester.executor.SimpleRunnerExecutor"/>
-        <programRunner implementation="gabor.paralleltester.runner.SimpleRunner" order="first"/>
+        <executor implementation="gabor.paralleltester.executor.CustomRunnerExecutor"/>
+        <programRunner implementation="gabor.paralleltester.runner.CustomRunner" order="first"/>
         <executor implementation="gabor.paralleltester.executor.CustomDebuggerExecutor"/>
         <programRunner implementation="gabor.paralleltester.runner.CustomDebuggerRunner" order="last"/>
     </extensions>
