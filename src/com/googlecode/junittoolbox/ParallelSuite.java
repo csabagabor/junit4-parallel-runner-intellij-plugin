@@ -16,6 +16,8 @@ public class ParallelSuite extends Suite {
 
     public ParallelSuite(Class<?> klass, RunnerBuilder builder) throws InitializationError {
         super(builder, klass, getClasses());
+
+        if()
         setScheduler(new ParallelScheduler());
     }
 

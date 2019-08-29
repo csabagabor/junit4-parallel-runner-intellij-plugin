@@ -28,7 +28,6 @@
         <programRunner implementation="gabor.paralleltester.runner.RunVisualVMRunner" order="first"/>
         <executor implementation="gabor.paralleltester.executor.DebugVisualVMExecutor"/>
         <programRunner implementation="gabor.paralleltester.runner.DebugVisualVMRunner" order="last"/>
-        <junitPatcher implementation="gabor.paralleltester.patcher.ParallelJunitPatcher" />
     </extensions>
 
     <actions>

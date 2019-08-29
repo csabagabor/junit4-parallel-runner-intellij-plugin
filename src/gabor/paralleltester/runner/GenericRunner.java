@@ -53,8 +53,9 @@ public interface GenericRunner {
                 String testObject = persistentData.TEST_OBJECT;
 
                 if (!"method".equals(testObject)) {
-                    File dir = new File(FileUtilRt.getTempDirectory());
+                    List<String> classNames = new ArrayList<>();
 
+                    File dir = new File(FileUtilRt.getTempDirectory());
                     File file = new File(dir, "jun_par_tes.tmp");
 
                     PrintWriter writer = null;
@@ -66,7 +67,7 @@ public interface GenericRunner {
                     }
 
                     try {
-                        List<String> classNames = new ArrayList<>();
+
                         if (("pattern".equals(testObject))) {
                             Set<String> patterns = persistentData.getPatterns();
                             classNames = new ArrayList<>(patterns);
@@ -110,14 +111,22 @@ public interface GenericRunner {
 
                     programParametersList.clearAll();
 
-                    boolean classAdded = false;
+                    List<String> finalParams = new ArrayList<>();
+
                     for (String s : list) {
                         if (!s.contains("@")) {
-                            programParametersList.add(s);
-                        } else if (!classAdded) {
-                            classAdded = true;
-                            programParametersList.add(Resources.RUNNABLE_CLASS);
+                            finalParams.add(s);
                         }
+                    }
+
+                    if (classNames.size() == 1) {
+                        finalParams.remove(classNames.get(0));
+                    }
+
+                    finalParams.add(Resources.RUNNABLE_CLASS);
+
+                    for (String finalParam : finalParams) {
+                        programParametersList.add(finalParam);
                     }
 
                     javaParameters.getClassPath().addFirst(PathManager.getPluginsPath());
@@ -151,7 +160,7 @@ public interface GenericRunner {
     static String processParameters(List<String> args) {
         String arg;
         List<String> excludeArgList = Arrays.asList("-junit3", "-junit4", "-junit5");
-        List<String> excludeStartWithArgList = Arrays.asList("@name", "@w@", "@@@", "@@", "-socket");
+        List<String> excludeStartWithArgList = Arrays.asList("@name", "@w@", "@@@", "@@", "@", "-socket");
 
         for (int i = 0; i < args.size(); ++i) {
             arg = args.get(i);
