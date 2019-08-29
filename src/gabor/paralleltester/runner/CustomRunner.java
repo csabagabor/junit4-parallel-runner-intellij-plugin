@@ -101,6 +101,9 @@ public class CustomRunner extends DefaultJavaProgramRunner {
 
         javaParameters.setMainClass(Resources.PARALLEL_STARTER);
         runContentDescriptor = doCustomExecute(state, env);
+//        revertParams(originalMainClass, originalList, javaParameters);
+//        doPreExecute2(state, env);
+//        runContentDescriptor = doCustomExecute(state, env);
 
         return runContentDescriptor;
     }
