@@ -4,7 +4,6 @@ import com.googlecode.junittoolbox.ParallelSuite;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.configurations.JavaCommandLine;
 import com.intellij.execution.configurations.JavaParameters;
-import com.intellij.execution.configurations.JavaRunConfigurationModule;
 import com.intellij.execution.configurations.ParametersList;
 import com.intellij.execution.configurations.RunProfileState;
 import com.intellij.execution.junit.JUnitConfiguration;
@@ -29,8 +28,11 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -78,16 +80,30 @@ public interface GenericRunner {
                         } else if (("class".equals(testObject))) {
                             classNames = Arrays.asList(persistentData.MAIN_CLASS_NAME);
                         } else if (("package".equals(testObject))) {
-                            System.out.println("a");
+                            Set<String> myClassNames = new HashSet<>();
+
                             Module module = ((TestObject) state).getConfiguration().getConfigurationModule().getModule();
-                            TestClassFilter classFilter = TestPackage.this.getClassFilter(data);
-                            ((TestPackage) state).searchTests(env.get, classFilter, this.myClassNames);
+
+                            Method method = TestPackage.class.getDeclaredMethod("getClassFilter",
+                                    JUnitConfiguration.Data.class);
+                            method.setAccessible(true);
+                            com.intellij.execution.junit.TestClassFilter classFilter =
+                                    (TestClassFilter) method.invoke(state, persistentData);
+
+
+                            Method method2 = TestPackage.class.getDeclaredMethod("searchTests",
+                                    Module.class, com.intellij.execution.junit.TestClassFilter.class, Set.class);
+                            method2.setAccessible(true);
+                            method2.invoke(state, module, classFilter, myClassNames);
+                            classNames = new ArrayList<>(myClassNames);
                         }
 
                         for (int i = 0; i < classNames.size(); ++i) {
                             writer.println(classNames.get(i));
                         }
 
+                    } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                        e.printStackTrace();
                     } finally {
                         writer.close();
                     }
