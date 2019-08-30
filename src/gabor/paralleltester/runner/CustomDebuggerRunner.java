@@ -19,7 +19,7 @@ public class CustomDebuggerRunner extends GenericDebuggerRunner {
 
     @NotNull
     public String getRunnerId() {
-        return CustomDebuggerExecutor.EXECUTOR_ID;
+        return CustomDebuggerExecutor.WITH_PARALLEL_RUNNER;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class CustomDebuggerRunner extends GenericDebuggerRunner {
 
     @Override
     public boolean canRun(@NotNull String executorId, @NotNull RunProfile profile) {
-        return executorId.equals(CustomDebuggerExecutor.EXECUTOR_ID) &&
+        return executorId.equals(CustomDebuggerExecutor.WITH_PARALLEL_RUNNER) &&
                 profile instanceof JUnitConfiguration &&
                 !(profile instanceof RunConfigurationWithSuppressedDefaultDebugAction);
     }

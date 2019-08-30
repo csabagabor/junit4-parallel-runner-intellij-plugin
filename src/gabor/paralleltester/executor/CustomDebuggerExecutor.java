@@ -9,8 +9,9 @@ import javax.swing.*;
 
 public class CustomDebuggerExecutor extends DefaultDebugExecutor {
     @NonNls
-    public static final String EXECUTOR_ID = "Debug With Parallel Runner";
-    public static final String DEBUG_WITH_VISUAL_VM = "DebugWithParallelRunner";
+    public static final String WITH_PARALLEL_RUNNER = "Debug With Parallel Runner";
+
+    public static final String DEBUG_WITH_PARALLEL_RUNNER = "DebugWithParallelRunner";
 
     @NotNull
     public String getToolWindowId() {
@@ -31,26 +32,25 @@ public class CustomDebuggerExecutor extends DefaultDebugExecutor {
     }
 
     public String getDescription() {
-        return EXECUTOR_ID;
+        return WITH_PARALLEL_RUNNER;
     }
 
     @NotNull
     public String getActionName() {
-        return DEBUG_WITH_VISUAL_VM;
+        return DEBUG_WITH_PARALLEL_RUNNER;
     }
 
     @NotNull
     public String getId() {
-        return EXECUTOR_ID;
+        return WITH_PARALLEL_RUNNER;
     }
 
     @NotNull
     public String getStartActionText() {
-        return EXECUTOR_ID;
+        return WITH_PARALLEL_RUNNER;
     }
 
     public String getContextActionId() {
-        // HACK: ExecutorRegistryImpl expects this to be non-null, but we don't want any context actions for every file
         return getId() + " context-action-does-not-exist";
     }
 

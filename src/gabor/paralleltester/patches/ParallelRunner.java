@@ -24,13 +24,14 @@ public class ParallelRunner extends JUnit4IdeaTestRunner {
                 return -2;
             }
 
-            //changed code
+            //changed code - just set the scheduler of the Runner
+            //*********************************************************
             if (testRunner instanceof ParentRunner) {
                 ParentRunner parentRunner = (ParentRunner) testRunner;
                 parentRunner.setScheduler(new ParallelScheduler());
             }
+            //*********************************************************
 
-            //
 
             if (sendTree) {
                 do {

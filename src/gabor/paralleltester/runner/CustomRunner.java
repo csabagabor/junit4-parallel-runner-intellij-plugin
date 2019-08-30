@@ -55,7 +55,7 @@ public class CustomRunner extends DefaultJavaProgramRunner {
 
     @NotNull
     public String getRunnerId() {
-        return CustomRunnerExecutor.RUN_WITH_VISUAL_VM;
+        return CustomRunnerExecutor.WITH_PARALLEL_RUNNER;
     }
 
     @Override
@@ -86,7 +86,7 @@ public class CustomRunner extends DefaultJavaProgramRunner {
 
     @Override
     public boolean canRun(@NotNull String executorId, @NotNull RunProfile profile) {
-        return executorId.equals(CustomRunnerExecutor.RUN_WITH_VISUAL_VM) &&
+        return executorId.equals(CustomRunnerExecutor.WITH_PARALLEL_RUNNER) &&
                 profile instanceof JUnitConfiguration &&
                 !(profile instanceof RunConfigurationWithSuppressedDefaultRunAction);
     }

@@ -2,6 +2,7 @@ package gabor.paralleltester.patches.plugin;
 
 import com.intellij.rt.execution.junit.IdeaTestRunner;
 import com.intellij.rt.execution.junit.IdeaTestRunner.Repeater;
+
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
@@ -22,6 +23,10 @@ import com.intellij.rt.execution.junit.RepeatCount;
 import junit.textui.ResultPrinter;
 import junit.textui.TestRunner;
 
+/**
+ * This class was copied from the open-source version of the JUnit plugin
+ * for the sake of simplicity(to prevent using reflection). This must not be modified.
+ */
 public class JUnitStarter {
     public static final int VERSION = 5;
     public static final String IDE_VERSION = "-ideVersion";
@@ -45,7 +50,7 @@ public class JUnitStarter {
     public static void main(String[] args) throws IOException {
         Vector argList = new Vector();
 
-        for(int i = 0; i < args.length; ++i) {
+        for (int i = 0; i < args.length; ++i) {
             String arg = args[i];
             argList.addElement(arg);
         }
@@ -73,8 +78,8 @@ public class JUnitStarter {
 
         int i;
         String arg;
-        for(i = 0; i < args.size(); ++i) {
-            arg = (String)args.get(i);
+        for (i = 0; i < args.size(); ++i) {
+            arg = (String) args.get(i);
             if (!arg.startsWith("-ideVersion")) {
                 if (arg.equals("-junit3")) {
                     agentName = "com.intellij.junit3.JUnit3IdeaTestRunner";
@@ -98,7 +103,7 @@ public class JUnitStarter {
                                 BufferedReader reader = new BufferedReader(new FileReader(arg.substring(2)));
 
                                 String line;
-                                while((line = reader.readLine()) != null) {
+                                while ((line = reader.readLine()) != null) {
                                     listeners.add(line);
                                 }
                             } catch (Exception var22) {
@@ -135,8 +140,8 @@ public class JUnitStarter {
 
         args.removeAllElements();
 
-        for(i = 0; i < result.size(); ++i) {
-            arg = (String)result.get(i);
+        for (i = 0; i < result.size(); ++i) {
+            arg = (String) result.get(i);
             args.addElement(arg);
         }
 
@@ -179,7 +184,7 @@ public class JUnitStarter {
     }
 
     public static boolean checkVersion(String[] args, PrintStream printStream) {
-        for(int i = 0; i < args.length; ++i) {
+        for (int i = 0; i < args.length; ++i) {
             String arg = args[i];
             if (arg.startsWith("-ideVersion")) {
                 int ideVersion = Integer.parseInt(arg.substring("-ideVersion".length()));
@@ -217,12 +222,12 @@ public class JUnitStarter {
     protected static void junitVersionChecks(String agentName) throws ClassNotFoundException {
         Class.forName("junit.framework.ComparisonFailure");
         getAgentClass(agentName);
-        (new TestRunner()).setPrinter((ResultPrinter)null);
+        (new TestRunner()).setPrinter((ResultPrinter) null);
     }
 
     protected static int prepareStreamsAndStart(String[] args, String agentName, ArrayList listeners, String name) {
         try {
-            IdeaTestRunner testRunner = (IdeaTestRunner)getAgentClass(agentName).newInstance();
+            IdeaTestRunner testRunner = (IdeaTestRunner) getAgentClass(agentName).newInstance();
             if (ourCommandFileName == null || "none".equals(ourForkMode) && (ourWorkingDirs == null || (new File(ourWorkingDirs)).length() <= 0L)) {
                 return Repeater.startRunnerWithArgs(testRunner, args, listeners, name, ourCount, true);
             } else {
@@ -249,7 +254,7 @@ public class JUnitStarter {
             writer.println(category);
             writer.println(filters);
 
-            for(int i = 0; i < classNames.size(); ++i) {
+            for (int i = 0; i < classNames.size(); ++i) {
                 writer.println(classNames.get(i));
             }
         } finally {

@@ -8,8 +8,9 @@ import javax.swing.*;
 
 public class CustomRunnerExecutor extends Executor {
 
-    public static final String RUN_WITH_VISUAL_VM = "Run With Parallel Runner";
-    public static final String RUN_WITH_VISUAL_VM1 = "RunWithParallelRunner";
+    public static final String WITH_PARALLEL_RUNNER = "Run With Parallel Runner";
+
+    public static final String RUN_WITH_PARALLEL_RUNNER = "RunWithParallelRunner";
 
     @NotNull
     public String getToolWindowId() {
@@ -30,26 +31,25 @@ public class CustomRunnerExecutor extends Executor {
     }
 
     public String getDescription() {
-        return RUN_WITH_VISUAL_VM;
+        return WITH_PARALLEL_RUNNER;
     }
 
     @NotNull
     public String getActionName() {
-        return RUN_WITH_VISUAL_VM1;
+        return RUN_WITH_PARALLEL_RUNNER;
     }
 
     @NotNull
     public String getId() {
-        return RUN_WITH_VISUAL_VM;
+        return WITH_PARALLEL_RUNNER;
     }
 
     @NotNull
     public String getStartActionText() {
-        return RUN_WITH_VISUAL_VM;
+        return WITH_PARALLEL_RUNNER;
     }
 
     public String getContextActionId() {
-        // HACK: ExecutorRegistryImpl expects this to be non-null, but we don't want any context actions for every file
         return getId() + " context-action-does-not-exist";
     }
 

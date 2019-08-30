@@ -19,6 +19,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * This class was copied from the open-source version of the JUnit plugin
+ * for the sake of simplicity(to prevent using reflection). This must not be modified.
+ */
 public class JUnit4IdeaTestRunner implements IdeaTestRunner {
     protected JUnit4TestListener myTestsListener;
     protected ArrayList myListeners;

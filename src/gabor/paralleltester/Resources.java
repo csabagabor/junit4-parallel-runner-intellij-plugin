@@ -10,12 +10,11 @@ public class Resources {
 
     public static final Icon RUN_13 = IconLoader.getIcon("run13.png");
 
-    public static final Icon RUN = IconLoader.getIcon("run13.png");
-
+    public static final Icon RUN = IconLoader.getIcon("run16.svg");
 
     public static final Icon DEBUG_13 = IconLoader.getIcon("debug13.png");
 
-    public static final Icon DEBUG = IconLoader.getIcon("debug13.png");
+    public static final Icon DEBUG = IconLoader.getIcon("debug16.svg");
 
     public static final String RUNNABLE_CLASS = "com.googlecode.junittoolbox.ParallelSuiteClasses";
 
