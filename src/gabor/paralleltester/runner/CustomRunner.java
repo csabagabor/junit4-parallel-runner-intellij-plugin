@@ -45,7 +45,7 @@ import com.intellij.execution.ui.RunContentDescriptor;
 import com.intellij.openapi.application.PathManager;
 import com.intellij.openapi.diagnostic.Logger;
 import gabor.paralleltester.executor.CustomRunnerExecutor;
-import gabor.paralleltester.runner.factory.CustomRunnerDelegatorFactory;
+import gabor.paralleltester.runner.factory.CustomDelegatorFactory;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -64,13 +64,13 @@ public class CustomRunner extends DefaultJavaProgramRunner {
         javaParameters.getClassPath().addFirst(PathManager.getPluginsPath());
         javaParameters.getClassPath().addFirst(PathManager.getJarPathForClass(ParallelSuite.class));
 
-        delegatorRunner = CustomRunnerDelegatorFactory.getRunner();
+        delegatorRunner = CustomDelegatorFactory.getRunner();
         delegatorRunner.doPreExecute(state, env);
         RunContentDescriptor runContentDescriptor = super.doExecute(state, env);
         delegatorRunner.doPostExecute(state, env, runContentDescriptor, new Runnable() {
             @Override
             public void run() {
-                CustomRunnerDelegatorFactory.runNextRunner(state, env);
+                CustomDelegatorFactory.runNextRunner(state, env, true);
             }
         });
 

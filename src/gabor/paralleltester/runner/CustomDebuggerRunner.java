@@ -10,7 +10,7 @@ import com.intellij.execution.ui.RunContentDescriptor;
 import com.intellij.openapi.application.PathManager;
 import com.intellij.openapi.diagnostic.Logger;
 import gabor.paralleltester.executor.CustomDebuggerExecutor;
-import gabor.paralleltester.runner.factory.CustomDebuggerDelegatorFactory;
+import gabor.paralleltester.runner.factory.CustomDelegatorFactory;
 import org.jetbrains.annotations.NotNull;
 
 public class CustomDebuggerRunner extends GenericDebuggerRunner {
@@ -28,13 +28,13 @@ public class CustomDebuggerRunner extends GenericDebuggerRunner {
         javaParameters.getClassPath().addFirst(PathManager.getPluginsPath());
         javaParameters.getClassPath().addFirst(PathManager.getJarPathForClass(ParallelSuite.class));
 
-        delegatorRunner = CustomDebuggerDelegatorFactory.getRunner();
+        delegatorRunner = CustomDelegatorFactory.getRunner();
         delegatorRunner.doPreExecute(state, env);
         RunContentDescriptor runContentDescriptor = super.doExecute(state, env);
         delegatorRunner.doPostExecute(state, env, runContentDescriptor, new Runnable() {
             @Override
             public void run() {
-                CustomDebuggerDelegatorFactory.runNextRunner(state, env);
+                CustomDelegatorFactory.runNextRunner(state, env, false);
             }
         });
 
