@@ -45,6 +45,7 @@ import com.intellij.execution.ui.RunContentDescriptor;
 import com.intellij.openapi.application.PathManager;
 import com.intellij.openapi.diagnostic.Logger;
 import gabor.paralleltester.executor.CustomRunnerExecutor;
+import gabor.paralleltester.runner.factory.CustomRunnerDelegatorFactory;
 import org.jetbrains.annotations.NotNull;
 
 

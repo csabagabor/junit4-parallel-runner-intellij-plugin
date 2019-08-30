@@ -1,4 +1,4 @@
-package gabor.paralleltester.runner;
+package gabor.paralleltester.runner.runners;
 
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.configurations.JavaCommandLine;
@@ -6,6 +6,7 @@ import com.intellij.execution.configurations.JavaParameters;
 import com.intellij.execution.configurations.RunProfileState;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import gabor.paralleltester.Resources;
+import gabor.paralleltester.runner.CustomDelegatorRunner;
 import org.jetbrains.annotations.NotNull;
 
 public class CustomRunner1 implements CustomDelegatorRunner {

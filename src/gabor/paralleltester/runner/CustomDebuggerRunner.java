@@ -10,6 +10,7 @@ import com.intellij.execution.ui.RunContentDescriptor;
 import com.intellij.openapi.application.PathManager;
 import com.intellij.openapi.diagnostic.Logger;
 import gabor.paralleltester.executor.CustomDebuggerExecutor;
+import gabor.paralleltester.runner.factory.CustomDebuggerDelegatorFactory;
 import org.jetbrains.annotations.NotNull;
 
 public class CustomDebuggerRunner extends GenericDebuggerRunner {
