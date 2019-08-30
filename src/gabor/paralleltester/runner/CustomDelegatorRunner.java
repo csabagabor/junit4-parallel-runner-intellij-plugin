@@ -25,7 +25,8 @@ public interface CustomDelegatorRunner {
                         return;
                     }
 
-                    if (event.getExitCode() < 0) {
+                    //error code is -1 if a test fails
+                    if (event.getExitCode() < -2) {
                         runInCaseOfError.run();
                     }
                 }
