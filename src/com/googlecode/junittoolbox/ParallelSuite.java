@@ -19,35 +19,14 @@ public class ParallelSuite extends Suite {
     private Class<?>[] classes;
 
     public ParallelSuite(Class<?> klass, RunnerBuilder builder) throws InitializationError {
-        this(klass, builder, null);
-    }
+        super(builder, klass, getClasses());
 
-    private ParallelSuite(Class<?> klass, RunnerBuilder builder, Class<?>[] classes) throws InitializationError {
-        super(builder, klass, classes = getClasses());
-
-        int nrThread = getNumberThreads();
-
-        //3 classes, 12 logical processors
-        if (classes.length <= nrThread / 4) {
-            List<Runner> children = this.getChildren();
-            for (Runner child : children) {
-                ((ParentRunner) child).setScheduler(new ParallelScheduler(nrThread));
-            }
+        if (this.getChildren().size() == 1) {
+            Runner child = this.getChildren().get(0);
+            ((ParentRunner) child).setScheduler(new ParallelScheduler());
         } else {
-            setScheduler(new ParallelScheduler(nrThread));
+            setScheduler(new ParallelScheduler());
         }
-    }
-
-    private int getNumberThreads() {
-        int numThreads;
-        try {
-            String configuredNumThreads = System.getProperty("maxParallelTestThreads");
-            numThreads = Math.max(2, Integer.parseInt(configuredNumThreads));
-        } catch (Exception ignored) {
-            Runtime runtime = Runtime.getRuntime();
-            numThreads = Math.max(2, runtime.availableProcessors());
-        }
-        return numThreads;
     }
 
     private static Class<?>[] getClasses() {

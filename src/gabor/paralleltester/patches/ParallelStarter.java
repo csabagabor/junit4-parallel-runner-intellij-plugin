@@ -5,6 +5,7 @@
 
 package gabor.paralleltester.patches;
 
+import gabor.paralleltester.Resources;
 import gabor.paralleltester.patches.plugin.JUnitStarter;
 
 import java.io.IOException;
@@ -12,13 +13,12 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 public class ParallelStarter extends JUnitStarter {
-    public static final String JUNIT_PARALLEL_RUNNER_NAME = "gabor.paralleltester.patches.ParallelRunner";
-
     public ParallelStarter() {
     }
 
     public static void start(String[] args) throws IOException {
-       // System.exit(-3);
+        //System.exit(-3);
+
         Vector argList = new Vector();
 
         for (int i = 0; i < args.length; ++i) {
@@ -36,8 +36,8 @@ public class ParallelStarter extends JUnitStarter {
         }
 
         try {
-            getAgentClass(JUNIT_PARALLEL_RUNNER_NAME);
-            agentName = JUNIT_PARALLEL_RUNNER_NAME;
+            getAgentClass(Resources.JUNIT_PARALLEL_RUNNER_NAME);
+            agentName = Resources.JUNIT_PARALLEL_RUNNER_NAME;
         } catch (ClassNotFoundException e) {
             //if class is not accessible, then revert back to JUnit4 runner
             System.out.println("my runner not accessible");

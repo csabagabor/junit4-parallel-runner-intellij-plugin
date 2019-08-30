@@ -20,4 +20,6 @@ public class Resources {
     public static final String RUNNABLE_CLASS = "com.googlecode.junittoolbox.ParallelSuiteClasses";
 
     public static final String PARALLEL_STARTER = "gabor.paralleltester.patches.EntryPointStarter";
+
+    public static final String JUNIT_PARALLEL_RUNNER_NAME = "gabor.paralleltester.patches.ParallelRunner";
 }
