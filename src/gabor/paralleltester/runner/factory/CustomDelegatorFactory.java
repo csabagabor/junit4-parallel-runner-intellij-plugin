@@ -4,6 +4,8 @@ import com.intellij.execution.Executor;
 import com.intellij.execution.ProgramRunnerUtil;
 import com.intellij.execution.configurations.RunProfileState;
 import com.intellij.execution.runners.ExecutionEnvironment;
+import com.intellij.ide.util.PropertiesComponent;
+import gabor.paralleltester.Resources;
 import gabor.paralleltester.executor.CustomDebuggerExecutor;
 import gabor.paralleltester.executor.CustomRunnerExecutor;
 import gabor.paralleltester.runner.CustomDelegatorRunner;
@@ -15,22 +17,45 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class CustomDelegatorFactory {
-    protected static int RUNNER_ID = 1;
+    protected static Integer RUNNER_ID = loadRunnerId();
+    private static int incrementRunnerId = 0;
+
+    private static int loadRunnerId() {
+        return PropertiesComponent.getInstance().getInt(Resources.SAVE_SETTINGS_RUNNER_ID, 1);
+    }
 
     protected static Map<Integer, CustomDelegatorRunner> runners = populateRunners();
 
     protected static Map<Integer, CustomDelegatorRunner> populateRunners() {
         Map<Integer, CustomDelegatorRunner> runners = new HashMap<>();
 
-        //runners.put(1, new CustomRunner1());
-       // runners.put(2, new CustomRunner2());
-        runners.put(1, new CustomRunner3());
+        //this plugin was developed with portability in mind, so even if the imported classes change in the
+        //custom runners(that specific custom runner will fail), there are other runners which can be run
+        try {
+            addRunner(runners, new CustomRunner1());
+        } catch (NoClassDefFoundError ignore) {
+        }
+
+        try {
+            addRunner(runners, new CustomRunner2());
+        } catch (NoClassDefFoundError ignore) {
+        }
+
+        try {
+            addRunner(runners, new CustomRunner3());
+        } catch (NoClassDefFoundError ignore) {
+        }
 
         //default runner(runs tests sequentially)
-        runners.put(4, new CustomDelegatorRunner() {
+        addRunner(runners, new CustomDelegatorRunner() {
         });
 
         return runners;
+    }
+
+    private static void addRunner(Map<Integer, CustomDelegatorRunner> runners, CustomDelegatorRunner runner) {
+        incrementRunnerId++;
+        runners.put(incrementRunnerId, runner);
     }
 
     public static CustomDelegatorRunner getRunner() {
@@ -40,6 +65,8 @@ public abstract class CustomDelegatorFactory {
     public static void runNextRunner(RunProfileState state, ExecutionEnvironment env, boolean runner) {
         if (runners.containsKey(RUNNER_ID + 1)) {
             RUNNER_ID++;
+
+            PropertiesComponent.getInstance().setValue(Resources.SAVE_SETTINGS_RUNNER_ID, RUNNER_ID.toString());
 
             Executor executor = null;
             if (runner) {
