@@ -64,15 +64,22 @@ public class CustomRunner extends DefaultJavaProgramRunner {
         javaParameters.getClassPath().addFirst(PathManager.getPluginsPath());
         javaParameters.getClassPath().addFirst(PathManager.getJarPathForClass(ParallelSuite.class));
 
-        delegatorRunner = CustomDelegatorFactory.getRunner();
-        delegatorRunner.doPreExecute(state, env);
-        RunContentDescriptor runContentDescriptor = super.doExecute(state, env);
-        delegatorRunner.doPostExecute(state, env, runContentDescriptor, new Runnable() {
-            @Override
-            public void run() {
-                CustomDelegatorFactory.runNextRunner(state, env, true);
-            }
-        });
+        RunContentDescriptor runContentDescriptor = null;
+
+        try {
+            delegatorRunner = CustomDelegatorFactory.getRunner();
+            delegatorRunner.doPreExecute(state, env);
+            runContentDescriptor = super.doExecute(state, env);
+            delegatorRunner.doPostExecute(state, env, runContentDescriptor, new Runnable() {
+                @Override
+                public void run() {
+                    CustomDelegatorFactory.runNextRunner(state, env, true);
+                }
+            });
+
+        } catch (Exception other) {
+            CustomDelegatorFactory.runNextRunner(state, env, true);
+        }
 
         return runContentDescriptor;
     }

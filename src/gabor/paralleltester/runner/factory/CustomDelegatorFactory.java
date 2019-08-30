@@ -23,11 +23,11 @@ public abstract class CustomDelegatorFactory {
         Map<Integer, CustomDelegatorRunner> runners = new HashMap<>();
 
         //runners.put(1, new CustomRunner1());
-        //runners.put(2, new CustomRunner2());
-        runners.put(1, new CustomRunner1());
+       // runners.put(2, new CustomRunner2());
+        runners.put(1, new CustomRunner3());
 
-        //default runner
-        runners.put(2, new CustomDelegatorRunner() {
+        //default runner(runs tests sequentially)
+        runners.put(4, new CustomDelegatorRunner() {
         });
 
         return runners;

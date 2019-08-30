@@ -42,14 +42,14 @@ public class CustomRunner2 implements CustomDelegatorRunner {
                     List<String> classNames = new ArrayList<>();
 
                     File dir = new File(FileUtilRt.getTempDirectory());
-                    File file = new File(dir, "jun_par_tes.tmp");
+                    File file = new File(dir, Resources.JUNIT_RUNNER2_TMP_FILE);
 
                     PrintWriter writer = null;
                     try {
                         writer = new PrintWriter(new OutputStreamWriter(new FileOutputStream(file),
                                 "UTF-8"));
                     } catch (UnsupportedEncodingException | FileNotFoundException e) {
-                        e.printStackTrace();
+                        throw new RuntimeException("Cannot write to file");
                     }
 
                     try {
@@ -95,7 +95,7 @@ public class CustomRunner2 implements CustomDelegatorRunner {
                         }
 
                     } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-                        e.printStackTrace();
+                        throw new RuntimeException("Cannot invoke method");
                     } finally {
                         if (writer != null) {
                             writer.close();
