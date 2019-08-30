@@ -33,50 +33,19 @@ package gabor.paralleltester.runner;
 
 import com.googlecode.junittoolbox.ParallelSuite;
 import com.intellij.execution.ExecutionException;
-import com.intellij.execution.Executor;
-import com.intellij.execution.Location;
-import com.intellij.execution.ProgramRunnerUtil;
 import com.intellij.execution.configurations.JavaCommandLine;
 import com.intellij.execution.configurations.JavaParameters;
-import com.intellij.execution.configurations.ParametersList;
 import com.intellij.execution.configurations.RunProfile;
 import com.intellij.execution.configurations.RunProfileState;
-import com.intellij.execution.executors.DefaultDebugExecutor;
-import com.intellij.execution.executors.DefaultRunExecutor;
 import com.intellij.execution.impl.DefaultJavaProgramRunner;
 import com.intellij.execution.junit.JUnitConfiguration;
-import com.intellij.execution.junit.TestClassFilter;
-import com.intellij.execution.junit.TestObject;
-import com.intellij.execution.junit.TestPackage;
-import com.intellij.execution.process.ProcessAdapter;
-import com.intellij.execution.process.ProcessEvent;
-import com.intellij.execution.process.ProcessHandler;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.runners.RunConfigurationWithSuppressedDefaultRunAction;
 import com.intellij.execution.ui.RunContentDescriptor;
 import com.intellij.openapi.application.PathManager;
 import com.intellij.openapi.diagnostic.Logger;
-import com.intellij.openapi.module.Module;
-import com.intellij.openapi.util.io.FileUtilRt;
-import com.intellij.psi.PsiClass;
-import com.intellij.psi.PsiElement;
-import gabor.paralleltester.Resources;
 import gabor.paralleltester.executor.CustomRunnerExecutor;
 import org.jetbrains.annotations.NotNull;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 
 public class CustomRunner extends DefaultJavaProgramRunner {
@@ -94,11 +63,15 @@ public class CustomRunner extends DefaultJavaProgramRunner {
         javaParameters.getClassPath().addFirst(PathManager.getPluginsPath());
         javaParameters.getClassPath().addFirst(PathManager.getJarPathForClass(ParallelSuite.class));
 
-        CustomDelegatorFactory.setOriginalParams(javaParameters);
-        delegatorRunner = CustomDelegatorFactory.getRunner();
+        delegatorRunner = CustomRunnerDelegatorFactory.getRunner();
         delegatorRunner.doPreExecute(state, env);
         RunContentDescriptor runContentDescriptor = super.doExecute(state, env);
-        delegatorRunner.doPostExecute(state, env, runContentDescriptor);
+        delegatorRunner.doPostExecute(state, env, runContentDescriptor, new Runnable() {
+            @Override
+            public void run() {
+                CustomRunnerDelegatorFactory.runNextRunner(state, env);
+            }
+        });
 
         return runContentDescriptor;
     }

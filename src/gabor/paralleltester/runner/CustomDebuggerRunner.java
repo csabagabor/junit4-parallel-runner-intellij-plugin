@@ -1,19 +1,20 @@
 package gabor.paralleltester.runner;
 
+import com.googlecode.junittoolbox.ParallelSuite;
 import com.intellij.debugger.impl.GenericDebuggerRunner;
 import com.intellij.execution.ExecutionException;
-import com.intellij.execution.configurations.RunConfigurationWithSuppressedDefaultDebugAction;
-import com.intellij.execution.configurations.RunProfile;
-import com.intellij.execution.configurations.RunProfileState;
+import com.intellij.execution.configurations.*;
 import com.intellij.execution.junit.JUnitConfiguration;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.ui.RunContentDescriptor;
+import com.intellij.openapi.application.PathManager;
 import com.intellij.openapi.diagnostic.Logger;
 import gabor.paralleltester.executor.CustomDebuggerExecutor;
 import org.jetbrains.annotations.NotNull;
 
 public class CustomDebuggerRunner extends GenericDebuggerRunner {
     private static final Logger log = Logger.getInstance(CustomDebuggerRunner.class.getName());
+    private CustomDelegatorRunner delegatorRunner;
 
     @NotNull
     public String getRunnerId() {
@@ -22,10 +23,19 @@ public class CustomDebuggerRunner extends GenericDebuggerRunner {
 
     @Override
     protected RunContentDescriptor doExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws ExecutionException {
+        JavaParameters javaParameters = ((JavaCommandLine) state).getJavaParameters();
+        javaParameters.getClassPath().addFirst(PathManager.getPluginsPath());
+        javaParameters.getClassPath().addFirst(PathManager.getJarPathForClass(ParallelSuite.class));
 
-        //doPreExecute(state, env);
+        delegatorRunner = CustomDebuggerDelegatorFactory.getRunner();
+        delegatorRunner.doPreExecute(state, env);
         RunContentDescriptor runContentDescriptor = super.doExecute(state, env);
-        //doPostExecute(state, env, runContentDescriptor);
+        delegatorRunner.doPostExecute(state, env, runContentDescriptor, new Runnable() {
+            @Override
+            public void run() {
+                CustomDebuggerDelegatorFactory.runNextRunner(state, env);
+            }
+        });
 
         return runContentDescriptor;
     }

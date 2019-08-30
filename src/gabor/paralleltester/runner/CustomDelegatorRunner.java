@@ -15,7 +15,7 @@ public interface CustomDelegatorRunner {
     }
 
     default void doPostExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env,
-                               RunContentDescriptor runContentDescriptor) {
+                               RunContentDescriptor runContentDescriptor, Runnable runInCaseOfError) {
         final ProcessHandler processHandler = runContentDescriptor.getProcessHandler();
 
         if (processHandler != null) {
@@ -26,11 +26,10 @@ public interface CustomDelegatorRunner {
                     }
 
                     if (event.getExitCode() < 0) {
-                        CustomDelegatorFactory.setNextRunner(state, env);
+                        runInCaseOfError.run();
                     }
                 }
             });
         }
     }
-
 }
