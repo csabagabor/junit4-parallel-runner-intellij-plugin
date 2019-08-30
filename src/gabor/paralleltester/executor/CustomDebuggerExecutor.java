@@ -2,6 +2,7 @@ package gabor.paralleltester.executor;
 
 import com.intellij.execution.executors.DefaultDebugExecutor;
 import gabor.paralleltester.Resources;
+import gabor.paralleltester.ResourcesPlugin;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 
@@ -19,12 +20,12 @@ public class CustomDebuggerExecutor extends DefaultDebugExecutor {
     }
 
     public Icon getToolWindowIcon() {
-        return Resources.DEBUG_13;
+        return ResourcesPlugin.DEBUG_13;
     }
 
     @NotNull
     public Icon getIcon() {
-        return Resources.DEBUG;
+        return ResourcesPlugin.DEBUG;
     }
 
     public Icon getDisabledIcon() {

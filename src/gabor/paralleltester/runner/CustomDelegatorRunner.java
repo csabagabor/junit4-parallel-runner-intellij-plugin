@@ -7,6 +7,7 @@ import com.intellij.execution.process.ProcessEvent;
 import com.intellij.execution.process.ProcessHandler;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.ui.RunContentDescriptor;
+import gabor.paralleltester.helper.UIHelper;
 import org.jetbrains.annotations.NotNull;
 
 public interface CustomDelegatorRunner {
@@ -22,6 +23,11 @@ public interface CustomDelegatorRunner {
             processHandler.addProcessListener(new ProcessAdapter() {
                 public void processTerminated(@NotNull ProcessEvent event) {
                     if (event == null) {
+                        return;
+                    }
+
+                    if (event.getExitCode() == -8) {
+                        UIHelper.showErrorMessage("Plugin only works with JUnit4", env.getProject());
                         return;
                     }
 

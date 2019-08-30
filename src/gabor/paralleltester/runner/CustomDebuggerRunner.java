@@ -3,13 +3,18 @@ package gabor.paralleltester.runner;
 import com.googlecode.junittoolbox.ParallelSuite;
 import com.intellij.debugger.impl.GenericDebuggerRunner;
 import com.intellij.execution.ExecutionException;
-import com.intellij.execution.configurations.*;
+import com.intellij.execution.configurations.JavaCommandLine;
+import com.intellij.execution.configurations.JavaParameters;
+import com.intellij.execution.configurations.RunConfigurationWithSuppressedDefaultDebugAction;
+import com.intellij.execution.configurations.RunProfile;
+import com.intellij.execution.configurations.RunProfileState;
 import com.intellij.execution.junit.JUnitConfiguration;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.ui.RunContentDescriptor;
 import com.intellij.openapi.application.PathManager;
 import com.intellij.openapi.diagnostic.Logger;
 import gabor.paralleltester.executor.CustomDebuggerExecutor;
+import gabor.paralleltester.helper.UIHelper;
 import gabor.paralleltester.runner.factory.CustomDelegatorFactory;
 import org.jetbrains.annotations.NotNull;
 
@@ -25,6 +30,13 @@ public class CustomDebuggerRunner extends GenericDebuggerRunner {
     @Override
     protected RunContentDescriptor doExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws ExecutionException {
         JavaParameters javaParameters = ((JavaCommandLine) state).getJavaParameters();
+
+        if (javaParameters.getProgramParametersList().hasParameter("-junit5") ||
+                javaParameters.getProgramParametersList().hasParameter("-junit3")) {
+            UIHelper.showErrorMessage("Plugin only works with JUnit4", env.getProject());
+            return null;
+        }
+
         javaParameters.getClassPath().addFirst(PathManager.getPluginsPath());
         javaParameters.getClassPath().addFirst(PathManager.getJarPathForClass(ParallelSuite.class));
 

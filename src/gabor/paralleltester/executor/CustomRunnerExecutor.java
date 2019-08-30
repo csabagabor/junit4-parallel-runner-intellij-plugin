@@ -2,6 +2,7 @@ package gabor.paralleltester.executor;
 
 import com.intellij.execution.Executor;
 import gabor.paralleltester.Resources;
+import gabor.paralleltester.ResourcesPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
@@ -18,12 +19,12 @@ public class CustomRunnerExecutor extends Executor {
     }
 
     public Icon getToolWindowIcon() {
-        return Resources.RUN_13;
+        return ResourcesPlugin.RUN_13;
     }
 
     @NotNull
     public Icon getIcon() {
-        return Resources.RUN;
+        return ResourcesPlugin.RUN;
     }
 
     public Icon getDisabledIcon() {

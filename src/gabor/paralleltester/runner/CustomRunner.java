@@ -45,6 +45,7 @@ import com.intellij.execution.ui.RunContentDescriptor;
 import com.intellij.openapi.application.PathManager;
 import com.intellij.openapi.diagnostic.Logger;
 import gabor.paralleltester.executor.CustomRunnerExecutor;
+import gabor.paralleltester.helper.UIHelper;
 import gabor.paralleltester.runner.factory.CustomDelegatorFactory;
 import org.jetbrains.annotations.NotNull;
 
@@ -61,6 +62,13 @@ public class CustomRunner extends DefaultJavaProgramRunner {
     @Override
     protected RunContentDescriptor doExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws ExecutionException {
         JavaParameters javaParameters = ((JavaCommandLine) state).getJavaParameters();
+
+        if (javaParameters.getProgramParametersList().hasParameter("-junit5") ||
+                javaParameters.getProgramParametersList().hasParameter("-junit3")) {
+            UIHelper.showErrorMessage("Plugin only works with JUnit4", env.getProject());
+            return null;
+        }
+
         javaParameters.getClassPath().addFirst(PathManager.getPluginsPath());
         javaParameters.getClassPath().addFirst(PathManager.getJarPathForClass(ParallelSuite.class));
 
