@@ -26,7 +26,7 @@ public interface CustomDelegatorRunner {
                     }
 
                     if (event.getExitCode() < 0) {
-                        CustomDelegatorFactory.setNextRunner();
+                        CustomDelegatorFactory.setNextRunner(state, env);
                     }
                 }
             });

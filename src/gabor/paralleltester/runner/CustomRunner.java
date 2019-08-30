@@ -94,6 +94,7 @@ public class CustomRunner extends DefaultJavaProgramRunner {
         javaParameters.getClassPath().addFirst(PathManager.getPluginsPath());
         javaParameters.getClassPath().addFirst(PathManager.getJarPathForClass(ParallelSuite.class));
 
+        CustomDelegatorFactory.setOriginalParams(javaParameters);
         delegatorRunner = CustomDelegatorFactory.getRunner();
         delegatorRunner.doPreExecute(state, env);
         RunContentDescriptor runContentDescriptor = super.doExecute(state, env);
