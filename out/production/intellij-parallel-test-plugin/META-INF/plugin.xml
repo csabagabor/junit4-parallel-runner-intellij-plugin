@@ -1,6 +1,6 @@
 <idea-plugin>
     <id>com.gabor.parallel.tester.0.0</id>
-    <name>JUnit4 Parallel Tester</name>
+    <name>JUnit4 Parallel Runner</name>
     <version>1.0</version>
     <vendor email="csabagabor97@gmail.com" >Csaba Gabor</vendor>
 
