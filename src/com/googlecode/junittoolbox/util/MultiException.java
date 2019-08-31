@@ -14,8 +14,6 @@
 
 package com.googlecode.junittoolbox.util;
 
-import javax.annotation.Nullable;
-import javax.annotation.concurrent.ThreadSafe;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -24,7 +22,6 @@ import java.util.List;
 /**
  * Allows multiple exceptions to be thrown as a single exception -- adapted from Jetty.
  */
-@ThreadSafe
 public class MultiException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
@@ -39,7 +36,7 @@ public class MultiException extends RuntimeException {
     /**
      * @param throwable will be ignored if <code>null</code>
      */
-    public void add(@Nullable Throwable throwable) {
+    public void add(Throwable throwable) {
         if (throwable != null) {
             synchronized (nested) {
                 if (throwable instanceof MultiException) {

@@ -36,7 +36,6 @@ public class CustomRunner3 implements CustomDelegatorRunner {
             ParametersList programParametersList = javaParameters.getProgramParametersList();
             List<String> list = new ArrayList<>(javaParameters.getProgramParametersList().getList());
 
-
             String tests = null;
             String testClass = null;
 
