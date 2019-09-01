@@ -4,7 +4,7 @@
     <version>1.0</version>
     <vendor
             email="csabagabor97@gmail.com"
-            url="https://github.com/csabagabor/JUnit4-Parallel-Runner-Intellij-plugin">
+            url="https://github.com/csabagabor/junit4-parallel-runner-intellij-plugin">
         Csaba Gabor
     </vendor>
 
@@ -32,11 +32,11 @@
       Also, if you have tests which are not independent of each other, some tests might fail.
       <br>
 
-      <a href="https://github.com/csabagabor/JUnit4-Parallel-Runner-Intellij-plugin">The Github project sources</a>
+      <a href="https://github.com/csabagabor/junit4-parallel-runner-intellij-plugin">The Github project sources</a>
     ]]></description>
 
     <change-notes><![CDATA[
-Head over to <a href="https://github.com/csabagabor/JUnit4-Parallel-Runner-Intellij-plugin" target="_blank">GitHub</a> to see the latest change notes and learn more about this plugin. <br>
+Head over to <a href="https://github.com/csabagabor/junit4-parallel-runner-intellij-plugin" target="_blank">GitHub</a> to see the latest change notes and learn more about this plugin. <br>
 Thanks for dropping by.
     ]]>
     </change-notes>
