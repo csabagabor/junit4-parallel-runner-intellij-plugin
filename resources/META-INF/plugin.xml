@@ -9,7 +9,6 @@
     </vendor>
 
     <description><![CDATA[
-      <img src="https://user-images.githubusercontent.com/37183688/64076106-fe17aa00-ccc8-11e9-9c31-d4900f8b4f5c.png"><br>
 
     <br>
       A plugin that allows you to run <b>JUnit4</b> tests in <b>parallel</b> (using <b>multiple CPU cores/threads</b>).
