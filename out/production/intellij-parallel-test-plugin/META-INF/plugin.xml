@@ -20,8 +20,8 @@
 
       <ul>
        <li>To speed up running every kind of JUnit4 test including unit tests, integration tests and more...</li>
-	   <li>When running multiple test classes, each thread gets a separate class(no parallelizing is done on method level) and <br>
-	   when running a single class, all the methods in it are run in parallel
+	   <li>When running multiple test classes, each class is run in a separate thread(no parallelizing is done on method level)<br>
+	    and when running a single test class, every method in it is run in parallel
 		 </li>
 	   <li>It is integrated nicely with the built-in Intellij IDEA runner: works exactly in the same way<br>
 			(You can select and run a subset of the tests - no need to run all the tests)</li>
