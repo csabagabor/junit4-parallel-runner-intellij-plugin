@@ -17,7 +17,6 @@ import java.util.Locale;
 
 
 public class ParallelSuite extends Suite {
-    private Class<?>[] classes;
 
     public ParallelSuite(Class<?> klass, RunnerBuilder builder) throws InitializationError {
         super(builder, klass, getClasses());

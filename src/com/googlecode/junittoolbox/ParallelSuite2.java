@@ -20,7 +20,6 @@ import java.util.Locale;
 
 
 public class ParallelSuite2 extends Suite {
-    private Class<?>[] classes;
 
     public ParallelSuite2(Class<?> klass, RunnerBuilder builder) throws InitializationError {
         super(builder, klass, getClasses());
