@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="intellij-parallel-test-plugin:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/intellij_parallel_test_plugin_jar</output-path>
-    <root id="archive" name="intellij-parallel-test-plugin.jar">
-      <element id="module-output" name="intellij-parallel-test-plugin" />
-    </root>
-  </artifact>
-</component>
