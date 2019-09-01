@@ -6,7 +6,7 @@ public abstract class Resources {
 
     public static final String RUNNABLE_CLASS2 = "com.googlecode.junittoolbox.ParallelClasses";
 
-    public static final String PARALLEL_STARTER = "EntryPointStarter";
+    public static final String PARALLEL_STARTER = "com.github.csabagabor.patches.EntryPointStarter";
 
     public static final String JUNIT_PARALLEL_RUNNER_NAME = "ParallelRunner";
 

@@ -2,7 +2,7 @@ package com.github.csabagabor.runner;
 
 import com.github.csabagabor.exceptions.BadJUnitVersionException;
 import com.github.csabagabor.helper.UIHelper;
-import com.googlecode.junittoolbox.ParallelSuite;
+import com.github.csabagabor.patches.EntryPointStarter;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.configurations.JavaCommandLine;
 import com.intellij.execution.configurations.JavaParameters;
@@ -27,7 +27,7 @@ public abstract class CustomDelegatorRunner {
         }
 
         javaParameters.getClassPath().addFirst(PathManager.getPluginsPath());
-        javaParameters.getClassPath().addFirst(PathManager.getJarPathForClass(ParallelSuite.class));
+        javaParameters.getClassPath().addFirst(PathManager.getJarPathForClass(EntryPointStarter.class));
     }
 
     protected void doPostExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env,

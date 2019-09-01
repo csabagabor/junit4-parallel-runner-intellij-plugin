@@ -89,7 +89,13 @@ public abstract class CustomDelegatorFactory {
         if (runners.containsKey(RUNNER_ID + 1)) {
             RUNNER_ID++;
 
-            PropertiesComponent.getInstance().setValue(Resources.SAVE_SETTINGS_RUNNER_ID, RUNNER_ID.toString());
+            //save the id of the current runner only if it is not the default runner(last one)
+            //in case it is the default runner, on the next startup the first runner will be tried again
+            if(RUNNER_ID < runners.size()) {
+                PropertiesComponent.getInstance().setValue(Resources.SAVE_SETTINGS_RUNNER_ID, RUNNER_ID.toString());
+            }else{
+                PropertiesComponent.getInstance().setValue(Resources.SAVE_SETTINGS_RUNNER_ID, "1");
+            }
 
             Executor executor = null;
             if (runner) {
