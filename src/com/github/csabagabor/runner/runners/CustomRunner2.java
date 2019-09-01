@@ -93,6 +93,10 @@ public class CustomRunner2 extends CustomDelegatorRunner {
                                             classNames.add(((PsiClass) psiElement).getQualifiedName());
                                         }
                                     }
+                                } else if (myClassNames.iterator().next() instanceof PsiClass) {
+                                    for (PsiClass psiElement : (Set<PsiClass>) myClassNames) {
+                                        classNames.add(psiElement.getQualifiedName());
+                                    }
                                 } else {
                                     for (String myClassName : (Set<String>) myClassNames) {
                                         classNames.add(myClassName);

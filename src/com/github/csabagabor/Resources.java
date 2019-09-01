@@ -8,7 +8,7 @@ public abstract class Resources {
 
     public static final String PARALLEL_STARTER = "com.github.csabagabor.patches.EntryPointStarter";
 
-    public static final String JUNIT_PARALLEL_RUNNER_NAME = "ParallelRunner";
+    public static final String JUNIT_PARALLEL_RUNNER_NAME = "com.github.csabagabor.patches.ParallelRunner";
 
     public static final String JUNIT_RUNNER2_TMP_FILE = "jun_par_tes.tmp";
 
