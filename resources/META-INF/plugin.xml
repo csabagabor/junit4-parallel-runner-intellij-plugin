@@ -1,0 +1,83 @@
+<idea-plugin>
+    <id>JUnit4-Parallel-Runner</id>
+    <name>JUnit4 Parallel Runner</name>
+    <version>1.0</version>
+    <vendor
+            email="csabagabor97@gmail.com"
+            url="https://github.com/csabagabor/junit4-parallel-runner-intellij-plugin">
+        Csaba Gabor
+    </vendor>
+
+    <category>Unit testing</category>
+
+    <description><![CDATA[
+
+    <br>
+      A plugin that allows you to run <b>JUnit4</b> tests in <b>parallel</b> (using <b>multiple CPU cores/threads</b>).
+	  <br>
+      <br>
+      Why and when to use it:
+      <br>
+
+      <ul>
+       <li>To speed up running every kind of JUnit4 test including unit tests, integration tests and more...</li>
+	   <li>When running multiple test classes, each class is run in a separate thread(no parallelizing is done on method level)<br>
+	    and when running a single test class, every method in it is run in parallel
+		 </li>
+	   <li>It is integrated nicely with the built-in Intellij IDEA runner: works exactly in the same way<br>
+			(You can select and run a subset of the tests - no need to run all the tests)</li>
+       <li><b>If you have a CPU with at least 4 cores</b>, it will greatly reduce the running time of your tests</li>
+       <li>Works with every kind of framework including Mockito, Spring etc.</li>
+
+      </ul>
+
+      <br>
+      <b>Note:</b> The more tests you have, the better the speedup will be.<br>
+      Let's say you have 1000 tests which need 40 seconds to run and you have a 6 core CPU, <br>
+      using this plugin you can reduce the running time of tests by approx. 4x (down to 10 seconds).<br>
+      Also, no parallelizing is done when running a single method from a single class(the single <br>
+       method is executed on a single thread)
+      <br>
+		<br>
+      <b>Warning:</b> Some code is not meant to be run in parallel (sometimes this is the case with integration tests).<br>
+      Also, if you have tests which are not independent of each other, they might fail.
+      <br>
+		<br>
+
+     <a href="https://github.com/csabagabor/junit4-parallel-runner-intellij-plugin">The Github project sources</a>
+    <br>
+	  <br>
+	  Credits:<br><br>
+    Icons for this plugin were made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a>
+	  <br>
+	  Also, the plugin includes code from: <a href="https://github.com/MichaelTamm/junit-toolbox" title="JUnit Toolbox">JUnit Toolbox</a>
+
+
+    ]]></description>
+
+    <change-notes><![CDATA[
+
+        <p>1.0 (1-sep-2019)</p>
+        <ul>
+            <li>Initial version (using work-stealing threads) </li>
+        </ul>
+    ]]>
+    </change-notes>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="182"/>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+
+    <depends>JUnit</depends>
+    <depends>com.intellij.modules.java</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <executor implementation="com.github.csabagabor.executor.CustomRunnerExecutor"/>
+        <programRunner implementation="com.github.csabagabor.runner.CustomRunner" order="first"/>
+        <executor implementation="com.github.csabagabor.executor.CustomDebuggerExecutor"/>
+        <programRunner implementation="com.github.csabagabor.runner.CustomDebuggerRunner" order="last"/>
+    </extensions>
+
+</idea-plugin>
