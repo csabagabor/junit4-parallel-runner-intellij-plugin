@@ -25,7 +25,7 @@
 		 </li>
 	   <li>It is integrated nicely with the built-in Intellij IDEA runner: works exactly in the same way<br>
 			(You can select and run a subset of the tests - no need to run all the tests)</li>
-       <li><b>If you have a CPU with more than 4 cores</b>, it will greatly reduce the duration of running your tests</li>
+       <li><b>If you have a CPU with at least 4 cores</b>, it will greatly reduce the duration of running your tests</li>
        <li>Works with every kind of framework including Mockito, Spring etc.</li>
 
       </ul>
