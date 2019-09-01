@@ -58,6 +58,11 @@ public class CustomRunner3 extends CustomDelegatorRunner {
                 testClass = tests;
             }
 
+            //single method is run - no need to parallelize
+            if (tests.contains(",")) {
+                return;
+            }
+
             File dir = new File(FileUtilRt.getTempDirectory());
             File file = new File(dir, "jun_par_run.tmp");
 
