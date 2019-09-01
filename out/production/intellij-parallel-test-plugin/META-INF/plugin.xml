@@ -25,7 +25,7 @@
 		 </li>
 	   <li>It is integrated nicely with the built-in Intellij IDEA runner: works exactly in the same way<br>
 			(You can select and run a subset of the tests - no need to run all the tests)</li>
-       <li><b>If you have a CPU with at least 4 cores</b>, it will greatly reduce the duration of running your tests</li>
+       <li><b>If you have a CPU with at least 4 cores</b>, it will greatly reduce the running time of your tests</li>
        <li>Works with every kind of framework including Mockito, Spring etc.</li>
 
       </ul>
@@ -33,7 +33,7 @@
       <br>
       <b>Note:</b> The more tests you have, the better the speedup will be.<br>
       Let's say you have 1000 tests which need 40 seconds to run and you have a 6 core CPU, <br>
-      using this plugin you can reduce the duration of tests by approx. 4x (down to 10 seconds).<br>
+      using this plugin you can reduce the running time of tests by approx. 4x (down to 10 seconds).<br>
       Also, no parallelizing is done when running a single method from a single class(the single <br>
        method is executed on a single thread)
       <br>
