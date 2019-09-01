@@ -1,6 +1,7 @@
 package com.github.csabagabor.runner.runners;
 
 import com.github.csabagabor.Resources;
+import com.github.csabagabor.runner.CustomDelegatorRunner;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.Location;
 import com.intellij.execution.configurations.JavaCommandLine;
@@ -16,13 +17,21 @@ import com.intellij.openapi.module.Module;
 import com.intellij.openapi.util.io.FileUtilRt;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElement;
-import com.github.csabagabor.runner.CustomDelegatorRunner;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class CustomRunner2 extends CustomDelegatorRunner {
 

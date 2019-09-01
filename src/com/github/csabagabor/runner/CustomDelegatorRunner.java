@@ -31,7 +31,7 @@ public abstract class CustomDelegatorRunner {
     }
 
     protected void doPostExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env,
-                               RunContentDescriptor runContentDescriptor, Runnable runInCaseOfError) {
+                                 RunContentDescriptor runContentDescriptor, Runnable runInCaseOfError) {
         final ProcessHandler processHandler = runContentDescriptor.getProcessHandler();
 
         if (processHandler != null) {

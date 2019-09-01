@@ -2,8 +2,6 @@ package com.github.csabagabor.executor;
 
 import com.github.csabagabor.ResourcesPlugin;
 import com.intellij.execution.Executor;
-import com.intellij.openapi.util.text.StringUtil;
-import com.intellij.openapi.util.text.TextWithMnemonic;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;

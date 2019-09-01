@@ -1,7 +1,7 @@
 package com.googlecode.junittoolbox;
 
-import com.intellij.junit4.JUnit4TestRunnerUtil;
 import com.github.csabagabor.Resources;
+import com.intellij.junit4.JUnit4TestRunnerUtil;
 import org.junit.runner.Description;
 import org.junit.runner.Request;
 import org.junit.runner.Runner;

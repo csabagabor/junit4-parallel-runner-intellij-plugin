@@ -2,21 +2,15 @@ package com.github.csabagabor.runner;
 
 import com.github.csabagabor.exceptions.BadJUnitVersionException;
 import com.github.csabagabor.executor.CustomDebuggerExecutor;
-import com.github.csabagabor.helper.UIHelper;
 import com.github.csabagabor.runner.factory.CustomDelegatorFactory;
-import com.googlecode.junittoolbox.ParallelSuite;
 import com.intellij.debugger.impl.GenericDebuggerRunner;
 import com.intellij.execution.ExecutionException;
-import com.intellij.execution.configurations.JavaCommandLine;
-import com.intellij.execution.configurations.JavaParameters;
 import com.intellij.execution.configurations.RunConfigurationWithSuppressedDefaultDebugAction;
 import com.intellij.execution.configurations.RunProfile;
 import com.intellij.execution.configurations.RunProfileState;
 import com.intellij.execution.junit.JUnitConfiguration;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.ui.RunContentDescriptor;
-import com.intellij.openapi.application.PathManager;
-import com.intellij.openapi.diagnostic.Logger;
 import org.jetbrains.annotations.NotNull;
 
 public class CustomDebuggerRunner extends GenericDebuggerRunner {

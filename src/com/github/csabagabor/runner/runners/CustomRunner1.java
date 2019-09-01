@@ -1,12 +1,12 @@
 package com.github.csabagabor.runner.runners;
 
 import com.github.csabagabor.Resources;
+import com.github.csabagabor.runner.CustomDelegatorRunner;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.configurations.JavaCommandLine;
 import com.intellij.execution.configurations.JavaParameters;
 import com.intellij.execution.configurations.RunProfileState;
 import com.intellij.execution.runners.ExecutionEnvironment;
-import com.github.csabagabor.runner.CustomDelegatorRunner;
 import org.jetbrains.annotations.NotNull;
 
 public class CustomRunner1 extends CustomDelegatorRunner {

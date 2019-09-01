@@ -1,6 +1,7 @@
 package com.github.csabagabor.runner.runners;
 
 import com.github.csabagabor.Resources;
+import com.github.csabagabor.runner.CustomDelegatorRunner;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.JavaTestFrameworkRunnableState;
 import com.intellij.execution.configurations.JavaCommandLine;
@@ -10,12 +11,18 @@ import com.intellij.execution.configurations.RunProfileState;
 import com.intellij.execution.junit.TestPackage;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.openapi.util.io.FileUtilRt;
-import com.github.csabagabor.runner.CustomDelegatorRunner;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class CustomRunner3 extends CustomDelegatorRunner {
 

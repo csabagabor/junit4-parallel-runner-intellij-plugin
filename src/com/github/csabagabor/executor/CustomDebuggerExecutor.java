@@ -1,7 +1,7 @@
 package com.github.csabagabor.executor;
 
-import com.intellij.execution.executors.DefaultDebugExecutor;
 import com.github.csabagabor.ResourcesPlugin;
+import com.intellij.execution.executors.DefaultDebugExecutor;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 

@@ -2,6 +2,10 @@ package com.github.csabagabor.patches.plugin;
 
 import com.intellij.rt.execution.junit.IdeaTestRunner;
 import com.intellij.rt.execution.junit.IdeaTestRunner.Repeater;
+import com.intellij.rt.execution.junit.JUnitForkedSplitter;
+import com.intellij.rt.execution.junit.RepeatCount;
+import junit.textui.ResultPrinter;
+import junit.textui.TestRunner;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -17,11 +21,6 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
-
-import com.intellij.rt.execution.junit.JUnitForkedSplitter;
-import com.intellij.rt.execution.junit.RepeatCount;
-import junit.textui.ResultPrinter;
-import junit.textui.TestRunner;
 
 /**
  * This class was copied from the open-source version of the JUnit plugin
