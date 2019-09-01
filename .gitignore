@@ -1,3 +1,6 @@
 out/
+*.jar
+.idea
+*.class
 
 
