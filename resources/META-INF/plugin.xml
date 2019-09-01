@@ -35,7 +35,7 @@
       Let's say you have 1000 tests which need 40 seconds to run and you have a 6 core CPU, <br>
       using this plugin you can reduce the duration of tests by approx. 4x (down to 10 seconds).<br>
       Also, no parallelizing is done when running a single method from a single class(the single <br>
-       method is executed on the main thread)
+       method is executed on a single thread)
       <br>
 		<br>
       <b>Warning:</b> Some code is not meant to be run in parallel (sometimes this is the case with integration tests).<br>
