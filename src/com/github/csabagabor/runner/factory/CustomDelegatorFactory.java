@@ -70,21 +70,6 @@ public abstract class CustomDelegatorFactory {
     }
 
     public static void runNextRunner(RunProfileState state, ExecutionEnvironment env, boolean runner) {
-        File dir = new File(FileUtilRt.getTempDirectory());
-        File file = new File(dir, "factory.tmp");
-
-        PrintWriter writer = null;
-        try {
-            writer = new PrintWriter(new OutputStreamWriter(new FileOutputStream(file),
-                    "UTF-8"));
-            writer.println(RUNNER_ID.toString());
-        } catch (UnsupportedEncodingException | FileNotFoundException e) {
-            throw new RuntimeException("Cannot write to file");
-        } finally {
-            if (writer != null) {
-                writer.close();
-            }
-        }
 
         if (runners.containsKey(RUNNER_ID + 1)) {
             RUNNER_ID++;
