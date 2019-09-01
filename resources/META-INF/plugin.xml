@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>JUnit4-Parallel-Runner</id>
     <name>JUnit4 Parallel Runner</name>
-    <version>1.2</version>
+    <version>1.0</version>
     <vendor
             email="csabagabor97@gmail.com"
             url="https://github.com/csabagabor/junit4-parallel-runner-intellij-plugin">
@@ -56,14 +56,7 @@
     ]]></description>
 
     <change-notes><![CDATA[
-        <p>1.2 (1-sep-2019)</p>
-        <ul>
-            <li>Update category </li>
-        </ul>
-        <p>1.1 (1-sep-2019)</p>
-        <ul>
-            <li>Removed screenshot from plugin page </li>
-        </ul>
+
         <p>1.0 (1-sep-2019)</p>
         <ul>
             <li>Initial version (using work-stealing threads) </li>
