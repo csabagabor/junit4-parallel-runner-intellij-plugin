@@ -38,8 +38,7 @@ public class ParallelStarter extends JUnitStarter {
             getAgentClass(Resources.JUNIT_PARALLEL_RUNNER_NAME);
             agentName = Resources.JUNIT_PARALLEL_RUNNER_NAME;
         } catch (ClassNotFoundException e) {
-            //if class is not accessible, then revert back to JUnit4 runner
-            System.out.println("my runner not accessible");
+            System.exit(-4);
         }
 
         if (!checkVersion(args, System.err)) {
