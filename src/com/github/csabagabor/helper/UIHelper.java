@@ -1,4 +1,4 @@
-package gabor.paralleltester.helper;
+package com.github.csabagabor.helper;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.MessageType;

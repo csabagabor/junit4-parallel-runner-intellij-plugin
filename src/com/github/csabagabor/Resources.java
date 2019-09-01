@@ -1,4 +1,4 @@
-package gabor.paralleltester;
+package com.github.csabagabor;
 
 public abstract class Resources {
 
@@ -6,9 +6,9 @@ public abstract class Resources {
 
     public static final String RUNNABLE_CLASS2 = "com.googlecode.junittoolbox.ParallelClasses";
 
-    public static final String PARALLEL_STARTER = "gabor.paralleltester.patches.EntryPointStarter";
+    public static final String PARALLEL_STARTER = "EntryPointStarter";
 
-    public static final String JUNIT_PARALLEL_RUNNER_NAME = "gabor.paralleltester.patches.ParallelRunner";
+    public static final String JUNIT_PARALLEL_RUNNER_NAME = "ParallelRunner";
 
     public static final String JUNIT_RUNNER2_TMP_FILE = "jun_par_tes.tmp";
 

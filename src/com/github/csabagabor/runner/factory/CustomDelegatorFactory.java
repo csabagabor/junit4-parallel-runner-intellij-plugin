@@ -1,18 +1,18 @@
-package gabor.paralleltester.runner.factory;
+package com.github.csabagabor.runner.factory;
 
+import com.github.csabagabor.Resources;
+import com.github.csabagabor.executor.CustomDebuggerExecutor;
+import com.github.csabagabor.executor.CustomRunnerExecutor;
+import com.github.csabagabor.runner.runners.CustomRunner2;
+import com.github.csabagabor.runner.runners.CustomRunner3;
 import com.intellij.execution.Executor;
 import com.intellij.execution.ProgramRunnerUtil;
 import com.intellij.execution.configurations.RunProfileState;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.util.io.FileUtilRt;
-import gabor.paralleltester.Resources;
-import gabor.paralleltester.executor.CustomDebuggerExecutor;
-import gabor.paralleltester.executor.CustomRunnerExecutor;
-import gabor.paralleltester.runner.CustomDelegatorRunner;
-import gabor.paralleltester.runner.runners.CustomRunner1;
-import gabor.paralleltester.runner.runners.CustomRunner2;
-import gabor.paralleltester.runner.runners.CustomRunner3;
+import com.github.csabagabor.runner.CustomDelegatorRunner;
+import com.github.csabagabor.runner.runners.CustomRunner1;
 
 import java.io.File;
 import java.io.FileNotFoundException;

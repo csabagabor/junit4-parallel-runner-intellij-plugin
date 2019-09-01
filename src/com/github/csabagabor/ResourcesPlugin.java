@@ -1,4 +1,4 @@
-package gabor.paralleltester;
+package com.github.csabagabor;
 
 import com.intellij.openapi.util.IconLoader;
 

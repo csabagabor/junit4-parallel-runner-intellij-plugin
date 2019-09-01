@@ -1,5 +1,6 @@
-package gabor.paralleltester.runner;
+package com.github.csabagabor.runner;
 
+import com.github.csabagabor.helper.UIHelper;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.configurations.RunProfileState;
 import com.intellij.execution.process.ProcessAdapter;
@@ -7,7 +8,6 @@ import com.intellij.execution.process.ProcessEvent;
 import com.intellij.execution.process.ProcessHandler;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.ui.RunContentDescriptor;
-import gabor.paralleltester.helper.UIHelper;
 import org.jetbrains.annotations.NotNull;
 
 public interface CustomDelegatorRunner {

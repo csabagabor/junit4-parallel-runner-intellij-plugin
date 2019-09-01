@@ -1,14 +1,11 @@
 package com.googlecode.junittoolbox;
 
-import com.intellij.openapi.util.SystemInfoRt;
-import com.intellij.openapi.util.io.FileUtilRt;
-import gabor.paralleltester.Resources;
+import com.github.csabagabor.Resources;
 import org.junit.runner.Runner;
 import org.junit.runners.ParentRunner;
 import org.junit.runners.Suite;
 import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.RunnerBuilder;
-import org.junit.runners.model.RunnerScheduler;
 
 import java.io.*;
 import java.util.ArrayList;

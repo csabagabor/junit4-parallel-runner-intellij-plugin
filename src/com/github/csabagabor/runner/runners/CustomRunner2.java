@@ -1,5 +1,6 @@
-package gabor.paralleltester.runner.runners;
+package com.github.csabagabor.runner.runners;
 
+import com.github.csabagabor.Resources;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.Location;
 import com.intellij.execution.configurations.JavaCommandLine;
@@ -15,8 +16,7 @@ import com.intellij.openapi.module.Module;
 import com.intellij.openapi.util.io.FileUtilRt;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElement;
-import gabor.paralleltester.Resources;
-import gabor.paralleltester.runner.CustomDelegatorRunner;
+import com.github.csabagabor.runner.CustomDelegatorRunner;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;

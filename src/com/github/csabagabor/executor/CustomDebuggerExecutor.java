@@ -1,8 +1,7 @@
-package gabor.paralleltester.executor;
+package com.github.csabagabor.executor;
 
 import com.intellij.execution.executors.DefaultDebugExecutor;
-import gabor.paralleltester.Resources;
-import gabor.paralleltester.ResourcesPlugin;
+import com.github.csabagabor.ResourcesPlugin;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 

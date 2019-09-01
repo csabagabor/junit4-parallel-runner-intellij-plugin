@@ -1,6 +1,6 @@
-package gabor.paralleltester.patches;
+package com.github.csabagabor.patches;
 
-import gabor.paralleltester.Resources;
+import com.github.csabagabor.Resources;
 
 public class EntryPointStarter {
 

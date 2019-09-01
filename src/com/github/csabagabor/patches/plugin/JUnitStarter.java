@@ -1,4 +1,4 @@
-package gabor.paralleltester.patches.plugin;
+package com.github.csabagabor.patches.plugin;
 
 import com.intellij.rt.execution.junit.IdeaTestRunner;
 import com.intellij.rt.execution.junit.IdeaTestRunner.Repeater;

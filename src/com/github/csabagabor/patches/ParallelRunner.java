@@ -1,11 +1,11 @@
 
-package gabor.paralleltester.patches;
+package com.github.csabagabor.patches;
 
+import com.github.csabagabor.patches.plugin.JUnit4IdeaTestRunner;
 import com.googlecode.junittoolbox.ParallelScheduler;
 import com.intellij.junit4.JUnit4TestListener;
 import com.intellij.junit4.JUnit4TestRunnerUtil;
 import com.intellij.rt.execution.junit.IDEAJUnitListener;
-import gabor.paralleltester.patches.plugin.JUnit4IdeaTestRunner;
 import org.junit.runner.*;
 import org.junit.runners.ParentRunner;
 

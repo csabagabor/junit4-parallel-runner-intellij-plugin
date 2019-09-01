@@ -1,5 +1,8 @@
-package gabor.paralleltester.runner;
+package com.github.csabagabor.runner;
 
+import com.github.csabagabor.executor.CustomDebuggerExecutor;
+import com.github.csabagabor.helper.UIHelper;
+import com.github.csabagabor.runner.factory.CustomDelegatorFactory;
 import com.googlecode.junittoolbox.ParallelSuite;
 import com.intellij.debugger.impl.GenericDebuggerRunner;
 import com.intellij.execution.ExecutionException;
@@ -13,9 +16,6 @@ import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.ui.RunContentDescriptor;
 import com.intellij.openapi.application.PathManager;
 import com.intellij.openapi.diagnostic.Logger;
-import gabor.paralleltester.executor.CustomDebuggerExecutor;
-import gabor.paralleltester.helper.UIHelper;
-import gabor.paralleltester.runner.factory.CustomDelegatorFactory;
 import org.jetbrains.annotations.NotNull;
 
 public class CustomDebuggerRunner extends GenericDebuggerRunner {

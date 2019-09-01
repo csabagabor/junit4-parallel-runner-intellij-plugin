@@ -29,10 +29,10 @@
     <depends>com.intellij.modules.java</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <executor implementation="gabor.paralleltester.executor.CustomRunnerExecutor"/>
-        <programRunner implementation="gabor.paralleltester.runner.CustomRunner" order="first"/>
-        <executor implementation="gabor.paralleltester.executor.CustomDebuggerExecutor"/>
-        <programRunner implementation="gabor.paralleltester.runner.CustomDebuggerRunner" order="last"/>
+        <executor implementation="com.github.csabagabor.executor.CustomRunnerExecutor"/>
+        <programRunner implementation="com.github.csabagabor.runner.CustomRunner" order="first"/>
+        <executor implementation="com.github.csabagabor.executor.CustomDebuggerExecutor"/>
+        <programRunner implementation="com.github.csabagabor.runner.CustomDebuggerRunner" order="last"/>
     </extensions>
 
 </idea-plugin>

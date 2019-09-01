@@ -3,10 +3,10 @@
 // (powered by Fernflower decompiler)
 //
 
-package gabor.paralleltester.patches;
+package com.github.csabagabor.patches;
 
-import gabor.paralleltester.Resources;
-import gabor.paralleltester.patches.plugin.JUnitStarter;
+import com.github.csabagabor.Resources;
+import com.github.csabagabor.patches.plugin.JUnitStarter;
 
 import java.io.IOException;
 import java.util.ArrayList;
