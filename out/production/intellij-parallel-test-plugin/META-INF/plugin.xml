@@ -42,6 +42,13 @@
 		<br>
 
      <a href="https://github.com/csabagabor/junit4-parallel-runner-intellij-plugin">The Github project sources</a>
+    <br>
+	  <br>
+	  Credits:<br><br>
+    Icons for this plugin were made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a>
+	  <br>
+	  Also, the plugin includes code from: <a href="https://github.com/MichaelTamm/junit-toolbox" title="JUnit Toolbox">JUnit Toolbox</a>
+
 
     ]]></description>
 
