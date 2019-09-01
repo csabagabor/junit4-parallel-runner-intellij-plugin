@@ -31,13 +31,10 @@
 
 package com.github.csabagabor.runner;
 
+import com.github.csabagabor.exceptions.BadJUnitVersionException;
 import com.github.csabagabor.executor.CustomRunnerExecutor;
-import com.github.csabagabor.helper.UIHelper;
 import com.github.csabagabor.runner.factory.CustomDelegatorFactory;
-import com.googlecode.junittoolbox.ParallelSuite;
 import com.intellij.execution.ExecutionException;
-import com.intellij.execution.configurations.JavaCommandLine;
-import com.intellij.execution.configurations.JavaParameters;
 import com.intellij.execution.configurations.RunProfile;
 import com.intellij.execution.configurations.RunProfileState;
 import com.intellij.execution.impl.DefaultJavaProgramRunner;
@@ -45,13 +42,11 @@ import com.intellij.execution.junit.JUnitConfiguration;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.runners.RunConfigurationWithSuppressedDefaultRunAction;
 import com.intellij.execution.ui.RunContentDescriptor;
-import com.intellij.openapi.application.PathManager;
 import com.intellij.openapi.diagnostic.Logger;
 import org.jetbrains.annotations.NotNull;
 
 
 public class CustomRunner extends DefaultJavaProgramRunner {
-    private static final Logger log = Logger.getInstance(CustomRunner.class.getName());
     private CustomDelegatorRunner delegatorRunner;
 
     @NotNull
@@ -61,16 +56,6 @@ public class CustomRunner extends DefaultJavaProgramRunner {
 
     @Override
     protected RunContentDescriptor doExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws ExecutionException {
-        JavaParameters javaParameters = ((JavaCommandLine) state).getJavaParameters();
-
-        if (javaParameters.getProgramParametersList().hasParameter("-junit5") ||
-                javaParameters.getProgramParametersList().hasParameter("-junit3")) {
-            UIHelper.showErrorMessage("Plugin only works with JUnit4", env.getProject());
-            return null;
-        }
-
-        javaParameters.getClassPath().addFirst(PathManager.getPluginsPath());
-        javaParameters.getClassPath().addFirst(PathManager.getJarPathForClass(ParallelSuite.class));
 
         RunContentDescriptor runContentDescriptor = null;
 
@@ -85,6 +70,8 @@ public class CustomRunner extends DefaultJavaProgramRunner {
                 }
             });
 
+        } catch (BadJUnitVersionException e) {
+            return null;
         } catch (Exception other) {
             CustomDelegatorFactory.runNextRunner(state, env, true);
         }

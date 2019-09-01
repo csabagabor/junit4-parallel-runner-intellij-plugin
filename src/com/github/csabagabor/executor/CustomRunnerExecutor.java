@@ -1,16 +1,18 @@
 package com.github.csabagabor.executor;
 
-import com.intellij.execution.Executor;
 import com.github.csabagabor.ResourcesPlugin;
+import com.intellij.execution.Executor;
+import com.intellij.openapi.util.text.StringUtil;
+import com.intellij.openapi.util.text.TextWithMnemonic;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 
 public class CustomRunnerExecutor extends Executor {
 
-    public static final String WITH_PARALLEL_RUNNER = "Run With Parallel Runner";
+    public static final String WITH_PARALLEL_RUNNER = "Run with Parallel Runner";
 
-    public static final String RUN_WITH_PARALLEL_RUNNER = "RunWithParallelRunner";
+    public static final String RUN_WITH_PARALLEL_RUNNER = "RunwithParallelRunner";
 
     @NotNull
     public String getToolWindowId() {

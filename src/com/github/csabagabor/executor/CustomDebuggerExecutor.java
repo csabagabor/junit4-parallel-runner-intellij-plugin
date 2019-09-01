@@ -9,9 +9,9 @@ import javax.swing.*;
 
 public class CustomDebuggerExecutor extends DefaultDebugExecutor {
     @NonNls
-    public static final String WITH_PARALLEL_RUNNER = "Debug With Parallel Runner";
+    public static final String WITH_PARALLEL_RUNNER = "Debug with Parallel Runner";
 
-    public static final String DEBUG_WITH_PARALLEL_RUNNER = "DebugWithParallelRunner";
+    public static final String DEBUG_WITH_PARALLEL_RUNNER = "DebugwithParallelRunner";
 
     @NotNull
     public String getToolWindowId() {

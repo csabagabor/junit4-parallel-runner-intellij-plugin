@@ -9,35 +9,47 @@
     </vendor>
 
     <description><![CDATA[
-      <img src="https://user-images.githubusercontent.com/37183688/64075133-04a02480-ccbd-11e9-9608-a12caf085bae.png"><br>
-      A plugin that allows you to run JUnit4 tests in parallel(uses multiple cores/threads to run the selected tests).
+      <img src="https://user-images.githubusercontent.com/37183688/64076106-fe17aa00-ccc8-11e9-9c31-d4900f8b4f5c.png"><br>
+
+    <br>
+      A plugin that allows you to run <b>JUnit4</b> tests in <b>parallel</b> (using <b>multiple CPU cores/threads</b> to run the selected tests).
+	  <br>
       <br>
       Why and when to use it:
       <br>
 
       <ul>
        <li>To speed up running every kind of JUnit4 test including unit tests, integration tests and more...</li>
-       <li>If you have a CPU with more than 4 cores, it will greatly reduce the duration of running JUnit4 tests</li>
+	   <li>When running multiple test classes, each thread gets a separate class(no parallelizing is done on method level),<br>
+	   when running a single class all the methods in it are run in parallel and running a single method uses a single thread(main thread)
+		 <br></li>
+	   <li>It is integrated nicely with the built-in Intellij IDEA runner: works exactly in the same way<br>
+			(You can select and run a subset of the tests - no need to run all the tests)</li>
+       <li><b>If you have a CPU with more than 4 cores</b>, it will greatly reduce the duration of running your tests</li>
        <li>Works with every kind of framework including Mockito, Spring etc.</li>
 
       </ul>
 
       <br>
-      Note: The more tests you have, the better the speedup will be.<br>
+      <b>Note:</b> The more tests you have, the better the speedup will be.<br>
       Let's say you have 1000 tests which need 40 seconds to run and you have a 6 core CPU, <br>
-      using this plugin you can reduce the duration of tests by approx. 4x (to 10 seconds).
+      using this plugin you can reduce the duration of tests by approx. 4x (down to 10 seconds).
       <br>
-
-      Warning: Some code is not meant to be run in parallel(sometimes this is the case with integration tests).<br>
-      Also, if you have tests which are not independent of each other, some tests might fail.
+		<br>
+      <b>Warning:</b> Some code is not meant to be run in parallel(sometimes this is the case with integration tests).<br>
+      Also, if you have tests which are not independent of each other, they might fail.
       <br>
+		<br>
 
-      <a href="https://github.com/csabagabor/junit4-parallel-runner-intellij-plugin">The Github project sources</a>
+     <a href="https://github.com/csabagabor/junit4-parallel-runner-intellij-plugin">The Github project sources</a>
+
     ]]></description>
 
     <change-notes><![CDATA[
-Head over to <a href="https://github.com/csabagabor/junit4-parallel-runner-intellij-plugin" target="_blank">GitHub</a> to see the latest change notes and learn more about this plugin. <br>
-Thanks for dropping by.
+        <p>1.0.0 (15-nov-2015)</p>
+        <ul>
+            <li>Initial version (ported functionality of the NB 1.1.1 version, without refactoring support)</li>
+        </ul>
     ]]>
     </change-notes>
 

@@ -17,10 +17,12 @@ import java.io.*;
 import java.lang.reflect.Field;
 import java.util.*;
 
-public class CustomRunner3 implements CustomDelegatorRunner {
+public class CustomRunner3 extends CustomDelegatorRunner {
 
     @Override
     public void doPreExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws ExecutionException {
+        super.doPreExecute(state, env);
+
         if (state instanceof JavaCommandLine) {
             JavaParameters javaParameters = ((JavaCommandLine) state).getJavaParameters();
 

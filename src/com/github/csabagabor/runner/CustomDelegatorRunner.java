@@ -1,21 +1,36 @@
 package com.github.csabagabor.runner;
 
+import com.github.csabagabor.exceptions.BadJUnitVersionException;
 import com.github.csabagabor.helper.UIHelper;
+import com.googlecode.junittoolbox.ParallelSuite;
 import com.intellij.execution.ExecutionException;
+import com.intellij.execution.configurations.JavaCommandLine;
+import com.intellij.execution.configurations.JavaParameters;
 import com.intellij.execution.configurations.RunProfileState;
 import com.intellij.execution.process.ProcessAdapter;
 import com.intellij.execution.process.ProcessEvent;
 import com.intellij.execution.process.ProcessHandler;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.ui.RunContentDescriptor;
+import com.intellij.openapi.application.PathManager;
 import org.jetbrains.annotations.NotNull;
 
-public interface CustomDelegatorRunner {
+public abstract class CustomDelegatorRunner {
 
-    default void doPreExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws ExecutionException {
+    protected void doPreExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws ExecutionException {
+        JavaParameters javaParameters = ((JavaCommandLine) state).getJavaParameters();
+
+        if (javaParameters.getProgramParametersList().hasParameter("-junit5") ||
+                javaParameters.getProgramParametersList().hasParameter("-junit3")) {
+            UIHelper.showErrorMessage("Plugin only works with JUnit4", env.getProject());
+            throw new BadJUnitVersionException("Bad JUnit version");
+        }
+
+        javaParameters.getClassPath().addFirst(PathManager.getPluginsPath());
+        javaParameters.getClassPath().addFirst(PathManager.getJarPathForClass(ParallelSuite.class));
     }
 
-    default void doPostExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env,
+    protected void doPostExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env,
                                RunContentDescriptor runContentDescriptor, Runnable runInCaseOfError) {
         final ProcessHandler processHandler = runContentDescriptor.getProcessHandler();
 

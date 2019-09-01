@@ -24,10 +24,12 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
-public class CustomRunner2 implements CustomDelegatorRunner {
+public class CustomRunner2 extends CustomDelegatorRunner {
 
     @Override
     public void doPreExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws ExecutionException {
+        super.doPreExecute(state, env);
+
         if (state instanceof JavaCommandLine) {
             JavaParameters javaParameters = ((JavaCommandLine) state).getJavaParameters();
 

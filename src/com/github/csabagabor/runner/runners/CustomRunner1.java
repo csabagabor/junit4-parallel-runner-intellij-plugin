@@ -9,10 +9,11 @@ import com.intellij.execution.runners.ExecutionEnvironment;
 import com.github.csabagabor.runner.CustomDelegatorRunner;
 import org.jetbrains.annotations.NotNull;
 
-public class CustomRunner1 implements CustomDelegatorRunner {
+public class CustomRunner1 extends CustomDelegatorRunner {
 
     @Override
     public void doPreExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws ExecutionException {
+        super.doPreExecute(state, env);
         JavaParameters javaParameters = ((JavaCommandLine) state).getJavaParameters();
         javaParameters.setMainClass(Resources.PARALLEL_STARTER);
     }
