@@ -12,7 +12,7 @@
       <img src="https://user-images.githubusercontent.com/37183688/64076106-fe17aa00-ccc8-11e9-9c31-d4900f8b4f5c.png"><br>
 
     <br>
-      A plugin that allows you to run <b>JUnit4</b> tests in <b>parallel</b> (using <b>multiple CPU cores/threads</b> to run the selected tests).
+      A plugin that allows you to run <b>JUnit4</b> tests in <b>parallel</b> (using <b>multiple CPU cores/threads</b>).
 	  <br>
       <br>
       Why and when to use it:
@@ -20,9 +20,9 @@
 
       <ul>
        <li>To speed up running every kind of JUnit4 test including unit tests, integration tests and more...</li>
-	   <li>When running multiple test classes, each thread gets a separate class(no parallelizing is done on method level),<br>
-	   when running a single class all the methods in it are run in parallel and running a single method uses a single thread(main thread)
-		 <br></li>
+	   <li>When running multiple test classes, each thread gets a separate class(no parallelizing is done on method level) and <br>
+	   when running a single class, all the methods in it are run in parallel
+		 </li>
 	   <li>It is integrated nicely with the built-in Intellij IDEA runner: works exactly in the same way<br>
 			(You can select and run a subset of the tests - no need to run all the tests)</li>
        <li><b>If you have a CPU with more than 4 cores</b>, it will greatly reduce the duration of running your tests</li>
@@ -33,7 +33,9 @@
       <br>
       <b>Note:</b> The more tests you have, the better the speedup will be.<br>
       Let's say you have 1000 tests which need 40 seconds to run and you have a 6 core CPU, <br>
-      using this plugin you can reduce the duration of tests by approx. 4x (down to 10 seconds).
+      using this plugin you can reduce the duration of tests by approx. 4x (down to 10 seconds).<br>
+      Also, no parallelizing is done when running a single method from a single class(the single <br>
+       method is executed in the main thread)
       <br>
 		<br>
       <b>Warning:</b> Some code is not meant to be run in parallel(sometimes this is the case with integration tests).<br>
@@ -53,15 +55,15 @@
     ]]></description>
 
     <change-notes><![CDATA[
-        <p>1.0.0 (15-nov-2015)</p>
+        <p>1.0.0 (1-sep-2019)</p>
         <ul>
-            <li>Initial version (ported functionality of the NB 1.1.1 version, without refactoring support)</li>
+            <li>Initial version (using work-stealing threads) </li>
         </ul>
     ]]>
     </change-notes>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-    <idea-version since-build="93"/>
+    <idea-version since-build="182"/>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
