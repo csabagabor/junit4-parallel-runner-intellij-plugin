@@ -24,13 +24,16 @@ public class ParallelScheduler implements RunnerScheduler {
             Runtime runtime = Runtime.getRuntime();
             numThreads = Math.max(2, runtime.availableProcessors());
         }
-        ForkJoinPool.ForkJoinWorkerThreadFactory threadFactory = pool -> {
-            if (pool.getPoolSize() >= pool.getParallelism()) {
-                return null;
-            } else {
-                ForkJoinWorkerThread thread = ForkJoinPool.defaultForkJoinWorkerThreadFactory.newThread(pool);
-                thread.setName("JUnit-" + thread.getName());
-                return thread;
+        ForkJoinPool.ForkJoinWorkerThreadFactory threadFactory = new ForkJoinPool.ForkJoinWorkerThreadFactory() {
+            @Override
+            public ForkJoinWorkerThread newThread(ForkJoinPool pool) {
+                if (pool.getPoolSize() >= pool.getParallelism()) {
+                    return null;
+                } else {
+                    ForkJoinWorkerThread thread = ForkJoinPool.defaultForkJoinWorkerThreadFactory.newThread(pool);
+                    thread.setName("JUnit-" + thread.getName());
+                    return thread;
+                }
             }
         };
         return new ForkJoinPool(numThreads, threadFactory, null, false);

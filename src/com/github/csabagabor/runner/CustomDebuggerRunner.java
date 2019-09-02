@@ -22,7 +22,7 @@ public class CustomDebuggerRunner extends GenericDebuggerRunner {
     }
 
     @Override
-    protected RunContentDescriptor doExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env) throws ExecutionException {
+    protected RunContentDescriptor doExecute(final @NotNull RunProfileState state, final @NotNull ExecutionEnvironment env) throws ExecutionException {
 
         RunContentDescriptor runContentDescriptor = null;
         try {
