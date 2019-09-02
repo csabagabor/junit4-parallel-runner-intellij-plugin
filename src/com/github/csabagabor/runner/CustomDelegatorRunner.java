@@ -30,8 +30,8 @@ public abstract class CustomDelegatorRunner {
         javaParameters.getClassPath().addFirst(PathManager.getJarPathForClass(EntryPointStarter.class));
     }
 
-    protected void doPostExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment env,
-                                 RunContentDescriptor runContentDescriptor, Runnable runInCaseOfError) {
+    protected void doPostExecute(@NotNull RunProfileState state, final @NotNull ExecutionEnvironment env,
+                                 RunContentDescriptor runContentDescriptor, final Runnable runInCaseOfError) {
         final ProcessHandler processHandler = runContentDescriptor.getProcessHandler();
 
         if (processHandler != null) {
