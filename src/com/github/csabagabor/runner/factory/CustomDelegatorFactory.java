@@ -12,14 +12,7 @@ import com.intellij.execution.ProgramRunnerUtil;
 import com.intellij.execution.configurations.RunProfileState;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.ide.util.PropertiesComponent;
-import com.intellij.openapi.util.io.FileUtilRt;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -76,9 +69,9 @@ public abstract class CustomDelegatorFactory {
 
             //save the id of the current runner only if it is not the default runner(last one)
             //in case it is the default runner, on the next startup the first runner will be tried again
-            if(RUNNER_ID < runners.size()) {
+            if (RUNNER_ID < runners.size()) {
                 PropertiesComponent.getInstance().setValue(Resources.SAVE_SETTINGS_RUNNER_ID, RUNNER_ID.toString());
-            }else{
+            } else {
                 PropertiesComponent.getInstance().setValue(Resources.SAVE_SETTINGS_RUNNER_ID, "1");
             }
 
