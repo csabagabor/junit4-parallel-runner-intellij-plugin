@@ -1,5 +1,7 @@
 # JUnit4 Parallel Runner - Intellij IDEA plugin
 
+>Note: it is available on Intellij Marketplace: https://plugins.jetbrains.com/plugin/12959-junit4-parallel-runner
+
 ## About
 Intellij IDEA plugin that allows you to run `JUnit4` tests in parallel (using **multiple CPU cores/threads**). Uses the **Fork/Join Framework** from Java 7 so it can fully utilize the power of the CPU.
 
