@@ -1,8 +1,7 @@
 package com.github.csabagabor.patches.plugin;
-
-import com.intellij.rt.execution.junit.IdeaTestRunner;
-import com.intellij.rt.execution.junit.IdeaTestRunner.Repeater;
-import com.intellij.rt.execution.junit.JUnitForkedSplitter;
+import com.intellij.rt.junit.IdeaTestRunner;
+import com.intellij.rt.junit.IdeaTestRunner.Repeater;
+import com.intellij.rt.junit.JUnitForkedSplitter;
 import com.intellij.rt.execution.junit.RepeatCount;
 import junit.textui.ResultPrinter;
 import junit.textui.TestRunner;

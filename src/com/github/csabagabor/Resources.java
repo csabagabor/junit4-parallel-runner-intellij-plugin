@@ -14,7 +14,7 @@ public abstract class Resources {
 
     public static final String JUNIT_RUNNER3_TMP_FILE = "jun_par_run.tmp";
 
-    public static final String SAVE_SETTINGS_RUNNER_ID = "junit.parallel.runner.runnerid";
+    public static final String SAVE_SETTINGS_RUNNER_ID = "junit.parallel.runner.runnerid2";
 
     public static boolean checkJUnit4() {
         try {
