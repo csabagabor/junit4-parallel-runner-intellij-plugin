@@ -8,6 +8,8 @@ Intellij IDEA plugin that allows you to run `JUnit4` tests in parallel (using **
 ## Implementation
 This plugin was built with portability in mind, so it contains three different runners in case some of them fail. A *Runner* is a class/several classes that add additional functionality to JUnit tests, in this case, they run them in parallel. The problem was that the bundled JUnit plugin is not extensible enough to be able to develop a really simple solution which works in every case and with every Intellij IDEA version. For example, in the latest version, the package in which the class `JUnitStarter` resides is: `com.intellij.rt.execution.junit`, but it has already been changed to `com.intellij.rt.junit` in the official Github [repository](https://github.com/JetBrains/intellij-community/blob/master/plugins/junit_rt/src/com/intellij/rt/junit/JUnitStarter.java)....
 
+>Note: even though the plugin contains several runners, I try to update the code of every runner which fails to work with a major Intellij IDEA version. For example, this happened in version 2019.3 where the first runner fails so please check out the `version/2019.3` branch.
+
 #### First Runner
 Just patches the JavaParameters, to use a custom runner instead of `JUnitStarter`. Also, I included the full source code of `JUnitStarter` class in the plugin(doesn't seem like a good idea, right?), just to prevent using reflection and not to depend on its implementation in different IDEA versions. This runner will be tried first, if it fails with any kind of error, the second runner will be started etc.
 This runner is simple enough but sensitive to changes in the source code of the bundled junit plugin.
