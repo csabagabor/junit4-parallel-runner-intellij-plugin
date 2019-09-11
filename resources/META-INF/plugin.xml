@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>JUnit4-Parallel-Runner</id>
     <name>JUnit4 Parallel Runner</name>
-    <version>1.1</version>
+    <version>1.2</version>
     <vendor
             email="csabagabor97@gmail.com"
             url="https://github.com/csabagabor/junit4-parallel-runner-intellij-plugin">
@@ -16,7 +16,7 @@
       A plugin that allows you to run <b>JUnit4</b> tests in <b>parallel</b> (using <b>multiple CPU cores/threads</b>).
 	  <br>
 	  <br>
-	   <b>Important: it only works with JDK 7+</b>
+	   <b>Important: it only works with JDK 7+(because it uses the Fork/Join framework)</b>
 	  <br>
       <br>
       Why and when to use it:
@@ -59,6 +59,11 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <p>1.2 (4-sep-2019)</p>
+        <ul>
+            <li>Update description</li>
+        </ul>
+
         <p>1.1 (2-sep-2019)</p>
         <ul>
             <li>Added support for JDK 7</li>
