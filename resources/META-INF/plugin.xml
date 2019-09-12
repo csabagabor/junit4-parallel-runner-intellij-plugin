@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>JUnit4-Parallel-Runner</id>
     <name>JUnit4 Parallel Runner</name>
-    <version>1.2</version>
+    <version>1.4</version>
     <vendor
             email="csabagabor97@gmail.com"
             url="https://github.com/csabagabor/junit4-parallel-runner-intellij-plugin">
@@ -59,6 +59,11 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <p>1.4 (12-sep-2019)</p>
+        <ul>
+            <li>show error message when trying to run junit3 tests</li>
+        </ul>
+
         <p>1.2 (4-sep-2019)</p>
         <ul>
             <li>Update description</li>
