@@ -31,7 +31,7 @@ public class ParallelStarter extends JUnitStarter {
         String agentName = (String) JUnitStarter.processParameters(argList, listeners, name);
 
         if (!agentName.equals(JUnitStarter.JUNIT4_RUNNER_NAME)) {
-            System.exit(-3);
+            System.exit(-8);
         }
 
         try {
