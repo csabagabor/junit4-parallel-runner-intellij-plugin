@@ -5,6 +5,8 @@
 ## About
 Intellij IDEA plugin that allows you to run `JUnit4` tests in parallel (using **multiple CPU cores/threads**). Uses the **Fork/Join Framework** from Java 7 so it can fully utilize the power of the CPU.
 
+>If you liked the plugin, consider supporting me on Patreon: https://www.patreon.com/csabagabor
+
 ## Implementation
 This plugin was built with portability in mind, so it contains three different runners in case some of them fail. A *Runner* is a class/several classes that add additional functionality to JUnit tests, in this case, they run them in parallel. The problem was that the bundled JUnit plugin is not extensible enough to be able to develop a really simple solution which works in every case and with every Intellij IDEA version. For example, in the latest version, the package in which the class `JUnitStarter` resides is: `com.intellij.rt.execution.junit`, but it has already been changed to `com.intellij.rt.junit` in the official Github [repository](https://github.com/JetBrains/intellij-community/blob/master/plugins/junit_rt/src/com/intellij/rt/junit/JUnitStarter.java)....
 
