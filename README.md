@@ -1,3 +1,5 @@
+[Support me on Patreon](https://www.patreon.com/csabagabor?fan_landing=true)
+
 # JUnit4 Parallel Runner - Intellij IDEA plugin
 
 >Note: it is available on Intellij Marketplace: https://plugins.jetbrains.com/plugin/12959-junit4-parallel-runner
